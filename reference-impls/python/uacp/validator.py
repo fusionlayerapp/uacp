@@ -1,6 +1,9 @@
 from __future__ import annotations
 import re
 
+from .kind_schemas import KIND_SCHEMAS
+from .schema_subset import check_schema
+
 SEMVER_RE = re.compile(r'^\d+\.\d+\.\d+$')
 ISO8601_RE = re.compile(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z$')
 SHA256_RE = re.compile(r'^[a-f0-9]{64}$')
@@ -218,11 +221,36 @@ def _validate_message(msg, idx: int, errors: list[str]) -> None:
         _validate_redactions(redactions, f'{p}.redactions', errors)
 
 
+def _validate_kind_envelope(doc: dict) -> dict:
+    errors: list[str] = []
+    uacp = doc.get('uacp')
+    if not isinstance(uacp, str) or not SEMVER_RE.match(uacp):
+        errors.append('uacp: must be a semver string (e.g. "0.6.0")')
+    doc_id = doc.get('id')
+    if not isinstance(doc_id, str) or not doc_id.strip():
+        errors.append('id: required, must be a non-empty string')
+    elif len(doc_id) > MAX_ID_LEN:
+        errors.append(f'id: must not exceed {MAX_ID_LEN} characters')
+    # Unknown kinds MUST be passed through (spec/v1/UACP-CORE.md), so only known
+    # kinds have a body to check.
+    schema = KIND_SCHEMAS.get(doc['kind'])
+    if isinstance(schema, dict):
+        check_schema(schema, doc['body'], 'body', schema, errors)
+    if errors:
+        return {'ok': False, 'errors': errors}
+    return {'ok': True}
+
+
 def validate(doc: object) -> dict:
     errors: list[str] = []
 
     if not _is_obj(doc):
         return {'ok': False, 'errors': ['Root must be a JSON object']}
+
+    # A kind+body artifact envelope (memory, persona, ...) is not a conversation:
+    # its body is judged by its kind schema, as in validate.js (uacp#102, #105).
+    if isinstance(doc.get('kind'), str) and 'body' in doc:
+        return _validate_kind_envelope(doc)
 
     # Unknown root properties (unevaluatedProperties: false)
     unknown_root = set(doc.keys()) - VALID_ROOT_KEYS

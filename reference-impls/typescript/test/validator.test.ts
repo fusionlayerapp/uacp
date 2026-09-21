@@ -446,6 +446,36 @@ describe('validate', () => {
   })
 })
 
+describe('kind+body envelopes', () => {
+  const doc = { uacp: '0.6.0', id: 'k1', kind: 'memory', body: { content: 'Prefers dark mode' } }
+
+  it('validates the body against its kind schema', () => {
+    assert.deepEqual(validate(doc), { ok: true })
+    const bad = validate({ ...doc, body: { content: 'x', confidence: 2 } })
+    assert.equal(bad.ok, false)
+    assert.ok(bad.errors?.some(e => e.includes('body.confidence')))
+  })
+
+  it('passes an unknown kind through', () => {
+    assert.deepEqual(validate({ uacp: '0.6.0', id: 'k2', kind: 'vendor/custom', body: { x: 1 } }), { ok: true })
+  })
+
+  it('checks the uri and date-time formats', () => {
+    const persona = { uacp: '0.6.0', id: 'k3', kind: 'persona', body: { name: 'n', description: 'd', system_prompt: 'p', avatar_url: 'https://example.com/a.png' } }
+    assert.deepEqual(validate(persona), { ok: true })
+    const badUrl = validate({ ...persona, body: { ...persona.body, avatar_url: 'this is not a url at all!!' } })
+    assert.equal(badUrl.ok, false)
+    assert.ok(badUrl.errors?.some(e => e.includes('body.avatar_url')))
+    const memory = { uacp: '0.6.0', id: 'k4', kind: 'memory', body: { content: 'c', expires_at: '2024-02-29T00:00:00Z' } }
+    assert.deepEqual(validate(memory), { ok: true })
+    for (const value of ['9999-99-99T99:99:99Z', '2026-02-29T00:00:00Z']) {
+      const bad = validate({ ...memory, body: { content: 'c', expires_at: value } })
+      assert.equal(bad.ok, false)
+      assert.ok(bad.errors?.some(e => e.includes('body.expires_at')))
+    }
+  })
+})
+
 describe('parse', () => {
   it('parses a valid JSON string', () => {
     const doc = parse(JSON.stringify(minimal))
