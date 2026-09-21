@@ -248,11 +248,9 @@ function validateKindEnvelope(doc: Record<string, unknown>): ValidationResult {
   }
   const kind = doc.kind as string
   const schema = Object.prototype.hasOwnProperty.call(KIND_SCHEMAS, kind) ? KIND_SCHEMAS[kind] : undefined
-  if (!isObject(schema)) {
-    errors.push(`kind: unknown artifact kind '${kind}'`)
-  } else {
-    checkSchema(schema, doc.body, 'body', schema, errors)
-  }
+  // Unknown kinds MUST be passed through (spec/v1/UACP-CORE.md), so only known
+  // kinds have a body to check.
+  if (isObject(schema)) checkSchema(schema, doc.body, 'body', schema, errors)
   return errors.length === 0 ? { ok: true } : { ok: false, errors }
 }
 

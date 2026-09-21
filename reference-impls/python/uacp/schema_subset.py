@@ -1,11 +1,56 @@
 """Minimal JSON Schema (2020-12) evaluator covering the keywords used by the
-kind body schemas in schema/v1/kinds. Annotation-only keywords (title,
-description, default, format) are ignored, as they are by default in ajv."""
+kind body schemas in schema/v1/kinds, with the uri and date-time formats
+checked as ajv-formats does in validate.js. Annotation-only keywords (title,
+description, default) are ignored."""
 from __future__ import annotations
 
 import json
 import math
 import re
+
+
+# Ported from ajv-formats (full mode), which validate.js uses.
+_URI = re.compile(r"^(?:[a-z][a-z0-9+\-.]*:)(?:\/?\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:]|%[0-9a-f]{2})*@)?(?:\[(?:(?:(?:(?:[0-9a-f]{1,4}:){6}|::(?:[0-9a-f]{1,4}:){5}|(?:[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){4}|(?:(?:[0-9a-f]{1,4}:){0,1}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){3}|(?:(?:[0-9a-f]{1,4}:){0,2}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){2}|(?:(?:[0-9a-f]{1,4}:){0,3}[0-9a-f]{1,4})?::[0-9a-f]{1,4}:|(?:(?:[0-9a-f]{1,4}:){0,4}[0-9a-f]{1,4})?::)(?:[0-9a-f]{1,4}:[0-9a-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?))|(?:(?:[0-9a-f]{1,4}:){0,5}[0-9a-f]{1,4})?::[0-9a-f]{1,4}|(?:(?:[0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})?::)|[Vv][0-9a-f]+\.[a-z0-9\-._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)|(?:[a-z0-9\-._~!$&'()*+,;=]|%[0-9a-f]{2})*)(?::\d*)?(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*|\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)(?:\?(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?(?:#(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?$", re.IGNORECASE | re.ASCII)
+_DATE = re.compile(r'^(\d\d\d\d)-(\d\d)-(\d\d)$', re.ASCII)
+_TIME = re.compile(r'^(\d\d):(\d\d):(\d\d(?:\.\d+)?)(z|([+-])(\d\d)(?::?(\d\d))?)?$', re.IGNORECASE | re.ASCII)
+_DAYS = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+
+def _is_uri(s: str) -> bool:
+    return bool(re.search(r'/|:', s)) and bool(_URI.match(s))
+
+
+def _is_date(s: str) -> bool:
+    m = _DATE.match(s)
+    if not m:
+        return False
+    year, month, day = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    leap = year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+    return 1 <= month <= 12 and 1 <= day <= (29 if month == 2 and leap else _DAYS[month])
+
+
+def _is_time(s: str) -> bool:
+    m = _TIME.match(s)
+    if not m or not m.group(4):
+        return False
+    hr, mn, sec = int(m.group(1)), int(m.group(2)), float(m.group(3))
+    sign = -1 if m.group(5) == '-' else 1
+    tz_h, tz_m = int(m.group(6) or 0), int(m.group(7) or 0)
+    if tz_h > 23 or tz_m > 59:
+        return False
+    if hr <= 23 and mn <= 59 and sec < 60:
+        return True
+    utc_min = mn - tz_m * sign
+    utc_hr = hr - tz_h * sign - (1 if utc_min < 0 else 0)
+    return utc_hr in (23, -1) and utc_min in (59, -1) and sec < 61
+
+
+def _is_date_time(s: str) -> bool:
+    parts = re.split(r'[tT\s]', s)
+    return len(parts) == 2 and _is_date(parts[0]) and _is_time(parts[1])
+
+
+_FORMATS = {'uri': _is_uri, 'date-time': _is_date_time}
 
 
 def _canonical(v) -> str:
@@ -74,8 +119,11 @@ def check_schema(schema, value, path: str, root: dict, errors: list[str]) -> Non
             errors.append(f'{path}: must be at least {schema["minLength"]} characters')
         if 'maxLength' in schema and len(value) > schema['maxLength']:
             errors.append(f'{path}: must not exceed {schema["maxLength"]} characters')
-        if 'pattern' in schema and not re.search(schema['pattern'], value):
+        if 'pattern' in schema and not re.search(schema['pattern'], value, re.ASCII):
             errors.append(f'{path}: must match pattern {schema["pattern"]}')
+        check = _FORMATS.get(schema.get('format'))
+        if check and not check(value):
+            errors.append(f'{path}: must be a valid {schema["format"]}')
 
     if _is_number(value):
         if 'minimum' in schema and value < schema['minimum']:

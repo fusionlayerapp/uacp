@@ -231,10 +231,10 @@ def _validate_kind_envelope(doc: dict) -> dict:
         errors.append('id: required, must be a non-empty string')
     elif len(doc_id) > MAX_ID_LEN:
         errors.append(f'id: must not exceed {MAX_ID_LEN} characters')
+    # Unknown kinds MUST be passed through (spec/v1/UACP-CORE.md), so only known
+    # kinds have a body to check.
     schema = KIND_SCHEMAS.get(doc['kind'])
-    if not isinstance(schema, dict):
-        errors.append(f"kind: unknown artifact kind '{doc['kind']}'")
-    else:
+    if isinstance(schema, dict):
         check_schema(schema, doc['body'], 'body', schema, errors)
     if errors:
         return {'ok': False, 'errors': errors}

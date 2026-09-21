@@ -25,10 +25,21 @@ def test_kind_envelope_is_validated_against_its_kind_schema():
     assert any('body.confidence' in e for e in bad['errors'])
 
 
-def test_kind_envelope_rejects_unknown_kind():
-    result = validate({'uacp': '0.6.0', 'id': 'k2', 'kind': 'nonexistent', 'body': {}})
-    assert result['ok'] is False
-    assert any('unknown artifact kind' in e for e in result['errors'])
+def test_kind_envelope_passes_unknown_kind_through():
+    assert validate({'uacp': '0.6.0', 'id': 'k2', 'kind': 'vendor/custom', 'body': {'x': 1}}) == {'ok': True}
+
+
+def test_kind_envelope_checks_uri_and_date_time_formats():
+    persona = {'uacp': '0.6.0', 'id': 'k3', 'kind': 'persona',
+               'body': {'name': 'n', 'description': 'd', 'system_prompt': 'p', 'avatar_url': 'https://example.com/a.png'}}
+    assert validate(persona) == {'ok': True}
+    bad = validate({**persona, 'body': {**persona['body'], 'avatar_url': 'this is not a url at all!!'}})
+    assert bad['ok'] is False and any('body.avatar_url' in e for e in bad['errors'])
+    memory = {'uacp': '0.6.0', 'id': 'k4', 'kind': 'memory', 'body': {'content': 'c', 'expires_at': '2024-02-29T00:00:00Z'}}
+    assert validate(memory) == {'ok': True}
+    for value in ('9999-99-99T99:99:99Z', '2026-02-29T00:00:00Z'):
+        bad = validate({**memory, 'body': {'content': 'c', 'expires_at': value}})
+        assert bad['ok'] is False and any('body.expires_at' in e for e in bad['errors'])
 
 
 def test_validate_minimal_valid():

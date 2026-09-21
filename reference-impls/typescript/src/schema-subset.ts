@@ -1,8 +1,47 @@
 // Minimal JSON Schema (2020-12) evaluator covering the keywords used by the
-// kind body schemas in schema/v1/kinds. Annotation-only keywords (title,
-// description, default, format) are ignored, as they are by default in ajv.
+// kind body schemas in schema/v1/kinds, with the uri and date-time formats
+// checked as ajv-formats does in validate.js. Annotation-only keywords (title,
+// description, default) are ignored.
 
 type Schema = Record<string, unknown> | boolean
+
+// Ported from ajv-formats (full mode), which validate.js uses.
+const URI = /^(?:[a-z][a-z0-9+\-.]*:)(?:\/?\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:]|%[0-9a-f]{2})*@)?(?:\[(?:(?:(?:(?:[0-9a-f]{1,4}:){6}|::(?:[0-9a-f]{1,4}:){5}|(?:[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){4}|(?:(?:[0-9a-f]{1,4}:){0,1}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){3}|(?:(?:[0-9a-f]{1,4}:){0,2}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){2}|(?:(?:[0-9a-f]{1,4}:){0,3}[0-9a-f]{1,4})?::[0-9a-f]{1,4}:|(?:(?:[0-9a-f]{1,4}:){0,4}[0-9a-f]{1,4})?::)(?:[0-9a-f]{1,4}:[0-9a-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?))|(?:(?:[0-9a-f]{1,4}:){0,5}[0-9a-f]{1,4})?::[0-9a-f]{1,4}|(?:(?:[0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})?::)|[Vv][0-9a-f]+\.[a-z0-9\-._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)|(?:[a-z0-9\-._~!$&'()*+,;=]|%[0-9a-f]{2})*)(?::\d*)?(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*|\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)(?:\?(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?(?:#(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?$/i
+const DATE = /^(\d\d\d\d)-(\d\d)-(\d\d)$/
+const TIME = /^(\d\d):(\d\d):(\d\d(?:\.\d+)?)(z|([+-])(\d\d)(?::?(\d\d))?)?$/i
+const DAYS = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+function isUri(s: string): boolean {
+  return /\/|:/.test(s) && URI.test(s)
+}
+
+function isDate(s: string): boolean {
+  const m = DATE.exec(s)
+  if (!m) return false
+  const year = +m[1], month = +m[2], day = +m[3]
+  const leap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
+  return month >= 1 && month <= 12 && day >= 1 && day <= (month === 2 && leap ? 29 : DAYS[month])
+}
+
+function isTime(s: string): boolean {
+  const m = TIME.exec(s)
+  if (!m || !m[4]) return false
+  const hr = +m[1], min = +m[2], sec = +m[3]
+  const sign = m[5] === '-' ? -1 : 1
+  const tzH = +(m[6] || 0), tzM = +(m[7] || 0)
+  if (tzH > 23 || tzM > 59) return false
+  if (hr <= 23 && min <= 59 && sec < 60) return true
+  const utcMin = min - tzM * sign
+  const utcHr = hr - tzH * sign - (utcMin < 0 ? 1 : 0)
+  return (utcHr === 23 || utcHr === -1) && (utcMin === 59 || utcMin === -1) && sec < 61
+}
+
+function isDateTime(s: string): boolean {
+  const parts = s.split(/t|\s/i)
+  return parts.length === 2 && isDate(parts[0]) && isTime(parts[1])
+}
+
+const FORMATS: Record<string, (s: string) => boolean> = { uri: isUri, 'date-time': isDateTime }
 
 function isObject(v: unknown): v is Record<string, unknown> {
   return v !== null && typeof v === 'object' && !Array.isArray(v)
@@ -64,7 +103,9 @@ export function checkSchema(schema: Schema, value: unknown, path: string, root: 
     const length = Array.from(value).length
     if (typeof schema.minLength === 'number' && length < schema.minLength) errors.push(`${path}: must be at least ${schema.minLength} characters`)
     if (typeof schema.maxLength === 'number' && length > schema.maxLength) errors.push(`${path}: must not exceed ${schema.maxLength} characters`)
-    if (typeof schema.pattern === 'string' && !new RegExp(schema.pattern, 'u').test(value)) errors.push(`${path}: must match pattern ${schema.pattern}`)
+    if (typeof schema.pattern === 'string' && !new RegExp(schema.pattern).test(value)) errors.push(`${path}: must match pattern ${schema.pattern}`)
+    const format = typeof schema.format === 'string' ? FORMATS[schema.format] : undefined
+    if (format && !format(value)) errors.push(`${path}: must be a valid ${schema.format}`)
   }
 
   if (typeof value === 'number') {
