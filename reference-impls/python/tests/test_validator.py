@@ -1,7 +1,7 @@
 import json
 import os
 import pytest
-from uacp import validate, parse, serialize, UACPDocument
+from uacp import validate, parse, serialize, UACPDocument, validate_memory_sequence
 
 VECTORS_DIR = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'test-vectors')
 
@@ -253,3 +253,71 @@ def test_invalid_vector_fails(filename):
         doc = json.load(f)
     result = validate(doc)
     assert result['ok'] is False, f'{filename} should be invalid but validate() returned ok=True'
+
+
+# ---------------------------------------------------------------------------
+# Memory semantic checks (uacp#107)
+# ---------------------------------------------------------------------------
+
+MEMORY_VECTORS_DIR = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'conformance', 'memory', 'vectors')
+
+
+def _memory(body):
+    return {'uacp': '0.6.0', 'id': 'mem-1', 'kind': 'memory', 'body': body}
+
+
+def test_memory_semantically_valid_is_accepted():
+    body = {'content': 'Prefers dark mode', 'topics': ['preference'],
+            'lifecycle': {'action': 'create', 'status': 'active', 'revision': 1}}
+    assert validate(_memory(body)) == {'ok': True}
+
+
+def test_memory_broken_revision_chain_is_rejected_like_validate_js():
+    body = {'content': 'x', 'lifecycle': {'action': 'update', 'status': 'active', 'revision': 3,
+                                          'previous_revision': {'memory_id': 'mem-1', 'revision': 1}}}
+    r = validate(_memory(body))
+    assert r['ok'] is False
+    assert 'body.lifecycle: MEMORY_LIFECYCLE_NON_CONTIGUOUS_REVISION' in r['errors']
+
+
+def test_memory_predecessor_for_another_memory_is_rejected():
+    body = {'content': 'x', 'lifecycle': {'action': 'update', 'status': 'active', 'revision': 2,
+                                          'previous_revision': {'memory_id': 'mem-other', 'revision': 1}}}
+    assert 'body.lifecycle: MEMORY_LIFECYCLE_PREVIOUS_REVISION_ID_MISMATCH' in validate(_memory(body))['errors']
+
+
+def test_memory_sensitive_without_explicit_consent_is_rejected():
+    r = validate(_memory({'content': 'x', 'category': 'health'}))
+    assert 'body.lifecycle: MEMORY_LIFECYCLE_SENSITIVE_MEMORY_REQUIRES_EXPLICIT_CONSENT' in r['errors']
+
+
+def test_memory_unknown_unnamespaced_topic_and_profile_are_rejected():
+    r = validate(_memory({'content': 'x', 'topics': ['hobbies'],
+                          'profile_link': {'schema_id': 'custom', 'schema_version': 1, 'field': 'f'}}))
+    assert 'body: MEMORY_TOPIC_UNKNOWN_UNNAMESPACED' in r['errors']
+    assert 'body: MEMORY_PROFILE_UNKNOWN_UNNAMESPACED_SCHEMA' in r['errors']
+
+
+def test_memory_namespaced_topic_and_profile_are_accepted():
+    body = {'content': 'x', 'topics': ['acme/hobbies'],
+            'profile_link': {'schema_id': 'acme/crm', 'schema_version': 1, 'field': 'f'}}
+    assert validate(_memory(body)) == {'ok': True}
+
+
+def _memory_vectors():
+    return sorted(f for f in os.listdir(MEMORY_VECTORS_DIR) if f.endswith('.json'))
+
+
+def test_memory_conformance_vectors_are_present():
+    assert len(_memory_vectors()) >= 9
+
+
+@pytest.mark.parametrize('filename', _memory_vectors())
+def test_memory_conformance_vector(filename):
+    with open(os.path.join(MEMORY_VECTORS_DIR, filename), encoding='utf-8') as f:
+        vector = json.load(f)
+    errors = validate_memory_sequence(vector.get('memories') or [],
+                                      require_signed_envelopes=vector.get('require_signed_envelopes') is True)
+    assert ('accepted' if not errors else 'rejected') == vector['expected_outcome'], errors
+    if vector.get('expected_error'):
+        assert vector['expected_error'] in errors, errors

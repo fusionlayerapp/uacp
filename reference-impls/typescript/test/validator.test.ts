@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { readFileSync, readdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { validate, parse, serialize } from '../src/index.js'
+import { validate, parse, serialize, validateMemorySequence } from '../src/index.js'
 import type { UACPDocument } from '../src/index.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -577,6 +577,58 @@ describe('test vectors — invalid', () => {
       const r = validate(doc)
       assert.equal(r.ok, false, `Expected invalid but got ok=true for ${file}`)
       assert.ok(r.errors && r.errors.length > 0, `Expected errors array to be non-empty for ${file}`)
+    })
+  }
+})
+
+const MEMORY_VECTORS_DIR = join(__dirname, '../../../../conformance/memory/vectors')
+
+describe('memory semantic checks (uacp#107)', () => {
+  const memory = (body: Record<string, unknown>) => ({ uacp: '0.6.0', id: 'mem-1', kind: 'memory', body })
+
+  it('accepts a schema-valid, semantically valid memory', () => {
+    const r = validate(memory({ content: 'Prefers dark mode', topics: ['preference'], lifecycle: { action: 'create', status: 'active', revision: 1 } }))
+    assert.deepEqual(r, { ok: true })
+  })
+
+  it('rejects a broken lifecycle revision chain like validate.js', () => {
+    const r = validate(memory({ content: 'x', lifecycle: { action: 'update', status: 'active', revision: 3, previous_revision: { memory_id: 'mem-1', revision: 1 } } }))
+    assert.equal(r.ok, false)
+    assert.ok(r.errors!.includes('body.lifecycle: MEMORY_LIFECYCLE_NON_CONTIGUOUS_REVISION'), JSON.stringify(r.errors))
+  })
+
+  it('rejects a predecessor that names another memory', () => {
+    const r = validate(memory({ content: 'x', lifecycle: { action: 'update', status: 'active', revision: 2, previous_revision: { memory_id: 'mem-other', revision: 1 } } }))
+    assert.ok(r.errors!.includes('body.lifecycle: MEMORY_LIFECYCLE_PREVIOUS_REVISION_ID_MISMATCH'), JSON.stringify(r.errors))
+  })
+
+  it('rejects sensitive memories without explicit consent', () => {
+    const r = validate(memory({ content: 'x', category: 'health' }))
+    assert.ok(r.errors!.includes('body.lifecycle: MEMORY_LIFECYCLE_SENSITIVE_MEMORY_REQUIRES_EXPLICIT_CONSENT'), JSON.stringify(r.errors))
+  })
+
+  it('rejects unknown unnamespaced topics and profile schemas', () => {
+    const r = validate(memory({ content: 'x', topics: ['hobbies'], profile_link: { schema_id: 'custom', schema_version: 1, field: 'f' } }))
+    assert.ok(r.errors!.includes('body: MEMORY_TOPIC_UNKNOWN_UNNAMESPACED'), JSON.stringify(r.errors))
+    assert.ok(r.errors!.includes('body: MEMORY_PROFILE_UNKNOWN_UNNAMESPACED_SCHEMA'), JSON.stringify(r.errors))
+  })
+
+  it('accepts namespaced topics and profile schemas', () => {
+    assert.deepEqual(validate(memory({ content: 'x', topics: ['acme/hobbies'], profile_link: { schema_id: 'acme/crm', schema_version: 1, field: 'f' } })), { ok: true })
+  })
+})
+
+describe('conformance/memory vectors', () => {
+  const files = readdirSync(MEMORY_VECTORS_DIR).filter(f => f.endsWith('.json')).sort()
+  it('finds the shared memory vectors', () => {
+    assert.ok(files.length >= 9, `expected at least 9 vectors, found ${files.length}`)
+  })
+  for (const file of files) {
+    const vector = JSON.parse(readFileSync(join(MEMORY_VECTORS_DIR, file), 'utf-8'))
+    it(`${vector.expected_outcome} ${file}`, () => {
+      const errors = validateMemorySequence(vector.memories || [], { requireSignedEnvelopes: vector.require_signed_envelopes === true })
+      assert.equal(errors.length === 0 ? 'accepted' : 'rejected', vector.expected_outcome, JSON.stringify(errors))
+      if (vector.expected_error) assert.ok(errors.includes(vector.expected_error), JSON.stringify(errors))
     })
   }
 })

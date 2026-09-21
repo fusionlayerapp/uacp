@@ -3,6 +3,7 @@ import re
 
 from .kind_schemas import KIND_SCHEMAS
 from .schema_subset import check_schema
+from .memory import validate_memory_lifecycle, validate_memory_profile, validate_memory_topics
 
 SEMVER_RE = re.compile(r'^\d+\.\d+\.\d+$')
 ISO8601_RE = re.compile(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z$')
@@ -236,6 +237,14 @@ def _validate_kind_envelope(doc: dict) -> dict:
     schema = KIND_SCHEMAS.get(doc['kind'])
     if isinstance(schema, dict):
         check_schema(schema, doc['body'], 'body', schema, errors)
+    # validate.js also runs the memory semantic checks once the body schema passes.
+    if doc['kind'] == 'memory' and not errors and _is_obj(doc['body']):
+        memory_id = doc_id if isinstance(doc_id, str) else None
+        for code in validate_memory_lifecycle(doc['body'], memory_id):
+            path = 'body.lifecycle' if code.startswith('MEMORY_LIFECYCLE_') else 'body'
+            errors.append(f'{path}: {code}')
+        for code in validate_memory_topics(doc['body']) + validate_memory_profile(doc['body']):
+            errors.append(f'body: {code}')
     if errors:
         return {'ok': False, 'errors': errors}
     return {'ok': True}

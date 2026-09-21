@@ -1,4 +1,11 @@
 export { validate } from './validator.js'
+export {
+  validateMemoryLifecycle,
+  validateMemoryTopics,
+  validateMemoryProfile,
+  validateMemorySequence,
+  canonicalJson,
+} from './memory.js'
 export { parse, serialize } from './serializer.js'
 export type {
   UACPDocument,

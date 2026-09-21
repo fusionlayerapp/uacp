@@ -1,6 +1,7 @@
 import type { UACPDocument, ValidationResult } from './types.js'
 import { KIND_SCHEMAS } from './kind-schemas.js'
 import { checkSchema } from './schema-subset.js'
+import { validateMemoryLifecycle, validateMemoryTopics, validateMemoryProfile } from './memory.js'
 
 const VALID_ROLES = new Set(['user', 'assistant', 'system', 'tool'])
 const VALID_MSG_STATUS = new Set(['complete', 'in_progress', 'error'])
@@ -251,6 +252,16 @@ function validateKindEnvelope(doc: Record<string, unknown>): ValidationResult {
   // Unknown kinds MUST be passed through (spec/v1/UACP-CORE.md), so only known
   // kinds have a body to check.
   if (isObject(schema)) checkSchema(schema, doc.body, 'body', schema, errors)
+  // validate.js also runs the memory semantic checks once the body schema passes.
+  if (kind === 'memory' && errors.length === 0 && isObject(doc.body)) {
+    const memoryId = typeof doc.id === 'string' ? doc.id : undefined
+    for (const code of validateMemoryLifecycle(doc.body, { memoryId })) {
+      errors.push(`${code.startsWith('MEMORY_LIFECYCLE_') ? 'body.lifecycle' : 'body'}: ${code}`)
+    }
+    for (const code of [...validateMemoryTopics(doc.body), ...validateMemoryProfile(doc.body)]) {
+      errors.push(`body: ${code}`)
+    }
+  }
   return errors.length === 0 ? { ok: true } : { ok: false, errors }
 }
 

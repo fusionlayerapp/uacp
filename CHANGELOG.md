@@ -24,6 +24,12 @@
   valid and invalid conformance vectors for lifecycle, topics, and profile
   linkage.
 - `CONFORMANCE.md` — new requirement #10 (Memory lifecycle).
+- Python and TypeScript reference validators now apply the same memory
+  semantic checks as `validate.js` (lifecycle, topics, profile linkage) to
+  `kind: memory` envelopes, and export a sequence validator
+  (`validate_memory_sequence` / `validateMemorySequence`) that runs the
+  `conformance/memory/vectors` in both reference test suites in CI (#107).
+  The Go reference implementation still has no kind+body routing.
 
 Issues: #98 (epic), #99, #100, #101.
 
