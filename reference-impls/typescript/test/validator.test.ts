@@ -446,6 +446,23 @@ describe('validate', () => {
   })
 })
 
+describe('kind+body envelopes', () => {
+  const doc = { uacp: '0.6.0', id: 'k1', kind: 'memory', body: { content: 'Prefers dark mode' } }
+
+  it('validates the body against its kind schema', () => {
+    assert.deepEqual(validate(doc), { ok: true })
+    const bad = validate({ ...doc, body: { content: 'x', confidence: 2 } })
+    assert.equal(bad.ok, false)
+    assert.ok(bad.errors?.some(e => e.includes('body.confidence')))
+  })
+
+  it('rejects an unknown kind', () => {
+    const r = validate({ uacp: '0.6.0', id: 'k2', kind: 'nonexistent', body: {} })
+    assert.equal(r.ok, false)
+    assert.ok(r.errors?.some(e => e.includes('unknown artifact kind')))
+  })
+})
+
 describe('parse', () => {
   it('parses a valid JSON string', () => {
     const doc = parse(JSON.stringify(minimal))

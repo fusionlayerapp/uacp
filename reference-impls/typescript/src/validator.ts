@@ -1,4 +1,6 @@
 import type { UACPDocument, ValidationResult } from './types.js'
+import { KIND_SCHEMAS } from './kind-schemas.js'
+import { checkSchema } from './schema-subset.js'
 
 const VALID_ROLES = new Set(['user', 'assistant', 'system', 'tool'])
 const VALID_MSG_STATUS = new Set(['complete', 'in_progress', 'error'])
@@ -234,11 +236,37 @@ function validateArtifact(a: unknown, prefix: string, errors: string[]): void {
   if (typeof a.content !== 'string') errors.push(`${prefix}.content: required (string)`)
 }
 
+function validateKindEnvelope(doc: Record<string, unknown>): ValidationResult {
+  const errors: string[] = []
+  if (typeof doc.uacp !== 'string' || !SEMVER_RE.test(doc.uacp)) {
+    errors.push('uacp: must be a semver string (e.g. "0.6.0")')
+  }
+  if (typeof doc.id !== 'string' || !doc.id.trim()) {
+    errors.push('id: required, must be a non-empty string')
+  } else if (doc.id.length > 256) {
+    errors.push('id: must not exceed 256 characters')
+  }
+  const kind = doc.kind as string
+  const schema = Object.prototype.hasOwnProperty.call(KIND_SCHEMAS, kind) ? KIND_SCHEMAS[kind] : undefined
+  if (!isObject(schema)) {
+    errors.push(`kind: unknown artifact kind '${kind}'`)
+  } else {
+    checkSchema(schema, doc.body, 'body', schema, errors)
+  }
+  return errors.length === 0 ? { ok: true } : { ok: false, errors }
+}
+
 export function validate(doc: unknown): ValidationResult {
   const errors: string[] = []
 
   if (!isObject(doc)) {
     return { ok: false, errors: ['Root must be a JSON object'] }
+  }
+
+  // A kind+body artifact envelope (memory, persona, ...) is not a conversation:
+  // its body is judged by its kind schema, as in validate.js (uacp#102, #105).
+  if (typeof doc.kind === 'string' && 'body' in doc) {
+    return validateKindEnvelope(doc)
   }
 
   for (const key of Object.keys(doc)) {

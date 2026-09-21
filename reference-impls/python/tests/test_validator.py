@@ -17,6 +17,20 @@ MINIMAL = {
 # validate()
 # ---------------------------------------------------------------------------
 
+def test_kind_envelope_is_validated_against_its_kind_schema():
+    doc = {'uacp': '0.6.0', 'id': 'k1', 'kind': 'memory', 'body': {'content': 'Prefers dark mode'}}
+    assert validate(doc) == {'ok': True}
+    bad = validate({**doc, 'body': {'content': 'x', 'confidence': 2}})
+    assert bad['ok'] is False
+    assert any('body.confidence' in e for e in bad['errors'])
+
+
+def test_kind_envelope_rejects_unknown_kind():
+    result = validate({'uacp': '0.6.0', 'id': 'k2', 'kind': 'nonexistent', 'body': {}})
+    assert result['ok'] is False
+    assert any('unknown artifact kind' in e for e in result['errors'])
+
+
 def test_validate_minimal_valid():
     assert validate(MINIMAL) == {'ok': True}
 
@@ -195,13 +209,19 @@ def _load_vector(filename):
         return json.load(f)
 
 
+def _expects_invalid(filename):
+    meta = _load_vector(filename).get('metadata') or {}
+    return meta.get('uacp.test.expect') == 'invalid'
+
+
 def _list_valid_vectors():
     files = [f for f in os.listdir(VECTORS_DIR) if f.endswith('.uacp.json')]
-    return [f for f in files if f not in INVALID_VECTORS]
+    return [f for f in files if f not in INVALID_VECTORS and not _expects_invalid(f)]
 
 
 def _list_invalid_vectors():
     result = [f for f in INVALID_VECTORS]
+    result += [f for f in os.listdir(VECTORS_DIR) if f.endswith('.uacp.json') and f not in INVALID_VECTORS and _expects_invalid(f)]
     invalid_dir = os.path.join(VECTORS_DIR, 'invalid')
     if os.path.isdir(invalid_dir):
         result += [os.path.join('invalid', f) for f in os.listdir(invalid_dir) if f.endswith('.uacp.json')]

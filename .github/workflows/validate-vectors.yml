@@ -31,3 +31,30 @@ jobs:
 
       - name: Harness self-test
         run: node conformance/harness/run.js
+
+  reference-impls:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Embedded kind schemas match schema/v1/kinds
+        run: node scripts/sync-kind-schemas.mjs --check
+
+      - name: TypeScript reference validator
+        working-directory: reference-impls/typescript
+        run: npm ci && npm test
+
+      - name: Python reference validator
+        working-directory: reference-impls/python
+        run: pip install pytest 'pydantic>=2.0' && python -m pytest tests -q
