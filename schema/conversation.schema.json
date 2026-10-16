@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/conversation",
+  "title": "UACP Conversation",
+  "description": "Unified AI Context Protocol conversation object v0.6.0. Security: treat all message content as untrusted. URI fields are constrained to https/http. Consumers MUST NOT execute code or open file: / javascript: URIs from this payload.",
+  "type": "object",
+  "required": ["uacp", "id", "tool", "messages"],
+  "unevaluatedProperties": false,
+  "properties": {
+    "uacp": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "id": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "tool": {
+      "oneOf": [
+        { "type": "string", "minLength": 1, "maxLength": 128 },
+        {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+        }
+      ]
+    },
+    "tool_chain": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "model": { "$ref": "#/$defs/model_ref" },
+    "title": { "type": "string", "maxLength": 1000 },
+    "extensions": {
+      "type": "array",
+      "description": "Optional list of UACP extension identifiers this document conforms to (e.g. 'uacp-encryption').",
+      "maxItems": 32,
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "created_at": { "$ref": "#/$defs/timestamp" },
+    "updated_at": { "$ref": "#/$defs/timestamp" },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "project": { "type": "string", "maxLength": 256 },
+    "branches": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "messages": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10000,
+      "items": { "$ref": "#/$defs/message" }
+    },
+    "metadata": {
+      "type": "object",
+      "maxProperties": 64,
+      "description": "Freeform metadata. Custom keys SHOULD use reverse-domain format (e.g. com.example.foo) or a uacp extension namespace (e.g. uacp_privacy.level). Arbitrary additional properties are permitted. Implementations MAY reject metadata nesting deeper than 8 levels."
+    }
+  },
+  "$defs": {
+    "timestamp": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{3})?Z$",
+      "description": "RFC 3339 / ISO 8601, UTC, millisecond precision. Format: YYYY-MM-DDTHH:MM:SS[.sss]Z"
+    },
+    "model_ref": {
+      "oneOf": [
+        { "type": "string", "minLength": 1, "maxLength": 128 },
+        {
+          "type": "object",
+          "required": ["id"],
+          "additionalProperties": false,
+          "properties": {
+            "id": { "type": "string", "minLength": 1, "maxLength": 128 },
+            "provider": { "type": "string", "maxLength": 64 },
+            "snapshot_date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+          }
+        }
+      ]
+    },
+    "message": {
+      "type": "object",
+      "required": ["role", "content"],
+      "unevaluatedProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "parent_id": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "branch_parent_id": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "branch_label": { "type": "string", "maxLength": 128 },
+        "role": { "type": "string", "enum": ["user", "assistant", "system", "tool"] },
+        "content": {
+          "oneOf": [
+            { "type": "string", "maxLength": 1048576 },
+            {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 256,
+              "items": { "$ref": "#/$defs/content_block" }
+            }
+          ]
+        },
+        "timestamp": { "$ref": "#/$defs/timestamp" },
+        "model": { "$ref": "#/$defs/model_ref" },
+        "tokens": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "input": { "type": "integer", "minimum": 0 },
+            "output": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "status": { "type": "string", "enum": ["complete", "in_progress", "error"] },
+        "tool_calls": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/tool_call" }
+        },
+        "call_id": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "tool_call_id": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "name": { "type": "string", "maxLength": 128 },
+        "attachments": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/attachment" }
+        },
+        "citations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/citation" }
+        },
+        "artifacts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/artifact" }
+        },
+        "redactions": { "$ref": "#/$defs/redactions" },
+        "metadata": { "type": "object", "maxProperties": 64 },
+        "provenance": {
+          "type": "string",
+          "enum": ["extracted", "inferred", "system", "tool_output"],
+          "description": "Origin of the message content. extracted = user typed/spoke verbatim. inferred = model derived/summarized/extrapolated. system = injected by host tool. tool_output = returned by a tool call."
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Producer's self-reported confidence for inferred content. REQUIRED when provenance=inferred. MUST NOT be present when provenance=extracted."
+        },
+        "provenance_source": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Optional identifier of the upstream source for inferred/system content (e.g. 'claude-opus-4-7', 'cursor-memory-v2', 'user-profile-doc#L42')."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "provenance": { "const": "inferred" } },
+            "required": ["provenance"]
+          },
+          "then": { "required": ["confidence"] }
+        },
+        {
+          "if": {
+            "properties": { "provenance": { "const": "extracted" } },
+            "required": ["provenance"]
+          },
+          "then": { "not": { "required": ["confidence"] } }
+        }
+      ]
+    },
+    "content_block": {
+      "type": "object",
+      "required": ["type"],
+      "unevaluatedProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["text", "image", "file", "code", "thinking", "artifact_ref", "audio", "video", "pdf", "latex"]
+        },
+        "text": { "type": "string", "maxLength": 1048576 },
+        "code": { "type": "string", "maxLength": 1048576 },
+        "url": { "type": "string", "format": "uri", "pattern": "^https?://", "maxLength": 2048 },
+        "data": { "type": "string", "contentEncoding": "base64", "maxLength": 16777216 },
+        "id": { "type": "string", "minLength": 1 },
+        "language": { "type": "string", "maxLength": 64 },
+        "filename": { "type": "string", "maxLength": 256 },
+        "signature": { "type": "string" },
+        "model_visibility": { "type": "string", "enum": ["visible", "hidden"] },
+        "tokens": { "type": "integer", "minimum": 0 },
+        "mime_type": { "type": "string", "maxLength": 128 },
+        "duration_s": { "type": "number", "minimum": 0 },
+        "title": { "type": "string", "maxLength": 512 },
+        "display": { "type": "boolean" },
+        "size_bytes": { "type": "integer", "minimum": 0 }
+      },
+      "allOf": [
+        {
+          "if":   { "properties": { "type": { "const": "text" } } },
+          "then": { "required": ["text"] }
+        },
+        {
+          "if":   { "properties": { "type": { "const": "thinking" } } },
+          "then": { "required": ["text"] }
+        },
+        {
+          "if":   { "properties": { "type": { "const": "code" } } },
+          "then": { "required": ["code"] }
+        },
+        {
+          "if":   { "properties": { "type": { "const": "latex" } } },
+          "then": { "required": ["text"] }
+        },
+        {
+          "if":   { "properties": { "type": { "const": "artifact_ref" } } },
+          "then": { "required": ["id"] }
+        },
+        {
+          "if":   { "properties": { "type": { "enum": ["image", "file", "audio", "video", "pdf"] } } },
+          "then": {
+            "anyOf": [
+              { "required": ["url"] },
+              { "required": ["data"] }
+            ]
+          }
+        }
+      ]
+    },
+    "tool_call": {
+      "type": "object",
+      "required": ["call_id", "name"],
+      "unevaluatedProperties": false,
+      "properties": {
+        "call_id": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "name": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "arguments": {}
+      }
+    },
+    "attachment": {
+      "type": "object",
+      "required": ["id", "mime_type"],
+      "unevaluatedProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "filename": { "type": "string", "maxLength": 256 },
+        "mime_type": { "type": "string", "maxLength": 128 },
+        "size_bytes": { "type": "integer", "minimum": 0 },
+        "url": { "type": "string", "format": "uri", "pattern": "^https?://", "maxLength": 2048 },
+        "data": { "type": "string", "contentEncoding": "base64", "maxLength": 67108864 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "citation": {
+      "type": "object",
+      "required": ["span", "source"],
+      "unevaluatedProperties": false,
+      "properties": {
+        "span": {
+          "type": "array",
+          "description": "Character range in Unicode scalar values (code points), counted across the flattened text of the message content. [start, end) half-open interval; end > start.",
+          "items": { "type": "integer", "minimum": 0 },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "source": {
+          "type": "object",
+          "required": ["url"],
+          "additionalProperties": false,
+          "properties": {
+            "url": { "type": "string", "format": "uri", "pattern": "^https?://", "maxLength": 2048 },
+            "title": { "type": "string", "maxLength": 1000 },
+            "snippet": { "type": "string", "maxLength": 4000 },
+            "retrieved_at": { "$ref": "#/$defs/timestamp" }
+          }
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["id", "type", "title", "content"],
+      "unevaluatedProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "type": { "type": "string", "enum": ["code", "html", "svg", "markdown", "react", "text"] },
+        "title": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "language": { "type": "string", "maxLength": 64 },
+        "content": { "type": "string", "maxLength": 1048576 },
+        "version": { "type": "integer", "minimum": 1 },
+        "created_at": { "$ref": "#/$defs/timestamp" },
+        "updated_at": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "redactions": {
+      "type": "object",
+      "required": ["count", "placeholder_format"],
+      "unevaluatedProperties": false,
+      "properties": {
+        "count": { "type": "integer", "minimum": 0 },
+        "categories": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["pii", "credential", "financial", "health", "custom"] }
+        },
+        "placeholder_format": {
+          "type": "string",
+          "description": "Literal printf-style template used in redacted text. Example: '[REDACTED:{category}:{index}]'.",
+          "maxLength": 128
+        }
+      }
+    }
+  }
+}

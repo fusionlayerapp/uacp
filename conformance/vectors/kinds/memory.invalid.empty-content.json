@@ -1,0 +1,8 @@
+{
+  "_schema": "memory",
+  "_expect": "invalid",
+  "body": {
+    "content": "",
+    "category": "professional"
+  }
+}

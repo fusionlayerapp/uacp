@@ -1,0 +1,6 @@
+{
+  "$comment": "DEPRECATED in v0.5.0. This file is kept for backwards compatibility only. The canonical schema is now schema/extensions/uacp-encryption.schema.json. Use $id https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-encryption for new work.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/encrypted-envelope",
+  "$ref": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-encryption"
+}

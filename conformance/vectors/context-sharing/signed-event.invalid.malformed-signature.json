@@ -1,0 +1,25 @@
+{
+  "_schema": "signed-event-envelope",
+  "_expect": "invalid",
+  "_publicKey": "TLWr9q15+/WrvMr8wmnYXNJlHtS4hbWGnyQa7fCluik=",
+  "body": {
+    "author_device_key": "TLWr9q15+/WrvMr8wmnYXNJlHtS4hbWGnyQa7fCluik=",
+    "event_id": "b5b2e1af-8ac4-4b46-9cf5-0b64e9b2c4bb",
+    "event_type": "promotion",
+    "payload": {
+      "artifact_id": "1f83d9ab-6b2e-4b9a-a3e7-1ee3cf3c6a23",
+      "event_type": "promotion",
+      "from_scope_id": "11111111-1111-1111-1111-111111111111",
+      "re_encrypted_body": "YmFzZTY0LWJsb2I=",
+      "scope_key_id_used": "d8b3f9a1-0b0a-4a2e-a5b1-4aa7c0e5d3b6",
+      "to_scope_id": "4a0a0f7f-0c5f-4ab8-9b0c-88d0b4f00b3a"
+    },
+    "scope_id": "4a0a0f7f-0c5f-4ab8-9b0c-88d0b4f00b3a",
+    "signature": "not-a-valid-hex-signature",
+    "timestamp": "2026-05-16T00:00:00Z",
+    "vector_clock": {
+      "device-A": 3,
+      "device-B": 1
+    }
+  }
+}

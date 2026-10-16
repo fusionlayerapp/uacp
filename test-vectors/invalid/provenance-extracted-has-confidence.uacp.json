@@ -1,0 +1,17 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-021",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "The document states the price is $42.",
+      "provenance": "extracted",
+      "confidence": 0.9
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "message has 'provenance: extracted' with 'confidence' present; confidence is forbidden when provenance is extracted"
+  }
+}

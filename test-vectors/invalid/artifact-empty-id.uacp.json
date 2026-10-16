@@ -1,0 +1,26 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-041",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": [
+        { "type": "text", "text": "Here is the code:" },
+        { "type": "artifact_ref", "id": "" }
+      ],
+      "artifacts": [
+        {
+          "id": "",
+          "type": "code",
+          "title": "example.py",
+          "content": "print('hello')"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "artifact id is empty string — minLength is 1"
+  }
+}

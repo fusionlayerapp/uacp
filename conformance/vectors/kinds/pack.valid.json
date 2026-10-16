@@ -1,0 +1,14 @@
+{
+  "_schema": "pack",
+  "_expect": "valid",
+  "body": {
+    "title": "Solo Developer",
+    "description": "Memory, rules, and persona for an independent developer's daily workflow.",
+    "artifact_refs": [
+      { "kind": "persona", "slug": "persona-senior-engineer" },
+      { "kind": "guideline", "slug": "guideline-cite-sources" },
+      { "kind": "memory", "slug": "memory-role-developer" }
+    ],
+    "tags": ["developer", "solo"]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "fixture_id": "withdraw-event/01-author-retracted",
+  "description": "Scenario 15: Author retracts a wrongly-scoped event.",
+  "expected": "valid",
+  "withdraw": {
+    "type": "withdraw",
+    "target_event_ids": ["50000000-0000-4000-8000-000000000001"],
+    "reason": "author_retracted",
+    "withdrawn_at": 1700001000,
+    "withdrawer_identity": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  }
+}

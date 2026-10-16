@@ -1,0 +1,42 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_26_tool_chain",
+  "tool": "claude-code",
+  "tool_chain": ["cursor", "claude-code"],
+  "title": "Conversation imported from multi-tool workflow",
+  "created_at": "2026-05-09T10:04:00.000Z",
+  "updated_at": "2026-05-09T10:04:45.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "Refactor the authentication module to use JWT.",
+      "timestamp": "2026-05-09T10:04:00.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "I'll refactor the auth module to use JWT. I'll replace session-based auth with stateless JWT tokens, update the middleware, and add token refresh logic.",
+      "timestamp": "2026-05-09T10:04:10.000Z"
+    },
+    {
+      "id": "msg_3",
+      "role": "user",
+      "parent_id": "msg_2",
+      "content": "Make sure to handle token expiry gracefully.",
+      "timestamp": "2026-05-09T10:04:30.000Z"
+    },
+    {
+      "id": "msg_4",
+      "role": "assistant",
+      "parent_id": "msg_3",
+      "content": "Done. The middleware now catches TokenExpiredError and returns a 401 with a `WWW-Authenticate: Bearer error=\"token_expired\"` header, prompting the client to refresh.",
+      "timestamp": "2026-05-09T10:04:45.000Z"
+    }
+  ],
+  "metadata": {
+    "uacp.import_source": "cursor",
+    "uacp.import_timestamp": "2026-05-09T10:05:00.000Z"
+  }
+}

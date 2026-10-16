@@ -1,0 +1,20 @@
+{
+  "fixture_id": "negative-03-missing-parent",
+  "description": "parent_event_id not null and not in log — must return MISSING_PARENT",
+  "expected": "MISSING_PARENT",
+  "log": [],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "011e8dfb-0bc2-4081-92ea-392bdb69929c",
+    "parent_event_id": "69af735b-711b-4c1c-a69a-a48a3bb8c6c0",
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000001": 2
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1747180801000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "ZmFrZS1jaXBoZXJ0ZXh0LWE",
+    "signature": "g2UI7bwN8Uy3geNCi_ARTB0wfwxwIGCkMGOzvbAUOMKZziVMoATtzflwAPfIFstl7qq5jBgPPcWmKlJc1YyzDA"
+  }
+}

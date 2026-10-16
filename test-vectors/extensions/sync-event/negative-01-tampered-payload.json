@@ -1,0 +1,20 @@
+{
+  "fixture_id": "negative-01-tampered-payload",
+  "description": "Payload byte flipped after signing — must return INVALID_SIGNATURE",
+  "expected": "INVALID_SIGNATURE",
+  "log": [],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "c68cebcd-c52d-4c35-820e-e503d62ad9b3",
+    "parent_event_id": null,
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000001": 1
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1747180800000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "mWFrZS1jaXBoZXJ0ZXh0LWE",
+    "signature": "YpRURoIqzrircOkBOCROgmMlIdek-jOZswTMmEBipYHYIzh3A9z7A37EmPr2Jrhv5I2ieUUH8h5ZRHtSWNT7Dg"
+  }
+}

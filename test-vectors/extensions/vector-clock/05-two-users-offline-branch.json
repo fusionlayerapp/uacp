@@ -1,0 +1,33 @@
+{
+  "fixture_id": "vector-clock/05-two-users-offline-branch",
+  "description": "User A (d1) and User B (d2) both work offline from a common parent {d1:5, d2:3}. d1 produces {d1:6, d2:3}; d2 produces {d1:5, d2:4}. These clocks are concurrent — neither dominates the other. On reconnect, two branches are detectable. Expected relationship: branch.",
+  "expected_relationship": "branch",
+  "common_parent": {
+    "20000000-0000-4000-8000-000000000001": 5,
+    "20000000-0000-4000-8000-000000000002": 3
+  },
+  "concurrent_clocks": [
+    {
+      "20000000-0000-4000-8000-000000000001": 6,
+      "20000000-0000-4000-8000-000000000002": 3
+    },
+    {
+      "20000000-0000-4000-8000-000000000001": 5,
+      "20000000-0000-4000-8000-000000000002": 4
+    }
+  ],
+  "clocks": [
+    {
+      "20000000-0000-4000-8000-000000000001": 5,
+      "20000000-0000-4000-8000-000000000002": 3
+    },
+    {
+      "20000000-0000-4000-8000-000000000001": 6,
+      "20000000-0000-4000-8000-000000000002": 3
+    },
+    {
+      "20000000-0000-4000-8000-000000000001": 5,
+      "20000000-0000-4000-8000-000000000002": 4
+    }
+  ]
+}

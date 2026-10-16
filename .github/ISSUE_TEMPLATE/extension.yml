@@ -1,0 +1,54 @@
+name: Extension proposal
+description: Propose a new optional UACP extension.
+title: "[Extension] uacp-"
+labels: ["extension", "proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to propose a new optional UACP extension. Extensions are opt-in and consumers MAY ignore unknown extensions. For changes to existing core spec, use the spec change template instead.
+  - type: input
+    id: extension-name
+    attributes:
+      label: Extension name
+      description: Must match the pattern `uacp-*` (lowercase, hyphenated).
+      placeholder: "uacp-example"
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: Concrete scenarios this extension enables. Why is this needed across multiple implementations?
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: schema-sketch
+    attributes:
+      label: Schema sketch
+      description: Outline the new fields, types, and any constraints. JSON Schema fragments welcome.
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: backward-compatibility
+    attributes:
+      label: Backward compatibility statement
+      description: Confirm that consumers MAY ignore this extension if they do not declare it, and document any interactions with existing fields.
+      value: |
+        Consumers that do not declare this extension in `extensions[]` MAY ignore the extension fields. Documents using this extension remain valid against core UACP after stripping the extension fields.
+      render: markdown
+    validations:
+      required: true
+  - type: dropdown
+    id: conformance-level
+    attributes:
+      label: Conformance level
+      description: Which conformance level should implementations claim when declaring this extension?
+      options:
+        - L1
+        - L2
+        - L3
+    validations:
+      required: true

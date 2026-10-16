@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/v1/context-sharing/scope",
+  "title": "UACP Scope",
+  "description": "Groups artifacts and events under a governance policy. Identified by a stable scope_id.",
+  "type": "object",
+  "properties": {
+    "scope_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "scope_type": {
+      "type": "string",
+      "enum": ["personal", "team", "corporate"]
+    },
+    "governance_preset": {
+      "type": "string",
+      "enum": ["solo", "duo", "household", "team", "organization", "public"]
+    },
+    "owner_did": {
+      "type": "string",
+      "minLength": 1,
+      "description": "DID of the scope owner, e.g. did:key:... or did:web:..."
+    }
+  },
+  "required": ["scope_id", "scope_type", "governance_preset", "owner_did"],
+  "additionalProperties": false
+}

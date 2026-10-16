@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/v1/kinds/redaction-pattern",
+  "title": "UACP Redaction Pattern Body",
+  "description": "Body schema for the redaction-pattern artifact kind — a pattern used to detect and redact sensitive content.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "pattern": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "replacement": {
+      "type": "string",
+      "maxLength": 256,
+      "default": "[REDACTED]"
+    },
+    "pattern_type": {
+      "type": "string",
+      "enum": ["regex", "glob"]
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["outbound", "inbound", "both"]
+    },
+    "is_builtin": {
+      "type": "boolean"
+    }
+  },
+  "required": ["name", "pattern", "pattern_type", "scope", "is_builtin"],
+  "additionalProperties": false
+}

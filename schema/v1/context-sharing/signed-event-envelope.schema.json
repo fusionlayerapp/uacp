@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/v1/context-sharing/signed-event-envelope",
+  "title": "UACP Signed Event Envelope",
+  "description": "Canonical envelope for signed context-sharing events. Transports event payloads between devices and scopes with integrity and replay protection.",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "event_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "scope_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "author_device_key": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9+/]+={0,2}$",
+      "description": "Base64-encoded 32-byte ed25519 public key"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "vector_clock": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "description": "Map of device_id to counter"
+    },
+    "timestamp": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$"
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^[0-9a-f]+$",
+      "minLength": 128,
+      "maxLength": 256,
+      "description": "ed25519 signature bytes encoded as lowercase hex"
+    }
+  },
+  "required": [
+    "event_id",
+    "event_type",
+    "scope_id",
+    "author_device_key",
+    "payload",
+    "vector_clock",
+    "timestamp",
+    "signature"
+  ],
+  "additionalProperties": false
+}

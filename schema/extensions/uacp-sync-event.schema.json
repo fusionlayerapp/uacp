@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-sync-event",
+  "title": "UACP Sync Event",
+  "description": "Signed, ordered event envelope for append-only context sync. Defines the wire unit exchanged between devices and the relay. This is the uacp-sync-event OPTIONAL extension (v0.1.0).",
+  "type": "object",
+  "required": [
+    "conversation_id",
+    "event_id",
+    "parent_event_id",
+    "vector_clock",
+    "author_user_id",
+    "author_device_id",
+    "timestamp",
+    "scope_id",
+    "payload",
+    "signature"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "conversation_id": {
+      "$ref": "#/$defs/uuid_v4",
+      "description": "Identifies the conversation this event belongs to."
+    },
+    "event_id": {
+      "$ref": "#/$defs/uuid_v4",
+      "description": "Globally unique per (author_device_id, conversation_id)."
+    },
+    "parent_event_id": {
+      "oneOf": [
+        { "$ref": "#/$defs/uuid_v4" },
+        { "type": "null" }
+      ],
+      "description": "Parent event in the partial order. null ONLY for the first event in a conversation."
+    },
+    "vector_clock": {
+      "type": "object",
+      "description": "Logical clock keyed by device UUID. author_device_id MUST be present and strictly greater than its value in the parent event.",
+      "propertyNames": { "$ref": "#/$defs/uuid_v4" },
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 18446744073709551615
+      },
+      "minProperties": 1
+    },
+    "author_user_id": {
+      "$ref": "#/$defs/uuid_v4",
+      "description": "Identity of the user who authored this event."
+    },
+    "author_device_id": {
+      "$ref": "#/$defs/uuid_v4",
+      "description": "Device that produced and signed this event. MUST be a key in vector_clock."
+    },
+    "timestamp": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 18446744073709551615,
+      "description": "Monotonic milliseconds since Unix epoch on the author device."
+    },
+    "scope_id": {
+      "$ref": "#/$defs/uuid_v4",
+      "description": "Scope that governs which member keys can decrypt the payload."
+    },
+    "payload": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "minLength": 1,
+      "description": "AES-256-GCM ciphertext, base64url-encoded (no padding). See encryption-envelope spec."
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{86}$",
+      "description": "Ed25519 signature (64 bytes, base64url-encoded without padding) over the canonical CBOR of all fields except signature itself."
+    }
+  },
+  "$defs": {
+    "uuid_v4": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "RFC 4122 v4 UUID, lowercase hex with hyphens."
+    }
+  }
+}

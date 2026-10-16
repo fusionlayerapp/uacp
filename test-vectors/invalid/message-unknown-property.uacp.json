@@ -1,0 +1,16 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-032",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello",
+      "sentiment": "positive"
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "message has unknown property 'sentiment'; unevaluatedProperties: false forbids it"
+  }
+}

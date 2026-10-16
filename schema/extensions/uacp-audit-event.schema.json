@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-audit-event",
+  "title": "UACP Audit Event",
+  "description": "A single entry in a scope's append-only audit hash-chain.",
+  "type": "object",
+  "required": ["type", "scope_id", "subject_user_id", "action", "metadata", "prev_audit_hash", "timestamp", "observer_id"],
+  "unevaluatedProperties": false,
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "audit"
+    },
+    "scope_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "subject_user_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "ai_prompt_sent",
+        "dlp_redaction",
+        "scope_member_added",
+        "scope_member_removed",
+        "promotion",
+        "withdraw",
+        "legal_hold_invoked",
+        "guardrail_triggered"
+      ]
+    },
+    "metadata": {
+      "$ref": "#/$defs/AuditMetadata"
+    },
+    "prev_audit_hash": {
+      "type": "string",
+      "description": "Base64url-encoded SHA-256 of the previous audit event CBOR bytes. Use 43 zeros (base64url of 32 zero bytes) for the chain genesis.",
+      "pattern": "^[A-Za-z0-9_-]{43}$"
+    },
+    "timestamp": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Unix timestamp in milliseconds (uint64)."
+    },
+    "observer_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    }
+  },
+  "$defs": {
+    "AuditMetadata": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "vendor": {
+          "oneOf": [
+            { "type": "string", "minLength": 1, "maxLength": 128 },
+            { "type": "null" }
+          ]
+        },
+        "token_count": {
+          "oneOf": [
+            { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+            { "type": "null" }
+          ]
+        },
+        "redaction_count": {
+          "oneOf": [
+            { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+            { "type": "null" }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-member-set",
+  "title": "UACP Member Set",
+  "description": "A versioned, signed membership roster for a UACP scope, including an encrypted scope key envelope.",
+  "type": "object",
+  "required": ["scope_id", "members", "scope_key", "version", "signature"],
+  "additionalProperties": false,
+  "properties": {
+    "scope_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "UUID v4 identifying the scope this membership applies to."
+    },
+    "members": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["identity_public_key", "role", "joined_at", "joined_via_event_id"],
+        "additionalProperties": false,
+        "properties": {
+          "identity_public_key": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{43}$",
+            "description": "Ed25519 public key of the member, base64url (43 chars = 32 bytes)."
+          },
+          "role": {
+            "type": "string",
+            "enum": ["owner", "admin", "lead", "member", "guest", "parent", "child", "external"],
+            "description": "Member role within the scope."
+          },
+          "joined_at": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Unix timestamp (milliseconds) when the member joined."
+          },
+          "joined_via_event_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "description": "UUID v4 of the event that caused this member to join."
+          }
+        }
+      }
+    },
+    "scope_key": {
+      "type": "object",
+      "required": ["algorithm", "encrypted_key_per_member"],
+      "additionalProperties": false,
+      "description": "Envelope carrying the scope key encrypted to each current member.",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "const": "X25519-AES256GCM",
+          "description": "Key exchange and encryption algorithm."
+        },
+        "encrypted_key_per_member": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["recipient_identity_key", "ciphertext", "nonce"],
+            "additionalProperties": false,
+            "properties": {
+              "recipient_identity_key": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]{43}$",
+                "description": "X25519 public key of the recipient, base64url (43 chars = 32 bytes)."
+              },
+              "ciphertext": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]+=*$",
+                "minLength": 1,
+                "description": "AES-256-GCM ciphertext of the scope key, base64url."
+              },
+              "nonce": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]{16}$",
+                "description": "AES-256-GCM nonce, base64url (16 chars = 12 bytes)."
+              }
+            }
+          }
+        }
+      }
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monotonically increasing version counter. Incremented on every membership change."
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{86}$",
+      "description": "Ed25519 signature by the scope admin over canonical CBOR of all fields except signature, base64url (86 chars = 64 bytes)."
+    }
+  }
+}

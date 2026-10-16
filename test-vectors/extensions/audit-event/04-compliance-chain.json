@@ -1,0 +1,25 @@
+{
+  "fixture_id": "audit-event-04",
+  "description": "Third entry in compliance chain — Mike can walk all three entries without gaps (Scenario 11)",
+  "expected": "valid",
+  "scenario": "11",
+  "chain_hashes": [
+    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "cxXpej6Y-vjAlefHeZh0Ix0QLAoDUnGzWG5aDnnmakk",
+    "MhDRN1wIGfTossJn5a4SnBXnPZArHZ7e_-eorbNkVKE"
+  ],
+  "audit_event": {
+    "type": "audit",
+    "scope_id": "20000000-0000-4000-8000-000000000001",
+    "subject_user_id": "10000000-0000-4000-8000-000000000002",
+    "action": "scope_member_added",
+    "metadata": {
+      "vendor": null,
+      "token_count": null,
+      "redaction_count": null
+    },
+    "prev_audit_hash": "MhDRN1wIGfTossJn5a4SnBXnPZArHZ7e_-eorbNkVKE",
+    "timestamp": 1715000003000,
+    "observer_id": "30000000-0000-4000-8000-000000000001"
+  }
+}

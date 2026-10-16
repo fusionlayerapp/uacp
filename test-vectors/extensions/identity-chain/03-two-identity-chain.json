@@ -1,0 +1,48 @@
+{
+  "fixture_id": "03-two-identity-chain",
+  "description": "Two identities; event from identity B device chains to identity B key (Scenario 7)",
+  "expected": "valid",
+  "identity_keys": [
+    {
+      "user_id": "10000000-0000-4000-8000-000000000001",
+      "public": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8"
+    },
+    {
+      "user_id": "10000000-0000-4000-8000-000000000002",
+      "public": "do_rbWeCqbqZhYbwbqi7gSBz4v0fAG_NwTKcTuc9iys"
+    }
+  ],
+  "registrations": [
+    {
+      "device_id": "20000000-0000-4000-8000-000000000001",
+      "device_public_key": "SaksU5PNUdBb7V50ptkZvq3ko5z-rJz10mk9XNA3K4Q",
+      "registered_at": 1747180000000,
+      "device_label": "Desktop A",
+      "registered_by": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8",
+      "signature": "zE3oyCZmcmtN4QIhqpBh5YR7r6ucbjCPQpj_vr7ehFCNipO6kaS0AVNNO5jC_5oxLRONCunukd8e1L-OSu1EBg"
+    },
+    {
+      "device_id": "20000000-0000-4000-8000-000000000003",
+      "device_public_key": "l3BHfu3H2SVS4ZAjm9Oqfk5gVUwygtvsN2Qxwu9UBuY",
+      "registered_at": 1747180001000,
+      "device_label": "Desktop B",
+      "registered_by": "do_rbWeCqbqZhYbwbqi7gSBz4v0fAG_NwTKcTuc9iys",
+      "signature": "eiT3DYOl_zYMGiXhb7hKClLalF-1Yg16KC8b1C28BJlgIMveKq3EhXvu4elcecnomrNYlJDE8m0iFJ-HbTd7Dg"
+    }
+  ],
+  "retirements": [],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "05aaf0d0-3837-4dad-85c7-c51629e0a7b8",
+    "parent_event_id": null,
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000003": 1
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000002",
+    "author_device_id": "20000000-0000-4000-8000-000000000003",
+    "timestamp": 1747180800000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "dGVzdC1wYXlsb2Fk",
+    "signature": "SW4Dvt-q_k8UduZAtOSNuiOs411_EK60oTfnCOoKe-8K-kPg2He0kNislMn8hygnC2WFMW10Aw6s567z54uTCw"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-vector-clock",
+  "title": "UACP Vector Clock",
+  "description": "A vector clock recording per-device logical timestamps for a UACP conversation. Keys are device UUIDs (v4); values are non-negative integers representing the device's event counter. Implementations MUST enforce CLOCK_OVERFLOW: no slot may exceed 2^63 - 1 (9223372036854775807). JSON Schema cannot reliably enforce uint64 bounds due to IEEE-754 precision limits, so overflow enforcement is normative at the implementation layer (see spec/extensions/uacp-vector-clock.md).",
+  "type": "object",
+  "propertyNames": {
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+  },
+  "additionalProperties": {
+    "type": "integer",
+    "minimum": 0
+  },
+  "minProperties": 1,
+  "maxProperties": 256
+}

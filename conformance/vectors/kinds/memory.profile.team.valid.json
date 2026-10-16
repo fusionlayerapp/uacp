@@ -1,0 +1,12 @@
+{
+  "_schema": "memory",
+  "_expect": "valid",
+  "body": {
+    "content": "The team uses asynchronous status updates.",
+    "profile_link": {
+      "schema_id": "team",
+      "schema_version": 1,
+      "field": "status_update_mode"
+    }
+  }
+}

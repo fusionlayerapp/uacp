@@ -1,0 +1,21 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-024",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "Paris is the capital.",
+      "citations": [
+        {
+          "span": [0, 5],
+          "source": {}
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "citation 'source' object is missing required 'url' field"
+  }
+}

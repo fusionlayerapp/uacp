@@ -1,0 +1,10 @@
+{
+  "_schema": "policy",
+  "_expect": "invalid",
+  "body": {
+    "title": "Incomplete policy",
+    "scope": "all",
+    "enforcement": "hard",
+    "created_by": "user"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_67_persona_envelope_invalid",
+  "kind": "persona",
+  "body": {
+    "name": "Release Notes Writer",
+    "description": "Drafts concise, accurate release notes from a diff and issue list."
+  },
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.comment": "Regression vector for issue #102: a full-envelope kind=persona document with a body missing required 'system_prompt' MUST fail via the persona kind body schema, not via the unrelated chat-message conversation schema."
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "fixture_id": "02-five-devices-one-identity",
+  "description": "Five devices share one identity key; event from device 3 verifies (Scenario 3)",
+  "expected": "valid",
+  "identity_keys": [
+    {
+      "user_id": "10000000-0000-4000-8000-000000000001",
+      "public": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8"
+    }
+  ],
+  "registrations": [
+    {
+      "device_id": "20000000-0000-4000-8000-000000000001",
+      "device_public_key": "SaksU5PNUdBb7V50ptkZvq3ko5z-rJz10mk9XNA3K4Q",
+      "registered_at": 1747180000000,
+      "device_label": "Desktop",
+      "registered_by": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8",
+      "signature": "luBHXXQeXvw83DFHwgktTx1hm2ecwZ2U9Ar7PlGOIg03sEjahxXBNlhfyqBQ7qSXSJ5C4Oue6noXCPZXopOSCg"
+    },
+    {
+      "device_id": "20000000-0000-4000-8000-000000000002",
+      "device_public_key": "YyrIfxz4hvfchPADqE3LBO4R7zyisJJMg-mcdRUhMu0",
+      "registered_at": 1747180001000,
+      "device_label": "Laptop",
+      "registered_by": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8",
+      "signature": "DyCN1JfyjA8xOyhLwHVGORjrDA6JLlZLmuDxsX7uUBahOjqUCbePMIS6qp3CCXVkK0_Ux_FbVJYi261XEQTRAw"
+    },
+    {
+      "device_id": "20000000-0000-4000-8000-000000000004",
+      "device_public_key": "C4dJy4qXnNApEgOqjjX_hpFloylswIy4ihPqXIDybOE",
+      "registered_at": 1747180002000,
+      "device_label": "Phone",
+      "registered_by": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8",
+      "signature": "B-DMDbCk9g-uo_6Q3M-pmzi7XGD95g2K82Rr1U7kGZ1Ss-OgUYD9oDK4_A0HQ3xUvjB3c87Fxml81pY92TC8Cw"
+    },
+    {
+      "device_id": "20000000-0000-4000-8000-000000000005",
+      "device_public_key": "mzWMwu5F_pF_enPD48T9X_EAe8zHyyr9rU7nKyUXaSk",
+      "registered_at": 1747180003000,
+      "device_label": "Tablet",
+      "registered_by": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8",
+      "signature": "2mKqR3KmbWJ17INhPN4Q2uxmiTQ1syP_8bLCnE2BH86IocdPUSCPoH-JcApdsDFYaVBZs75aQNTGAMcfuqd7Dw"
+    },
+    {
+      "device_id": "20000000-0000-4000-8000-000000000006",
+      "device_public_key": "3soj9f3QGiyjZGHz8coJvLE6bryXviV3iVguGKPnA6U",
+      "registered_at": 1747180004000,
+      "device_label": "Watch",
+      "registered_by": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8",
+      "signature": "rT4GX5cuYVksvx__OZ7kSMmvAwwwgaQ3_GQPwQmQE2ItkwpihE5i-d8fMpEIPkWGiMs75WkUIBfN43IHM9AEBA"
+    }
+  ],
+  "retirements": [],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "805fd91a-8991-4be9-9683-43f640013084",
+    "parent_event_id": null,
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000004": 1
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000004",
+    "timestamp": 1747180800000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "dGVzdC1wYXlsb2Fk",
+    "signature": "rRJeZ8P1qwZieb0qd1j96JfG3uq6AiWTOR55o2W2L1zf5JPvN7rz58-LRWlJ_rt6YSmIdjasUh0EK7Hl7A0CDQ"
+  }
+}

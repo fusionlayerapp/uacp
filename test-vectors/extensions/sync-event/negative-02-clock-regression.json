@@ -1,0 +1,35 @@
+{
+  "fixture_id": "negative-02-clock-regression",
+  "description": "vector_clock[device] did not advance from parent — must return CLOCK_REGRESSION",
+  "expected": "CLOCK_REGRESSION",
+  "log": [
+    {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "6d88c4ac-0d1c-492e-98e0-02f16d931611",
+      "parent_event_id": null,
+      "vector_clock": {
+        "20000000-0000-4000-8000-000000000001": 5
+      },
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1747180800000,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "payload": "ZmFrZS1jaXBoZXJ0ZXh0LWE",
+      "signature": "EHxP70f_F4C2CcEo7Ln26KZsxGehflVmFS2HU_0MVybXuXZGqZVMcbxWHzxh9GcDp8JG__AHW7R9xcKQvgD4CA"
+    }
+  ],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "8387aaa8-c17c-483e-8582-331caa814e09",
+    "parent_event_id": "6d88c4ac-0d1c-492e-98e0-02f16d931611",
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000001": 5
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1747180801000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "ZmFrZS1jaXBoZXJ0ZXh0LWE",
+    "signature": "rdKnVKcvUAbx2A6uUvkK1motsHicdpSpDDO45UVc00qv4oIytlT3has2LeFIuW_60_WB_S_EnzvGas2tgS5yBQ"
+  }
+}

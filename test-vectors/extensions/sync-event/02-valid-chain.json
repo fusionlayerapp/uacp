@@ -1,0 +1,91 @@
+{
+  "fixture_id": "02-valid-chain",
+  "description": "Six chained events from same device — all must validate and order by vector_clock (Scenario 2)",
+  "expected": "valid",
+  "log": [
+    {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "652e9226-9ab3-4c48-9bf3-89c69d71503f",
+      "parent_event_id": null,
+      "vector_clock": {
+        "20000000-0000-4000-8000-000000000001": 1
+      },
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1747180800000,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "payload": "cGF5bG9hZC0w",
+      "signature": "3KP3scHu0VgtA-5gUyu5kahbQ6wTEznzBerf8uXEpZ58TkCi6_2hRFOGh-quq2QJ0VfoCVfiMlNWcZRF8BKYDQ"
+    },
+    {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "579ab478-fbe2-4444-914d-1161522e7549",
+      "parent_event_id": "652e9226-9ab3-4c48-9bf3-89c69d71503f",
+      "vector_clock": {
+        "20000000-0000-4000-8000-000000000001": 2
+      },
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1747180801000,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "payload": "cGF5bG9hZC0x",
+      "signature": "Pe9NG92bwUWSiqn7gxFVlqBoi5Qr_Yd1h2jbvE8HzRNdRQ-orh5JD_RN-6nJ1Vl0Jar8-R3FJ1uR2uf4X6vJBA"
+    },
+    {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "6e6e227e-8f30-4246-b73e-66b75add86c4",
+      "parent_event_id": "579ab478-fbe2-4444-914d-1161522e7549",
+      "vector_clock": {
+        "20000000-0000-4000-8000-000000000001": 3
+      },
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1747180802000,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "payload": "cGF5bG9hZC0y",
+      "signature": "P_UWNRTCkOBTRiFXs-cfOg1scFtbMGGMkcKtDU8sPhn01TIx2HQDAgSqmBcJBeNNRVgOO3Sr9DrnSNB-xG0iDw"
+    },
+    {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "5736b605-99d0-4416-af0a-90ab0d7081e4",
+      "parent_event_id": "6e6e227e-8f30-4246-b73e-66b75add86c4",
+      "vector_clock": {
+        "20000000-0000-4000-8000-000000000001": 4
+      },
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1747180803000,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "payload": "cGF5bG9hZC0z",
+      "signature": "pY0xGLkr31vC0GKta_6ImCxheq8q2m0wUk1dh5a79vxPTlG9v-lNWZU1dV50yqZgSs_Dxrgtg3gs1oKCIooKAQ"
+    },
+    {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "4308a80d-ca93-4ef8-a9f2-4af951e4f5f7",
+      "parent_event_id": "5736b605-99d0-4416-af0a-90ab0d7081e4",
+      "vector_clock": {
+        "20000000-0000-4000-8000-000000000001": 5
+      },
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1747180804000,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "payload": "cGF5bG9hZC00",
+      "signature": "9_BbrOzmsdQgW1ntT4ga-EQd3iegoyrlJDwgftGZRpzBkRPeBMzbTXm7uTeY_AZq6gOznu_5bdhCG8OyVKc2Aw"
+    }
+  ],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "2e639496-72c8-487f-964c-0063781cc678",
+    "parent_event_id": "4308a80d-ca93-4ef8-a9f2-4af951e4f5f7",
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000001": 6
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1747180805000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "cGF5bG9hZC01",
+    "signature": "17zu6QSGj8fl_0UEhKaX26-TNx-RoCUvCMIWcANpjIJWmT4AS9QNBoziyqrCAUSWdtuAeFm80MktBwSCvuIGBw"
+  }
+}

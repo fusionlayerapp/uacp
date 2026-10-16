@@ -1,0 +1,8 @@
+{
+  "_schema": "persona",
+  "_expect": "invalid",
+  "body": {
+    "name": "Iris",
+    "description": "A research assistant."
+  }
+}

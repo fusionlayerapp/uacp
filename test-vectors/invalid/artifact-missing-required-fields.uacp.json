@@ -1,0 +1,20 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-026",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "Here is your artifact.",
+      "artifacts": [
+        {
+          "id": "art-001"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "artifact object is missing required fields 'type', 'title', and 'content'"
+  }
+}

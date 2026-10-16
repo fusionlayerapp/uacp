@@ -1,0 +1,8 @@
+{
+  "_schema": "guideline",
+  "_expect": "invalid",
+  "body": {
+    "title": "Be concise",
+    "priority": 5
+  }
+}

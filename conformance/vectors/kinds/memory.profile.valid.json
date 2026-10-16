@@ -1,0 +1,12 @@
+{
+  "_schema": "memory",
+  "_expect": "valid",
+  "body": {
+    "content": "My primary programming stack is Node.js.",
+    "profile_link": {
+      "schema_id": "user",
+      "schema_version": 1,
+      "field": "primary_stack"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-scope-identifier",
+  "title": "UACP Scope Identifier",
+  "description": "A named scope with governance axes that describe cardinality, access control, role structure, override policy, audit visibility, sync mode, and lifecycle.",
+  "type": "object",
+  "required": ["id", "governance", "created_at", "created_by"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "UUID v4 opaque identifier. Consumers MUST NOT infer semantics from bits."
+    },
+    "governance": {
+      "type": "object",
+      "required": ["cardinality", "invite_model", "role_structure", "override", "audit", "default_sync", "lifecycle"],
+      "additionalProperties": false,
+      "properties": {
+        "cardinality": {
+          "type": "string",
+          "enum": ["solo", "dyad", "small", "medium", "large", "open"]
+        },
+        "invite_model": {
+          "type": "string",
+          "enum": ["self_only", "peer", "admin_gated", "request_and_approve", "open"]
+        },
+        "role_structure": {
+          "type": "string",
+          "enum": ["flat", "parent_child", "member_lead_admin", "custom"]
+        },
+        "override": {
+          "type": "string",
+          "enum": ["none", "parental_flagged_only", "legal_hold_only"]
+        },
+        "audit": {
+          "type": "string",
+          "enum": ["none", "members_see_membership", "members_see_content", "admin_sees_aggregates"]
+        },
+        "default_sync": {
+          "type": "string",
+          "enum": ["realtime", "eventual", "manual"]
+        },
+        "lifecycle": {
+          "type": "string",
+          "enum": ["permanent", "project_bounded", "time_bounded", "session_bounded"]
+        }
+      }
+    },
+    "created_at": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monotonic timestamp in milliseconds since epoch."
+    },
+    "created_by": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{43}$",
+      "description": "Ed25519 raw public key (32 bytes) encoded as base64url (43 characters, no padding)."
+    }
+  }
+}

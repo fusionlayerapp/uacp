@@ -1,0 +1,20 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-018",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "spreadsheet",
+          "data": "base64encodeddata"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "content block 'type' is 'spreadsheet'; not in the allowed enum"
+  }
+}

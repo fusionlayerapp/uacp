@@ -1,0 +1,15 @@
+{
+  "uacp": "1.0",
+  "id": "tv-invalid-005",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello"
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "'uacp' value '1.0' has only two parts; pattern requires exactly three (^\\d+\\.\\d+\\.\\d+$)"
+  }
+}

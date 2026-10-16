@@ -1,0 +1,15 @@
+{
+  "uacp": "0.6.0",
+  "id": "",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello"
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "'id' is an empty string; minLength 1 requires at least one character"
+  }
+}

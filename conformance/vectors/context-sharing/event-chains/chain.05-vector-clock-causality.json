@@ -1,0 +1,34 @@
+{
+  "id": "test_vector_clock_causality_verified",
+  "description": "Multi-device vector clocks — each event's clock dominates its predecessor's clock",
+  "events": [
+    {
+      "event_id": "evt-001",
+      "event_type": "conversation_created",
+      "vector_clock": { "device-A": 1, "device-B": 0 },
+      "signature": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "event_id": "evt-002",
+      "event_type": "context_shared",
+      "vector_clock": { "device-A": 1, "device-B": 1 },
+      "signature": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    {
+      "event_id": "evt-003",
+      "event_type": "context_received",
+      "vector_clock": { "device-A": 2, "device-B": 1 },
+      "signature": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ],
+  "expected_causality": {
+    "evt-002": "evt-001",
+    "evt-003": "evt-002"
+  },
+  "expected_signatures": {
+    "evt-001": "valid",
+    "evt-002": "valid",
+    "evt-003": "valid"
+  },
+  "expected_outcome": "accepted"
+}

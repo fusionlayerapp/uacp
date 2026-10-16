@@ -1,0 +1,29 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_12_rtl_hebrew",
+  "tool": "claude-ai",
+  "title": "עברית — greeting",
+  "created_at": "2026-04-24T08:00:00.000Z",
+  "updated_at": "2026-04-24T08:00:05.000Z",
+  "messages": [
+    { "role": "user", "content": "איך אומרים שלום?", "timestamp": "2026-04-24T08:00:01.000Z" },
+    {
+      "role": "assistant",
+      "content": "שלום is the most common Hebrew greeting.",
+      "timestamp": "2026-04-24T08:00:05.000Z",
+      "citations": [
+        {
+          "span": [0, 4],
+          "source": {
+            "url": "https://en.wikipedia.org/wiki/Shalom",
+            "title": "Shalom — Wikipedia"
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "valid",
+    "uacp.test.comment": "Citation span over RTL text. Span is in Unicode scalar values across the flattened message content. The 4-code-point word שלום begins at index 0 of the assistant reply."
+  }
+}

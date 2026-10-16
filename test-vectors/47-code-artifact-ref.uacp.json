@@ -1,0 +1,37 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_47_code_artifact_ref",
+  "tool": "test-harness",
+  "title": "Assistant message with artifact_ref referencing a code artifact",
+  "created_at": "2026-05-09T12:03:00.000Z",
+  "updated_at": "2026-05-09T12:03:30.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "Write a Python function to compute the Fibonacci sequence.",
+      "timestamp": "2026-05-09T12:03:01.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": [
+        { "type": "text", "text": "Here is an iterative Fibonacci implementation:" },
+        { "type": "artifact_ref", "id": "art_001" }
+      ],
+      "timestamp": "2026-05-09T12:03:20.000Z",
+      "artifacts": [
+        {
+          "id": "art_001",
+          "type": "code",
+          "title": "fibonacci.py",
+          "language": "python",
+          "content": "def fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        yield a\n        a, b = b, a + b",
+          "created_at": "2026-05-09T12:03:20.000Z",
+          "updated_at": "2026-05-09T12:03:20.000Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "$comment": "DEPRECATED: use schema/extensions/uacp-withdraw-event.schema.json. The canonical schema is https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-withdraw-event.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/v1/context-sharing/withdraw-event",
+  "$ref": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-withdraw-event"
+}

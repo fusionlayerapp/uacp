@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-encryption",
+  "title": "UACP Encrypted Envelope",
+  "description": "AES-256-GCM sealed wrapper around a UACP Conversation Object. This is the uacp-encryption OPTIONAL extension (v0.6.0). Implementations that do not encrypt at the UACP layer never need this schema.",
+  "type": "object",
+  "required": ["uacp_encrypted", "algorithm", "iv", "auth_tag", "ciphertext", "key_derivation"],
+  "additionalProperties": false,
+  "properties": {
+    "uacp_encrypted": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "algorithm": {
+      "type": "string",
+      "enum": ["aes-256-gcm"]
+    },
+    "iv": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{24}$",
+      "description": "96-bit (12-byte) initialization vector, lowercase hex. MUST be unique per (key, ciphertext) pair."
+    },
+    "auth_tag": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{32}$",
+      "description": "128-bit (16-byte) GCM authentication tag, lowercase hex."
+    },
+    "ciphertext": {
+      "type": "string",
+      "pattern": "^[a-f0-9]+$",
+      "minLength": 2,
+      "description": "GCM ciphertext of the canonicalized UACP Conversation Object, lowercase hex."
+    },
+    "aad": {
+      "type": "string",
+      "pattern": "^[a-f0-9]*$",
+      "description": "Optional Additional Authenticated Data bound to the envelope, lowercase hex. If absent, AAD = the UTF-8 bytes of the concatenation of `uacp_encrypted` + ':' + `key_derivation.info`."
+    },
+    "key_derivation": {
+      "type": "object",
+      "required": ["method", "salt", "argon2id", "hkdf", "info"],
+      "additionalProperties": false,
+      "properties": {
+        "method": { "type": "string", "enum": ["argon2id+hkdf"] },
+        "salt": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{16,}={0,2}$",
+          "description": "Argon2id salt, base64url, minimum 16 bytes decoded."
+        },
+        "argon2id": {
+          "type": "object",
+          "required": ["m", "t", "p", "output_length"],
+          "additionalProperties": false,
+          "properties": {
+            "m": { "type": "integer", "const": 65536 },
+            "t": { "type": "integer", "const": 3 },
+            "p": { "type": "integer", "const": 1 },
+            "output_length": { "type": "integer", "const": 32 }
+          }
+        },
+        "hkdf": {
+          "type": "object",
+          "required": ["hash", "output_length"],
+          "additionalProperties": false,
+          "properties": {
+            "hash": { "type": "string", "const": "sha256" },
+            "output_length": { "type": "integer", "const": 32 }
+          }
+        },
+        "info": {
+          "type": "string",
+          "const": "uacp-key-v1",
+          "description": "HKDF info string. Bumped when KDF parameters change."
+        }
+      }
+    }
+  }
+}

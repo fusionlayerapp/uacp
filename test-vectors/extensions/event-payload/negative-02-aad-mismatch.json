@@ -1,0 +1,31 @@
+{
+  "fixture_id": "negative-02-aad-mismatch",
+  "description": "Negative: payload.aad.scope_id is wrong. Receiver detects AAD_MISMATCH by comparing against event_meta before decryption, or GCM tag fails when wrong CBOR AAD is used.",
+  "expected": "AAD_MISMATCH",
+  "scope_key_hex": "f90c9d44650e2f62aec17423318d6aac5a8a865c6ae6aa0ea2ff2db065e2b9ad",
+  "plaintext_hex": "616164206d69736d617463682074657374",
+  "event_meta": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "f0000000-0000-4000-8000-000000000002",
+    "parent_event_id": null,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1700000003000
+  },
+  "payload": {
+    "algorithm": "AES-256-GCM",
+    "nonce": "KEk9LuVU5hr43ZXC",
+    "ciphertext": "ufYOzm19-IbUIP2hbMi5uG8",
+    "tag": "ZPtcjf1hcZZBUj5f9bwerw",
+    "aad": {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "f0000000-0000-4000-8000-000000000002",
+      "parent_event_id": null,
+      "scope_id": "40000000-0000-4000-8000-000000000002",
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1700000003000
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-promotion-event",
+  "title": "UACP Promotion Event",
+  "description": "Describes the promotion of one or more source events to a destination scope, optionally with a summary. Wrapped in a standard signed Event envelope; the envelope's scope_id MUST equal destination_scope_id.",
+  "type": "object",
+  "required": [
+    "type",
+    "source_scope_id",
+    "source_event_ids",
+    "destination_scope_id",
+    "mode",
+    "summary_payload",
+    "context_note",
+    "promoted_at",
+    "promoter_identity"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "promotion"
+    },
+    "source_scope_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "source_event_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+      }
+    },
+    "destination_scope_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["as_is", "with_summary", "summary_only"]
+    },
+    "summary_payload": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "context_note": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "promoted_at": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "promoter_identity": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{43}$"
+    }
+  }
+}

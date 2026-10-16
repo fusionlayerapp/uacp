@@ -1,0 +1,9 @@
+{
+  "_schema": "theme",
+  "_expect": "invalid",
+  "body": {
+    "name": "Bad Color",
+    "mode": "light",
+    "accent_color": "indigo"
+  }
+}

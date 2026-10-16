@@ -1,0 +1,13 @@
+{
+  "_schema": "memory",
+  "_expect": "invalid",
+  "_error": "MEMORY_LIFECYCLE_ACTIVE_ACTION_REQUIRES_ACTIVE_STATUS",
+  "body": {
+    "content": "I prefer dark mode.",
+    "lifecycle": {
+      "action": "create",
+      "status": "superseded",
+      "revision": 1
+    }
+  }
+}

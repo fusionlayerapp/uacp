@@ -1,0 +1,33 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_52_attachment_all_fields",
+  "tool": "test-harness",
+  "title": "Attachment with all optional fields: id, filename, mime_type, size_bytes, url, sha256",
+  "created_at": "2026-05-09T12:08:00.000Z",
+  "updated_at": "2026-05-09T12:08:10.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "Please review this contract.",
+      "attachments": [
+        {
+          "id": "att_contract_001",
+          "filename": "contract-2026-q2.pdf",
+          "mime_type": "application/pdf",
+          "size_bytes": 1048576,
+          "url": "https://example.com/docs/contract-2026-q2.pdf",
+          "sha256": "a3f5c8d2e1b04967f8e3a1d5c7b9e2f4a6d8c0e2f4b6d8a0c2e4f6b8d0a2c4e6"
+        }
+      ],
+      "timestamp": "2026-05-09T12:08:01.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "I've reviewed the contract. The key terms are a 12-month term with a 30-day notice period for termination.",
+      "timestamp": "2026-05-09T12:08:08.000Z"
+    }
+  ]
+}

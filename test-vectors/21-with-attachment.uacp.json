@@ -1,0 +1,25 @@
+{
+  "uacp": "0.5.0",
+  "id": "conv_attachment_001",
+  "tool": "chatgpt",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "Please review this report.",
+      "attachments": [
+        {
+          "id": "att_report_pdf",
+          "filename": "report.pdf",
+          "mime_type": "application/pdf",
+          "size_bytes": 204800,
+          "url": "https://example.com/report.pdf",
+          "sha256": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.comment": "Positive test vector: attachment shape matches conversation.schema.json attachment definition."
+  }
+}

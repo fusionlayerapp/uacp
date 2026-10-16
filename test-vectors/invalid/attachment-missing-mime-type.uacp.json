@@ -1,0 +1,20 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-028",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "See attached.",
+      "attachments": [
+        {
+          "id": "att-001"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "attachment object is missing required 'mime_type' field"
+  }
+}

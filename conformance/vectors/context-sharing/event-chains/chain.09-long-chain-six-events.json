@@ -1,0 +1,58 @@
+{
+  "id": "test_long_chain_six_events_accepted",
+  "description": "Six-event chain all in order with valid signatures",
+  "events": [
+    {
+      "event_id": "e1",
+      "event_type": "conversation_created",
+      "vector_clock": { "device-A": 1 },
+      "signature": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "event_id": "e2",
+      "event_type": "context_shared",
+      "vector_clock": { "device-A": 2 },
+      "signature": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    {
+      "event_id": "e3",
+      "event_type": "context_received",
+      "vector_clock": { "device-A": 3 },
+      "signature": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    {
+      "event_id": "e4",
+      "event_type": "context_shared",
+      "vector_clock": { "device-A": 4 },
+      "signature": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    {
+      "event_id": "e5",
+      "event_type": "context_received",
+      "vector_clock": { "device-A": 5 },
+      "signature": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    },
+    {
+      "event_id": "e6",
+      "event_type": "context_shared",
+      "vector_clock": { "device-A": 6 },
+      "signature": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    }
+  ],
+  "expected_causality": {
+    "e2": "e1",
+    "e3": "e2",
+    "e4": "e3",
+    "e5": "e4",
+    "e6": "e5"
+  },
+  "expected_signatures": {
+    "e1": "valid",
+    "e2": "valid",
+    "e3": "valid",
+    "e4": "valid",
+    "e5": "valid",
+    "e6": "valid"
+  },
+  "expected_outcome": "accepted"
+}

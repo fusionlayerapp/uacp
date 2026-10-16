@@ -1,0 +1,37 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_54_nested_metadata",
+  "tool": "test-harness",
+  "title": "Root metadata with nested object values",
+  "created_at": "2026-05-09T12:10:00.000Z",
+  "updated_at": "2026-05-09T12:10:05.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "Hello.",
+      "timestamp": "2026-05-09T12:10:01.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "Hi! How can I help you?",
+      "timestamp": "2026-05-09T12:10:03.000Z"
+    }
+  ],
+  "metadata": {
+    "com.example.session": {
+      "id": "sess_abc123",
+      "started_at": "2026-05-09T12:10:00.000Z",
+      "client": { "name": "example-app", "version": "1.2.3" }
+    },
+    "com.example.user": {
+      "id": "usr_xyz789",
+      "locale": "en-US",
+      "preferences": { "theme": "dark", "language": "en" }
+    },
+    "com.example.pipeline": "default",
+    "uacp.conformance": "L3"
+  }
+}

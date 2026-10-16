@@ -1,0 +1,21 @@
+{
+  "fixture_id": "scope-identifier-negative-03-invalid-scope-id",
+  "description": "Negative: id is not a valid UUID v4 — INVALID_SCOPE_ID",
+  "expected": "INVALID_SCOPE_ID",
+  "scopes": [
+    {
+      "id": "not-a-uuid",
+      "governance": {
+        "cardinality": "solo",
+        "invite_model": "self_only",
+        "role_structure": "flat",
+        "override": "none",
+        "audit": "none",
+        "default_sync": "realtime",
+        "lifecycle": "permanent"
+      },
+      "created_at": 1700000000000,
+      "created_by": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+  ]
+}

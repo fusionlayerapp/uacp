@@ -1,0 +1,26 @@
+{
+  "id": "test_partial_chain_marks_orphaned",
+  "description": "Event references a predecessor not present in the event set — orphaned event",
+  "events": [
+    {
+      "event_id": "evt-001",
+      "event_type": "conversation_created",
+      "vector_clock": { "device-A": 1 },
+      "signature": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "event_id": "evt-003",
+      "event_type": "context_received",
+      "vector_clock": { "device-A": 3 },
+      "signature": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ],
+  "expected_causality": {
+    "evt-003": "evt-002"
+  },
+  "expected_signatures": {
+    "evt-001": "valid",
+    "evt-003": "valid"
+  },
+  "expected_outcome": "rejected"
+}

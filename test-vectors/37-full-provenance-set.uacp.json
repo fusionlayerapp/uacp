@@ -1,0 +1,44 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_37_full_provenance_set",
+  "tool": "claude-code",
+  "title": "Conversation using all four provenance values",
+  "created_at": "2026-05-09T10:15:00.000Z",
+  "updated_at": "2026-05-09T10:15:45.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "system",
+      "content": "You are a software architect assistant. The user is working in a Node.js monorepo.",
+      "provenance": "system",
+      "provenance_source": "cursor-memory-v2"
+    },
+    {
+      "id": "msg_2",
+      "role": "user",
+      "content": "How should I structure shared utilities in a monorepo?",
+      "timestamp": "2026-05-09T10:15:05.000Z",
+      "provenance": "extracted"
+    },
+    {
+      "id": "msg_3",
+      "role": "tool",
+      "parent_id": "msg_2",
+      "call_id": "call_fs_1",
+      "name": "list_directory",
+      "content": "packages/api\npackages/web\npackages/worker\npackages/shared",
+      "timestamp": "2026-05-09T10:15:10.000Z",
+      "provenance": "tool_output"
+    },
+    {
+      "id": "msg_4",
+      "role": "assistant",
+      "parent_id": "msg_3",
+      "content": "Based on your existing structure, you already have a packages/shared directory. Place all cross-package utilities there — date formatting, validation, logging — and have each package import from @your-org/shared. Use TypeScript project references for clean build ordering.",
+      "timestamp": "2026-05-09T10:15:20.000Z",
+      "provenance": "inferred",
+      "confidence": 0.88,
+      "provenance_source": "claude-opus-4-7"
+    }
+  ]
+}

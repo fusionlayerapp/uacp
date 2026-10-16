@@ -1,0 +1,35 @@
+{
+  "fixture_id": "02-two-members",
+  "description": "Scenario 7: same EncryptedPayload decrypted independently by two members sharing the same scope key. Both userA and userB hold scope_key_hex and can decrypt.",
+  "expected": "valid",
+  "scope_key_hex": "425801f62b208a641e5b8831b5d786495de84195f5a8ca18df09c403ac120aca",
+  "plaintext_hex": "736861726564206d65737361676520666f722074776f206d656d62657273",
+  "member_user_ids": [
+    "10000000-0000-4000-8000-000000000001",
+    "10000000-0000-4000-8000-000000000002"
+  ],
+  "event_meta": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "e0000000-0000-4000-8000-000000000002",
+    "parent_event_id": "e0000000-0000-4000-8000-000000000001",
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1700000001000
+  },
+  "payload": {
+    "algorithm": "AES-256-GCM",
+    "nonce": "ztyYzj27FzgBpaaU",
+    "ciphertext": "yqC9BdEiTrbJd_JqSSRwC0XcaW7O6kn_q0AcLT0I",
+    "tag": "Jkn6MrQP6VxkluLCyWquQA",
+    "aad": {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "e0000000-0000-4000-8000-000000000002",
+      "parent_event_id": "e0000000-0000-4000-8000-000000000001",
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1700000001000
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "fixture_id": "member-set/05-read-only-handoff",
+  "description": "Scenario 9: Owner and guest. Guest can decrypt but cannot rotate scope key.",
+  "expected": "valid",
+  "member_set": {
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "members": [
+      {
+        "identity_public_key": "jXrMAbJ6XxMBIsdYM9YpPXApwT1pNGCZIuV4ckIDMPM",
+        "role": "owner",
+        "joined_at": 1700000000000,
+        "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+      },
+      {
+        "identity_public_key": "HPipmpRi7AY1sBQDCbhTRjSZNLAo5UjuZfSLLVUC40o",
+        "role": "guest",
+        "joined_at": 1700000001000,
+        "joined_via_event_id": "50000000-0000-4000-8000-000000000002"
+      }
+    ],
+    "scope_key": {
+      "algorithm": "X25519-AES256GCM",
+      "encrypted_key_per_member": [
+        {
+          "recipient_identity_key": "kQhGI0JcLdDcQQv8t4EqXh1bEam6UmeGdVgsfZhJtV0",
+          "ciphertext": "GWYGGofpSeb1UiM9VPqu8OdQz4n4xr1yts_vDsm0qlNMnB1ErBwKI2humhFheE6bNRdlWIZXvnxOagsoF8ko3q2qQq5v43EdH6L_8JJtj1I",
+          "nonce": "6uc9sbHuJBYVivUd"
+        },
+        {
+          "recipient_identity_key": "i9ZJ2xfMee6D0pKLQf0DWx4IZfDsnX5UsalbKJHWt3w",
+          "ciphertext": "6ngpsVvaZOsPNJcf05IwdRkQojyi50Jf1zIYyE24plrh1FRATkrDE-i1dOYcnk0gVHrNfsc23dGY83tqoUr-JnxLqehmwXOJe44gEO2QZ-o",
+          "nonce": "detp7jmqgC5nSkdN"
+        }
+      ]
+    },
+    "version": 0,
+    "signature": "xbsbRzY_zg8Z4oEueBwvdhJFxHBw_1WF8L8K86G-NiNPRzLO8zBOEHP9UDnpibzxeQg3ELpZjXOLjyxNT53pCQ"
+  }
+}

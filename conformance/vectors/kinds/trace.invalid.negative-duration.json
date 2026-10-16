@@ -1,0 +1,9 @@
+{
+  "_schema": "trace",
+  "_expect": "invalid",
+  "body": {
+    "tool": "fusionlayer-cli",
+    "duration_ms": -1,
+    "privacy_mode": "smart"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "fixture_id": "audit-event-01",
+  "description": "Chain genesis: first audit entry for mobile-team scope",
+  "expected": "valid",
+  "scenario": "11",
+  "audit_event": {
+    "type": "audit",
+    "scope_id": "20000000-0000-4000-8000-000000000001",
+    "subject_user_id": "10000000-0000-4000-8000-000000000001",
+    "action": "ai_prompt_sent",
+    "metadata": {
+      "vendor": "anthropic",
+      "token_count": 1024,
+      "redaction_count": null
+    },
+    "prev_audit_hash": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "timestamp": 1715000000000,
+    "observer_id": "30000000-0000-4000-8000-000000000001"
+  }
+}

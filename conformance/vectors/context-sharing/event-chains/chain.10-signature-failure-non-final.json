@@ -1,0 +1,34 @@
+{
+  "id": "test_signature_failure_on_non_final_event_rejects_chain",
+  "description": "Signature failure on event 1 (not the final event) — chain aborted at failure point",
+  "events": [
+    {
+      "event_id": "evt-001",
+      "event_type": "conversation_created",
+      "vector_clock": { "device-A": 1 },
+      "signature": "TRUNCATED"
+    },
+    {
+      "event_id": "evt-002",
+      "event_type": "context_shared",
+      "vector_clock": { "device-A": 2 },
+      "signature": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    {
+      "event_id": "evt-003",
+      "event_type": "context_received",
+      "vector_clock": { "device-A": 3 },
+      "signature": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ],
+  "expected_causality": {
+    "evt-002": "evt-001",
+    "evt-003": "evt-002"
+  },
+  "expected_signatures": {
+    "evt-001": "invalid",
+    "evt-002": "valid",
+    "evt-003": "valid"
+  },
+  "expected_outcome": "rejected"
+}

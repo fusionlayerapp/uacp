@@ -1,0 +1,42 @@
+{
+  "id": "test_multi_device_chain_accepted",
+  "description": "Events from two devices with correct vector-clock progression",
+  "events": [
+    {
+      "event_id": "evt-A1",
+      "event_type": "conversation_created",
+      "vector_clock": { "device-A": 1, "device-B": 0 },
+      "signature": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "event_id": "evt-B1",
+      "event_type": "context_shared",
+      "vector_clock": { "device-A": 1, "device-B": 1 },
+      "signature": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    {
+      "event_id": "evt-A2",
+      "event_type": "context_received",
+      "vector_clock": { "device-A": 2, "device-B": 1 },
+      "signature": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    {
+      "event_id": "evt-B2",
+      "event_type": "context_shared",
+      "vector_clock": { "device-A": 2, "device-B": 2 },
+      "signature": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    }
+  ],
+  "expected_causality": {
+    "evt-B1": "evt-A1",
+    "evt-A2": "evt-B1",
+    "evt-B2": "evt-A2"
+  },
+  "expected_signatures": {
+    "evt-A1": "valid",
+    "evt-B1": "valid",
+    "evt-A2": "valid",
+    "evt-B2": "valid"
+  },
+  "expected_outcome": "accepted"
+}

@@ -1,0 +1,17 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_19_provenance_confidence_on_extracted_rejected",
+  "tool": "chatgpt",
+  "messages": [
+    {
+      "role": "user",
+      "content": "I live in Tel Aviv.",
+      "provenance": "extracted",
+      "confidence": 0.9
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.comment": "Negative test vector. MUST fail schema validation: confidence MUST NOT be present when provenance=extracted."
+  }
+}

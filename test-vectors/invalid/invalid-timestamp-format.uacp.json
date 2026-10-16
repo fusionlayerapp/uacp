@@ -1,0 +1,16 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-019",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello",
+      "created_at": "2024-01-15"
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "'created_at' is a date-only string; pattern requires full ISO 8601 datetime with time and Z suffix"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "_schema": "playbook",
+  "_expect": "valid",
+  "body": {
+    "title": "Research to Draft",
+    "description": "A three-step workflow for producing research-backed written content.",
+    "steps": [
+      {
+        "step": 1,
+        "title": "Research",
+        "instruction": "Gather information on the topic from at least 3 primary sources.",
+        "on_complete": "Confirm research is complete before proceeding to draft."
+      },
+      {
+        "step": 2,
+        "title": "Draft",
+        "instruction": "Write a first draft using the research gathered in step 1.",
+        "on_complete": "Confirm draft is complete."
+      },
+      {
+        "step": 3,
+        "title": "Fact-check",
+        "instruction": "Review every factual claim in the draft and verify against sources.",
+        "on_complete": "Present the final fact-checked draft."
+      }
+    ],
+    "tags": ["research", "writing"]
+  }
+}

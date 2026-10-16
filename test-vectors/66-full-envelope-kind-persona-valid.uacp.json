@@ -1,0 +1,13 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_66_persona_envelope",
+  "kind": "persona",
+  "body": {
+    "name": "Release Notes Writer",
+    "description": "Drafts concise, accurate release notes from a diff and issue list.",
+    "system_prompt": "You write terse, accurate release notes. Group changes by feature vs fix vs chore."
+  },
+  "metadata": {
+    "uacp.test.comment": "Regression vector for issue #102: a full-envelope kind=persona document (a second, non-memory kind) must validate through the persona kind body schema, proving the routing fix generalizes across kinds."
+  }
+}

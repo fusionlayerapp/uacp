@@ -1,0 +1,11 @@
+{
+  "_schema": "source",
+  "_expect": "valid",
+  "body": {
+    "title": "Hacker News",
+    "url": "https://news.ycombinator.com",
+    "type": "webpage",
+    "last_fetched": "2026-05-16T08:00:00Z",
+    "content_hash": "sha256:2c624232cdd221771294dfbb310acbc8a4af45a16a08b3fc3de1deb7ff6bebe"
+  }
+}

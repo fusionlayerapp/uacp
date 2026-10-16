@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/v1/context-sharing/scope-key-envelope",
+  "title": "UACP Scope Key Envelope",
+  "description": "Envelope used to distribute and rotate symmetric scope keys.",
+  "type": "object",
+  "properties": {
+    "scope_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "scope_key_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "device_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "encrypted_scope_key": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9+/]+={0,2}$"
+          }
+        },
+        "required": ["device_id", "encrypted_scope_key"],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{3})?Z$"
+    },
+    "rotated_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{3})?Z$"
+    }
+  },
+  "required": ["scope_id", "scope_key_id", "members", "created_at"],
+  "additionalProperties": false
+}

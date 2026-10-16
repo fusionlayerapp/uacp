@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uacp.dev/spec/v1/envelope",
+  "title": "UACP Envelope v0.2",
+  "description": "JSON Schema for the UACP v1 artifact envelope (spec v0.2). Sub-specs define the body field. Implementations MUST NOT accept uacp_version > 1.",
+  "type": "object",
+  "required": [
+    "uacp_version",
+    "kind",
+    "id",
+    "schema_version",
+    "version",
+    "subject",
+    "author",
+    "created_at",
+    "signature",
+    "body"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "uacp_version": {
+      "type": "integer",
+      "const": 1,
+      "description": "UACP envelope version. MUST be 1. Implementations MUST refuse artifacts with uacp_version > 1."
+    },
+    "kind": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^([a-z][a-z0-9-]*|[a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+)$",
+      "description": "Artifact kind. Core kinds are unnamespaced (e.g., memory, policy). Custom kinds MUST be namespaced as vendor/name. Note: 'trace' was removed from core kinds in v0.2; implementations MUST pass it through as an unknown kind."
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "Stable identifier for this artifact. MUST be preserved across revisions. Recommended: UUID v4."
+    },
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Version of the kind-specific body schema. Defined by the kind's sub-spec."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "description": "Semver of this artifact instance. MUST increment at least the patch component on every revision."
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Opaque DID-style owner identifier (e.g., did:key:z6Mk..., did:web:example.com:users:alice, urn:uacp:subject:<uuid>). UACP does not define identity issuance. Required as of v0.2."
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "Who produced this artifact. MAY be a handle (e.g., @alice) or a DID (e.g., did:key:z6Mk...)."
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$",
+      "description": "ISO 8601 timestamp in UTC at which this artifact was first created."
+    },
+    "signature": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Integrity signature. V1: sha256:<hex>. V2 (deferred): ed25519:<base64>. Field is removed before hashing."
+    },
+    "body": {
+      "description": "Kind-specific payload. Structure is defined by the kind's sub-spec. Sub-specs MUST NOT redefine envelope fields."
+    },
+    "audience": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "maxItems": 1000,
+      "uniqueItems": true,
+      "description": "Explicit list of principals (handles or DIDs) authorized to access this artifact. Empty or absent = subject-only. [\"*\"] = public. Implementations MUST enforce this list when the requesting principal's identity is known."
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Scope label describing the intended sharing relationship (see §Annex A in UACP-CORE.md). Informational — audience is what is enforced. Unknown labels MUST be treated as 'individual'. Starter values: individual, family, team, group, corporate, public."
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 4096,
+      "description": "Human-readable summary of the artifact's purpose."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+      },
+      "maxItems": 64,
+      "uniqueItems": true,
+      "description": "Free-form labels for search and filtering."
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "SPDX license identifier (e.g., MIT, Apache-2.0) or 'proprietary'."
+    }
+  }
+}

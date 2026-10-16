@@ -1,0 +1,72 @@
+{
+  "fixture_id": "04-family-identities",
+  "description": "Four identities (parentA, parentB, childA, childB); event from childA device verifies (Scenario 10)",
+  "expected": "valid",
+  "identity_keys": [
+    {
+      "user_id": "10000000-0000-4000-8000-000000000003",
+      "public": "u2F-ly6KfbkKah0QBqmM4-JgjI-WBPPEJ9lkCK6V7Vc"
+    },
+    {
+      "user_id": "10000000-0000-4000-8000-000000000004",
+      "public": "dHtBdMhE1BwpJIE3gv-kFVc-54ZhJsLEF6gdXtCUlRg"
+    },
+    {
+      "user_id": "10000000-0000-4000-8000-000000000005",
+      "public": "zawFlAPY4JLKbRr5cErCD00zV47ANvAjyCZ-GYYwgwo"
+    },
+    {
+      "user_id": "10000000-0000-4000-8000-000000000006",
+      "public": "k9V5zaMrxc6K8dE138CXbV3c99oboUc1mvQCGNtwgJo"
+    }
+  ],
+  "registrations": [
+    {
+      "device_id": "20000000-0000-4000-8000-000000000007",
+      "device_public_key": "JQejtuOXNWygvphmRtFnmvhdxPNLPhh13zldH5NJaPc",
+      "registered_at": 1747180000000,
+      "device_label": "Parent A Desktop",
+      "registered_by": "u2F-ly6KfbkKah0QBqmM4-JgjI-WBPPEJ9lkCK6V7Vc",
+      "signature": "ItsvbgIFhIKsUn04zF44PJtl4jNa0l1v4mDkhEUzzf8qx1XPYE4sLudvBkxp4oedg9imPoV99sYRynzSI4g2DA"
+    },
+    {
+      "device_id": "20000000-0000-4000-8000-000000000008",
+      "device_public_key": "SyKHB2YwKyy1RuqtRkGQfTF2T2LGYCGUlivCtdZyF-0",
+      "registered_at": 1747180001000,
+      "device_label": "Parent B Desktop",
+      "registered_by": "dHtBdMhE1BwpJIE3gv-kFVc-54ZhJsLEF6gdXtCUlRg",
+      "signature": "xO1TrTe5JxSUjx3GZcMIWRNaxuYTZYgZY3u5ik7oh_Zv3-y4YcD4CN2px-1pkPnZ_5YFwK4Um1GFKra4U-meBg"
+    },
+    {
+      "device_id": "20000000-0000-4000-8000-000000000009",
+      "device_public_key": "kflC9gFHn0WFz2pTalKkwsax4lNXEn2_L2X7ouVzS1I",
+      "registered_at": 1747180002000,
+      "device_label": "Child A Phone",
+      "registered_by": "zawFlAPY4JLKbRr5cErCD00zV47ANvAjyCZ-GYYwgwo",
+      "signature": "NkEyVYexm2rRWlLnj23saClFlnXlqtQVXud9Gr7ClcpMVjX9tcZ9jDLYQ0cSNvrRAGe_fsPOrUQ8Ba_m0nZuDA"
+    },
+    {
+      "device_id": "20000000-0000-4000-8000-00000000000a",
+      "device_public_key": "T-8x_SPBf_5Rt5eeVjbj_IjxriLjlMvPK48KHvt2fUs",
+      "registered_at": 1747180003000,
+      "device_label": "Child B Phone",
+      "registered_by": "k9V5zaMrxc6K8dE138CXbV3c99oboUc1mvQCGNtwgJo",
+      "signature": "XV_49C7AhJYKLqJiBR_HmZLHYMYMCxUxOhlnSDRRnubkjSzMMSq_QPH0HefRrZnFhDouVYUnzKEefOle0HNjAg"
+    }
+  ],
+  "retirements": [],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "69c07d2f-9713-46ec-ada2-1b1f6a409693",
+    "parent_event_id": null,
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000009": 1
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000005",
+    "author_device_id": "20000000-0000-4000-8000-000000000009",
+    "timestamp": 1747180800000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "dGVzdC1wYXlsb2Fk",
+    "signature": "5sn2fv-a-7zhen0uudTwiZzRXXzNav0aLVgLQcPdGLxIgJJ-YMCUITs8H6fITLjsW3oHmtI_Lf4jJKFRemc7Ag"
+  }
+}

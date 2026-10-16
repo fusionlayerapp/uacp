@@ -1,0 +1,14 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-036",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user"
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "message object is missing required 'content' field"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "_schema": "playbook",
+  "_expect": "invalid",
+  "body": {
+    "title": "Empty Playbook",
+    "description": "A playbook with no steps.",
+    "steps": []
+  }
+}

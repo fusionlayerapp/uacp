@@ -1,0 +1,30 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_22_system_message",
+  "tool": "claude",
+  "title": "System message with user+assistant exchange",
+  "created_at": "2026-05-09T10:00:00.000Z",
+  "updated_at": "2026-05-09T10:00:30.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "system",
+      "content": "You are a helpful coding assistant. Always respond with concise, accurate answers.",
+      "provenance": "system"
+    },
+    {
+      "id": "msg_2",
+      "role": "user",
+      "content": "What is a closure in JavaScript?",
+      "timestamp": "2026-05-09T10:00:01.000Z"
+    },
+    {
+      "id": "msg_3",
+      "role": "assistant",
+      "parent_id": "msg_2",
+      "content": "A closure is a function that retains access to its lexical scope even when executed outside that scope. The inner function 'closes over' variables from the outer function.",
+      "timestamp": "2026-05-09T10:00:05.000Z",
+      "model": "claude-opus-4-7"
+    }
+  ]
+}

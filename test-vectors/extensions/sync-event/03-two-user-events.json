@@ -1,0 +1,36 @@
+{
+  "fixture_id": "03-two-user-events",
+  "description": "Two users in same scope sign with separate device keys — both must verify (Scenario 7)",
+  "expected": "valid",
+  "log": [
+    {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "3c6ccb9e-762e-4eec-949c-9a2138a0d4d1",
+      "parent_event_id": null,
+      "vector_clock": {
+        "20000000-0000-4000-8000-000000000001": 1
+      },
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1747180800000,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "payload": "ZmFrZS1jaXBoZXJ0ZXh0LWE",
+      "signature": "fqhji4HYJfML1-UHQOaFG8DOLwJL1VvFIV_PXzbVFyiT51OfiMQ34p-1Er_LPK5bAzKyR7mMdHXypbl8y56kDw"
+    }
+  ],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "e396c7d0-c314-4f85-beb4-1a15e7f892ec",
+    "parent_event_id": null,
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000003": 1
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000002",
+    "author_device_id": "20000000-0000-4000-8000-000000000003",
+    "timestamp": 1747180800001,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "ZmFrZS1jaXBoZXJ0ZXh0LWE",
+    "signature": "WGLzRiJ-19mmDiKNgKQjr1XBUQM_YLjFJZFdGkCFSF_Dv9SsHaxzk13KFuiJpBSGfnTxWVlOJKqtqkVBUJINCg"
+  },
+  "note": "Both events share scope_id. Each device key is certified by its respective user identity key."
+}

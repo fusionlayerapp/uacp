@@ -1,0 +1,21 @@
+{
+  "uacp": "0.6.0",
+  "id": "conv-thinking-001",
+  "tool": "claude",
+  "extensions": ["uacp-reasoning"],
+  "messages": [
+    { "role": "user", "content": "Is 17 prime?" },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "text": "17 — check divisibility by 2 (no), 3 (no), the square root is ~4.1 so I only need to check up to 4. Not divisible by 2 or 3. Therefore prime.",
+          "model_visibility": "hidden",
+          "tokens": 34
+        },
+        { "type": "text", "text": "Yes, 17 is a prime number." }
+      ]
+    }
+  ]
+}

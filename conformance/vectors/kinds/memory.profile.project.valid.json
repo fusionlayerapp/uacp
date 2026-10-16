@@ -1,0 +1,12 @@
+{
+  "_schema": "memory",
+  "_expect": "valid",
+  "body": {
+    "content": "The project release target is September.",
+    "profile_link": {
+      "schema_id": "project",
+      "schema_version": 1,
+      "field": "/release/target_month"
+    }
+  }
+}

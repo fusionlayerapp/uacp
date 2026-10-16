@@ -1,0 +1,20 @@
+{
+  "fixture_id": "scope-identifier-negative-02-missing-axis",
+  "description": "Negative: governance object missing the override axis — MISSING_AXIS",
+  "expected": "MISSING_AXIS",
+  "scopes": [
+    {
+      "id": "40000000-0000-4000-8000-000000000001",
+      "governance": {
+        "cardinality": "solo",
+        "invite_model": "self_only",
+        "role_structure": "flat",
+        "audit": "none",
+        "default_sync": "realtime",
+        "lifecycle": "permanent"
+      },
+      "created_at": 1700000000000,
+      "created_by": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+  ]
+}

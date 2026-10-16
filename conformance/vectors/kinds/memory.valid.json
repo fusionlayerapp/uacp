@@ -1,0 +1,11 @@
+{
+  "_schema": "memory",
+  "_expect": "valid",
+  "body": {
+    "content": "I am a senior TypeScript developer. My primary stack is Node.js, React, and PostgreSQL.",
+    "category": "professional",
+    "confidence": 1.0,
+    "source": "claude-code/session-2026-05-16",
+    "expires_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "fixture_id": "member-set/negative-01-version-regression",
+  "description": "Version regression: MemberSet has version 0 but version 5 is already known. Semantic error, not schema error.",
+  "expected": "MEMBERSET_VERSION_REGRESSION",
+  "known_version": 5,
+  "member_set": {
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "members": [
+      {
+        "identity_public_key": "tkJ1n5C2UPcyRZnR6aCw9K0xKdbLoNxnD0oPhATUjyw",
+        "role": "owner",
+        "joined_at": 1700000000000,
+        "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+      }
+    ],
+    "scope_key": {
+      "algorithm": "X25519-AES256GCM",
+      "encrypted_key_per_member": [
+        {
+          "recipient_identity_key": "kdjN9rIeFetIcAwgecY_tBsyXw2EM73BQoX3WCfgIHY",
+          "ciphertext": "Iw5eXeyx2hBrSf2iIq3AXhEhLTU2RmLxJtnVMVR3AScZ3CJCrCF7YcnzU8HxNofNO14P7BynLP0P8HTSox3dXq34KYUCRhV1aSLnsyuK3mo",
+          "nonce": "9-MJOGsEroIejSsO"
+        }
+      ]
+    },
+    "version": 0,
+    "signature": "qZEnEsx5yK9lf0t8sT1udUuiTD8NspaQwnYyGFpjZMBWs2SK4Osf3qY3esfJNVN5-3PBE561f9h6y_OG9vKNAA"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-016",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "artifact_ref"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "content block type 'artifact_ref' is missing required 'id' field"
+  }
+}

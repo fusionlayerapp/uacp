@@ -1,0 +1,19 @@
+{
+  "fixture_id": "audit-event-05",
+  "description": "prev_audit_hash wrong length triggers schema rejection",
+  "expected": "schema_error",
+  "audit_event": {
+    "type": "audit",
+    "scope_id": "20000000-0000-4000-8000-000000000001",
+    "subject_user_id": "10000000-0000-4000-8000-000000000001",
+    "action": "ai_prompt_sent",
+    "metadata": {
+      "vendor": "anthropic",
+      "token_count": 512,
+      "redaction_count": null
+    },
+    "prev_audit_hash": "tooshort",
+    "timestamp": 1715000004000,
+    "observer_id": "30000000-0000-4000-8000-000000000001"
+  }
+}

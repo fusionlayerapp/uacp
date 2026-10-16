@@ -1,0 +1,11 @@
+{
+  "_schema": "redaction-pattern",
+  "_expect": "invalid",
+  "body": {
+    "name": "Bad Pattern",
+    "pattern": "\\btest\\b",
+    "pattern_type": "regex",
+    "scope": "everywhere",
+    "is_builtin": false
+  }
+}

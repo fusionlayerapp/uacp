@@ -1,0 +1,9 @@
+{
+  "_schema": "memory",
+  "_expect": "invalid",
+  "_error": "MEMORY_TOPIC_UNKNOWN_UNNAMESPACED",
+  "body": {
+    "content": "I prefer dark mode.",
+    "topics": ["unregistered"]
+  }
+}

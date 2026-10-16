@@ -1,0 +1,38 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_02_multi",
+  "tool": "claude",
+  "model": "anthropic:claude-sonnet-4-6",
+  "title": "Node.js file watching",
+  "created_at": "2026-04-21T10:00:00Z",
+  "updated_at": "2026-04-21T10:05:00Z",
+  "tags": ["nodejs", "files"],
+  "project": "myproject",
+  "messages": [
+    {
+      "role": "user",
+      "content": "How do I watch files in Node.js?",
+      "timestamp": "2026-04-21T10:00:01Z"
+    },
+    {
+      "role": "assistant",
+      "content": "Use chokidar for cross-platform file watching.",
+      "timestamp": "2026-04-21T10:00:04Z",
+      "model": "anthropic:claude-sonnet-4-6",
+      "tokens": { "input": 12, "output": 42 }
+    },
+    {
+      "role": "user",
+      "content": "Show me a quick example.",
+      "timestamp": "2026-04-21T10:01:00Z"
+    },
+    {
+      "role": "assistant",
+      "content": "const chokidar = require('chokidar');\nchokidar.watch('.').on('change', path => console.log(path));",
+      "timestamp": "2026-04-21T10:01:05Z",
+      "model": "anthropic:claude-sonnet-4-6",
+      "tokens": { "input": 20, "output": 30 }
+    }
+  ],
+  "metadata": {}
+}

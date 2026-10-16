@@ -1,0 +1,20 @@
+{
+  "fixture_id": "promotion-event/03-summary-only",
+  "description": "Scenario 9: Source team bulk-promotes artifacts to handoff scope as summary_only. Originals stay in source.",
+  "expected": "valid",
+  "promotion": {
+    "type": "promotion",
+    "source_scope_id": "40000000-0000-4000-8000-000000000001",
+    "source_event_ids": [
+      "50000000-0000-4000-8000-000000000001",
+      "50000000-0000-4000-8000-000000000002",
+      "50000000-0000-4000-8000-000000000003"
+    ],
+    "destination_scope_id": "40000000-0000-4000-8000-000000000003",
+    "mode": "summary_only",
+    "summary_payload": "aGFuZG9mZi1zdW1tYXJ5LWJ1bGs",
+    "context_note": null,
+    "promoted_at": 1700000002,
+    "promoter_identity": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  }
+}

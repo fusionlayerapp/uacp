@@ -1,0 +1,20 @@
+{
+  "fixture_id": "audit-event-03",
+  "description": "guardrail_triggered entry in family scope (Scenario 10)",
+  "expected": "valid",
+  "scenario": "10",
+  "audit_event": {
+    "type": "audit",
+    "scope_id": "20000000-0000-4000-8000-000000000002",
+    "subject_user_id": "10000000-0000-4000-8000-000000000003",
+    "action": "guardrail_triggered",
+    "metadata": {
+      "vendor": "openai",
+      "token_count": null,
+      "redaction_count": null
+    },
+    "prev_audit_hash": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "timestamp": 1715000002000,
+    "observer_id": "30000000-0000-4000-8000-000000000001"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_65_memory_envelope_invalid",
+  "kind": "memory",
+  "body": {
+    "confidence": 1.0
+  },
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.comment": "Regression vector for issue #102: a full-envelope kind=memory document with a body missing required 'content' MUST fail via the memory kind body schema itself, proving the per-kind check is now the deciding factor rather than dead code."
+  }
+}

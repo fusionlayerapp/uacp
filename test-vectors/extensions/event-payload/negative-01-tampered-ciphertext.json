@@ -1,0 +1,31 @@
+{
+  "fixture_id": "negative-01-tampered-ciphertext",
+  "description": "Negative: one byte flipped in ciphertext — GCM tag verification must fail with DECRYPT_FAILED.",
+  "expected": "DECRYPT_FAILED",
+  "scope_key_hex": "22f0c0c66a0c213133b30ebdf04eec1294e198a296d5139999e1e0a244edf880",
+  "plaintext_hex": "74616d706572206d65",
+  "event_meta": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "f0000000-0000-4000-8000-000000000001",
+    "parent_event_id": null,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1700000002000
+  },
+  "payload": {
+    "algorithm": "AES-256-GCM",
+    "nonce": "kAa3B9_GRiqoWIxW",
+    "ciphertext": "qcHfX_6V3IOw",
+    "tag": "y75lgbR5gJE0oCiOpGKeJw",
+    "aad": {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "f0000000-0000-4000-8000-000000000001",
+      "parent_event_id": null,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1700000002000
+    }
+  }
+}

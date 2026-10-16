@@ -1,0 +1,54 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_49_complete_benchmark",
+  "tool": "test-harness",
+  "model": { "id": "claude-opus-4-7", "provider": "anthropic" },
+  "title": "Full benchmark workflow: system setup, thinking, tool call, tool response, final answer",
+  "created_at": "2026-05-09T12:05:00.000Z",
+  "updated_at": "2026-05-09T12:06:00.000Z",
+  "messages": [
+    {
+      "id": "msg_sys",
+      "role": "system",
+      "content": "You are a helpful research assistant. Use the search tool to look up current data before answering factual questions.",
+      "timestamp": "2026-05-09T12:05:00.000Z"
+    },
+    {
+      "id": "msg_1",
+      "role": "user",
+      "parent_id": "msg_sys",
+      "content": "What is the population of Tokyo?",
+      "timestamp": "2026-05-09T12:05:05.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": [
+        { "type": "thinking", "text": "The user is asking about Tokyo's population. I should use the search tool to get the most current figure rather than relying on training data." },
+        { "type": "text", "text": "Let me look that up for you." }
+      ],
+      "timestamp": "2026-05-09T12:05:08.000Z",
+      "tool_calls": [
+        { "call_id": "call_search_1", "name": "web_search", "arguments": { "query": "Tokyo population 2024" } }
+      ]
+    },
+    {
+      "id": "msg_3",
+      "role": "tool",
+      "parent_id": "msg_2",
+      "content": "{\"results\": [{\"title\": \"Tokyo Population 2024\", \"snippet\": \"Tokyo's population is approximately 13.96 million in the city proper and about 37.4 million in the greater metropolitan area.\"}]}",
+      "call_id": "call_search_1",
+      "name": "web_search",
+      "timestamp": "2026-05-09T12:05:12.000Z"
+    },
+    {
+      "id": "msg_4",
+      "role": "assistant",
+      "parent_id": "msg_3",
+      "content": "Tokyo has a population of approximately 13.96 million in the city proper. The greater Tokyo metropolitan area — one of the largest urban agglomerations in the world — is home to around 37.4 million people.",
+      "timestamp": "2026-05-09T12:05:20.000Z",
+      "tokens": { "input": 312, "output": 89 }
+    }
+  ]
+}

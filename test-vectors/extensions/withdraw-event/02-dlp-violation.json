@@ -1,0 +1,15 @@
+{
+  "fixture_id": "withdraw-event/02-dlp-violation",
+  "description": "Scenario 15 (secret leak): On-device DLP emits withdrawal on author's behalf.",
+  "expected": "valid",
+  "withdraw": {
+    "type": "withdraw",
+    "target_event_ids": [
+      "50000000-0000-4000-8000-000000000002",
+      "50000000-0000-4000-8000-000000000003"
+    ],
+    "reason": "dlp_violation",
+    "withdrawn_at": 1700001001,
+    "withdrawer_identity": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  }
+}

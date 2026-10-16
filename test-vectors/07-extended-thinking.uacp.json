@@ -1,0 +1,29 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_07_thinking",
+  "tool": "claude",
+  "model": "anthropic:claude-opus-4-7",
+  "title": "Extended thinking example",
+  "created_at": "2026-04-21T15:00:00Z",
+  "updated_at": "2026-04-21T15:00:30Z",
+  "messages": [
+    { "id": "msg_1", "role": "user", "content": "What is 17 × 23?", "timestamp": "2026-04-21T15:00:01Z" },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": [
+        {
+          "type": "thinking",
+          "text": "17 × 23: I'll use (20-3) × 17 = 340 - 51 = 289.",
+          "signature": "EqoBCkgIARAAGAIiQL8..."
+        },
+        { "type": "text", "text": "17 × 23 = 391." }
+      ],
+      "timestamp": "2026-04-21T15:00:05Z",
+      "model": "anthropic:claude-opus-4-7",
+      "status": "complete"
+    }
+  ],
+  "metadata": {}
+}

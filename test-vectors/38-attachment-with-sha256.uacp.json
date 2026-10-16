@@ -1,0 +1,33 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_38_attachment_with_sha256",
+  "tool": "chatgpt",
+  "title": "Message with attachment including sha256 field",
+  "created_at": "2026-05-09T10:16:00.000Z",
+  "updated_at": "2026-05-09T10:16:30.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "Verify the integrity of this dataset and describe its structure.",
+      "timestamp": "2026-05-09T10:16:01.000Z",
+      "attachments": [
+        {
+          "id": "att_dataset_csv",
+          "filename": "dataset.csv",
+          "mime_type": "text/csv",
+          "size_bytes": 102400,
+          "url": "https://example.com/dataset.csv",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "The file hash has been noted for integrity verification. The CSV contains tabular data — I'll analyze its structure once you confirm the checksum matches on your end.",
+      "timestamp": "2026-05-09T10:16:20.000Z"
+    }
+  ]
+}

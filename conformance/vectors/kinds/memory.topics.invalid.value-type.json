@@ -1,0 +1,10 @@
+{
+  "_schema": "memory",
+  "_expect": "invalid",
+  "body": {
+    "content": "I prefer dark mode.",
+    "metadata": [
+      { "key": "importance", "type": "number", "value": "three" }
+    ]
+  }
+}

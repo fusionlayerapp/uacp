@@ -1,0 +1,12 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_20_provenance_back_compat",
+  "tool": "chatgpt",
+  "messages": [
+    { "role": "user", "content": "Hello" },
+    { "role": "assistant", "content": "Hi! How can I help?" }
+  ],
+  "metadata": {
+    "uacp.test.comment": "Back-compat test. v0.3.0 documents without provenance fields MUST still validate against the v0.4.0 schema (provenance defaults apply by documentation, not enforcement)."
+  }
+}

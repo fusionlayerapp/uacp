@@ -1,0 +1,23 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-025",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "Paris is the capital.",
+      "citations": [
+        {
+          "span": [0, 5],
+          "source": {
+            "url": "ftp://example.com/doc.pdf"
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "citation source 'url' uses ftp:// scheme; pattern ^https?:// requires http or https"
+  }
+}

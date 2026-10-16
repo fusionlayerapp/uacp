@@ -1,0 +1,36 @@
+{
+  "fixture_id": "01-single-device-valid",
+  "description": "Single device registers and signs event — chain verifies (Scenario 1)",
+  "expected": "valid",
+  "identity_keys": [
+    {
+      "user_id": "10000000-0000-4000-8000-000000000001",
+      "public": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8"
+    }
+  ],
+  "registrations": [
+    {
+      "device_id": "20000000-0000-4000-8000-000000000001",
+      "device_public_key": "SaksU5PNUdBb7V50ptkZvq3ko5z-rJz10mk9XNA3K4Q",
+      "registered_at": 1747180000000,
+      "device_label": "Desktop",
+      "registered_by": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8",
+      "signature": "luBHXXQeXvw83DFHwgktTx1hm2ecwZ2U9Ar7PlGOIg03sEjahxXBNlhfyqBQ7qSXSJ5C4Oue6noXCPZXopOSCg"
+    }
+  ],
+  "retirements": [],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "2fd8fe0a-ffcc-416a-b4e1-2f99a87f4cbe",
+    "parent_event_id": null,
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000001": 1
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1747180800000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "dGVzdC1wYXlsb2Fk",
+    "signature": "HEYoDRaTVDOPEQPWpitdiWsGolB4tZ-y0oRxcRdY-kjYt0IJXYFu9PANTc6zSD6kreRfFvi4abxX_m8Ne13WBA"
+  }
+}

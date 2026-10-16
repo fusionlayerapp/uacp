@@ -1,0 +1,21 @@
+{
+  "fixture_id": "scope-identifier-negative-01-unknown-axis-value",
+  "description": "Negative: cardinality value \"unlimited\" is not in the enum — UNKNOWN_AXIS_VALUE",
+  "expected": "UNKNOWN_AXIS_VALUE",
+  "scopes": [
+    {
+      "id": "40000000-0000-4000-8000-000000000001",
+      "governance": {
+        "cardinality": "unlimited",
+        "invite_model": "self_only",
+        "role_structure": "flat",
+        "override": "none",
+        "audit": "none",
+        "default_sync": "realtime",
+        "lifecycle": "permanent"
+      },
+      "created_at": 1700000000000,
+      "created_by": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+  ]
+}

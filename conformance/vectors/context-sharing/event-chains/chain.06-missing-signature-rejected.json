@@ -1,0 +1,25 @@
+{
+  "id": "test_missing_signature_rejected",
+  "description": "Event with no signature field must cause chain rejection",
+  "events": [
+    {
+      "event_id": "evt-001",
+      "event_type": "conversation_created",
+      "vector_clock": { "device-A": 1 },
+      "signature": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "event_id": "evt-002",
+      "event_type": "context_shared",
+      "vector_clock": { "device-A": 2 }
+    }
+  ],
+  "expected_causality": {
+    "evt-002": "evt-001"
+  },
+  "expected_signatures": {
+    "evt-001": "valid",
+    "evt-002": "missing"
+  },
+  "expected_outcome": "rejected"
+}

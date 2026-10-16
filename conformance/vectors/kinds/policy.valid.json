@@ -1,0 +1,12 @@
+{
+  "_schema": "policy",
+  "_expect": "valid",
+  "body": {
+    "title": "No profanity",
+    "rule": "Never include profanity, slurs, or offensive language in any response. Replace with neutral alternatives if needed.",
+    "scope": "all",
+    "enforcement": "hard",
+    "created_by": "user",
+    "tags": ["safety", "family-friendly"]
+  }
+}

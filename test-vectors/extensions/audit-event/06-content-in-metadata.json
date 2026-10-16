@@ -1,0 +1,20 @@
+{
+  "fixture_id": "audit-event-06",
+  "description": "metadata with disallowed content field must be rejected",
+  "expected": "schema_error",
+  "audit_event": {
+    "type": "audit",
+    "scope_id": "20000000-0000-4000-8000-000000000001",
+    "subject_user_id": "10000000-0000-4000-8000-000000000001",
+    "action": "ai_prompt_sent",
+    "metadata": {
+      "vendor": "anthropic",
+      "token_count": 100,
+      "redaction_count": null,
+      "prompt_text": "do my taxes"
+    },
+    "prev_audit_hash": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "timestamp": 1715000005000,
+    "observer_id": "30000000-0000-4000-8000-000000000001"
+  }
+}

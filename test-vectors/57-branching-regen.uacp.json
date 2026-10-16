@@ -1,0 +1,13 @@
+{
+  "uacp": "0.6.0",
+  "id": "conv-branch-regen-001",
+  "tool": "claude",
+  "extensions": ["uacp-branching"],
+  "messages": [
+    { "id": "m1", "role": "user", "content": "Write a haiku about rain." },
+    { "id": "m2", "role": "assistant", "content": "Soft drops on the glass\nsilver lines race each other\nthe garden drinks deep",
+      "branch_label": "attempt-1" },
+    { "id": "m3", "role": "assistant", "content": "Rain taps the window\npuddles mirror the grey sky\nfrogs wake and rejoice",
+      "branch_parent_id": "m1", "branch_label": "attempt-2" }
+  ]
+}

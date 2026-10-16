@@ -1,0 +1,14 @@
+{
+  "uacp": "0.6.0",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello"
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "root 'id' field is absent; it is required"
+  }
+}

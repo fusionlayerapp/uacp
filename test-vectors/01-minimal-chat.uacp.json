@@ -1,0 +1,9 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_01_minimal",
+  "tool": "chatgpt",
+  "messages": [
+    { "role": "user", "content": "Hello" },
+    { "role": "assistant", "content": "Hi there!" }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "fixture_id": "negative-02-device-retired",
+  "description": "Event timestamp after device retirement — must return DEVICE_RETIRED",
+  "expected": "DEVICE_RETIRED",
+  "identity_keys": [
+    {
+      "user_id": "10000000-0000-4000-8000-000000000001",
+      "public": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8"
+    }
+  ],
+  "registrations": [
+    {
+      "device_id": "20000000-0000-4000-8000-000000000001",
+      "device_public_key": "SaksU5PNUdBb7V50ptkZvq3ko5z-rJz10mk9XNA3K4Q",
+      "registered_at": 1747179000000,
+      "device_label": "Desktop",
+      "registered_by": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8",
+      "signature": "NsbL938MGeXQ2jKBovOuzzjyDVHJZSvXv2EYubwftYoBXsqFV-bNlzbOGl3MhweMjVN1b5RF9OZQ8IYnN5aRDA"
+    }
+  ],
+  "retirements": [
+    {
+      "device_id": "20000000-0000-4000-8000-000000000001",
+      "retired_at": 1747180000000,
+      "retired_by": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8",
+      "signature": "fgWkECK4FvnbhTxz1PQ-HkT7s7HZpWEWE1oVUW-3v0ENekVuRYroHZfJb22Gx_c3v9TAdAQdllI47nCBsX6iAw"
+    }
+  ],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "c5961f18-3ce7-413f-b551-9aac5ca83cf3",
+    "parent_event_id": null,
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000001": 1
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1747180001000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "dGVzdC1wYXlsb2Fk",
+    "signature": "G2GhfLst6u27APUSBabQmNx6fHCyGhVNQus4AjkYHTi81k1kDsYjH_AgF375b0wgNXlTGTzXT9Id5ScDGF8xAA"
+  }
+}

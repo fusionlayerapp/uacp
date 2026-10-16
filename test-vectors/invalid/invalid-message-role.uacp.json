@@ -1,0 +1,15 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-008",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "bot",
+      "content": "Hello"
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "message 'role' is 'bot'; enum only allows user, assistant, system, tool"
+  }
+}

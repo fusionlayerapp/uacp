@@ -1,0 +1,20 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-017",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "image",
+          "mime_type": "image/png"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "image content block has neither 'url' nor 'data'; at least one is required"
+  }
+}

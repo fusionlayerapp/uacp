@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uacp.dev/schema/v1/signing",
+  "title": "UACP Signing Extension (U1)",
+  "description": "Ed25519 request-signing extension for UACP. Defines the canonical payload, signature headers, and key-registration objects. Status: Draft — see https://uacp.dev/spec/ for the normative specification.",
+  "type": "object",
+  "description": "Schema for the UACP Signing U1 extension objects.",
+  "$defs": {
+    "signing_headers": {
+      "title": "UACP Request Signing Headers",
+      "description": "HTTP headers added to a UACP-signed request.",
+      "type": "object",
+      "required": ["X-UACP-Signature", "X-UACP-Timestamp", "X-UACP-Nonce"],
+      "properties": {
+        "X-UACP-Signature": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9+/]{86}==$",
+          "description": "Base64-encoded 64-byte Ed25519 signature over the canonical payload."
+        },
+        "X-UACP-Timestamp": {
+          "type": "string",
+          "pattern": "^\\d+$",
+          "description": "Unix timestamp in milliseconds (string) at signing time."
+        },
+        "X-UACP-Nonce": {
+          "type": "string",
+          "minLength": 16,
+          "maxLength": 64,
+          "description": "Random nonce (hex-encoded, >= 16 bytes entropy)."
+        },
+        "X-UACP-KeyId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Optional key identifier. If absent, the server resolves the key from the authenticated user identity."
+        }
+      },
+      "additionalProperties": true
+    },
+    "canonical_payload": {
+      "title": "UACP Signing Canonical Payload",
+      "description": "The string signed by the Ed25519 private key. Constructed as: METHOD + LF + URL + LF + hex(SHA256(body)) + LF + timestamp_millis + LF + nonce.",
+      "type": "string",
+      "examples": [
+        "POST\nhttps://api.example.com/v1/artifacts\ne3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\n1716379200000\n4a3b2c1d"
+      ]
+    },
+    "key_registration": {
+      "title": "UACP Key Registration",
+      "description": "Body sent to the key registration endpoint to register an Ed25519 public key.",
+      "type": "object",
+      "required": ["pubkey", "device_name"],
+      "properties": {
+        "pubkey": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9+/]{43}=$",
+          "description": "Base64-encoded 32-byte Ed25519 public key."
+        },
+        "device_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "description": "Human-readable device label."
+        },
+        "platform": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Platform string (e.g. darwin, win32, linux, ios, android, web)."
+        },
+        "enrolled_by": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9+/]{43}=$",
+          "description": "Base64-encoded public key of the enrolling device (for peer enrollment flow)."
+        },
+        "enrollment_attestation": {
+          "type": "string",
+          "description": "Base64-encoded enrollment attestation signed by enrolled_by key."
+        }
+      },
+      "additionalProperties": false
+    },
+    "revocation_request": {
+      "title": "UACP Key Revocation Request",
+      "description": "Body sent to revoke a registered key.",
+      "type": "object",
+      "required": ["target_pubkey"],
+      "properties": {
+        "target_pubkey": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9+/]{43}=$",
+          "description": "Base64-encoded public key to revoke."
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 512,
+          "description": "Human-readable revocation reason."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "signing_headers": { "$ref": "#/$defs/signing_headers" },
+    "key_registration": { "$ref": "#/$defs/key_registration" },
+    "revocation_request": { "$ref": "#/$defs/revocation_request" }
+  }
+}

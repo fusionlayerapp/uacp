@@ -1,0 +1,21 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-044",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "Running tool.",
+      "tool_calls": [
+        {
+          "call_id": "c1",
+          "name": ""
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "tool_call name is empty string — minLength is 1"
+  }
+}

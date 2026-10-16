@@ -1,0 +1,21 @@
+{
+  "fixture_id": "scope-identifier-03-family-parental-override",
+  "description": "Scenario 10: family preset includes override=parental_flagged_only",
+  "expected": "valid",
+  "scopes": [
+    {
+      "id": "40000000-0000-4000-8000-000000000001",
+      "governance": {
+        "cardinality": "small",
+        "invite_model": "admin_gated",
+        "role_structure": "parent_child",
+        "override": "parental_flagged_only",
+        "audit": "members_see_membership",
+        "default_sync": "eventual",
+        "lifecycle": "permanent"
+      },
+      "created_at": 1700000000000,
+      "created_by": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+  ]
+}

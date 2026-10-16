@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/v1/kinds/policy",
+  "title": "UACP Policy Body",
+  "description": "Body schema for the policy artifact kind — a hard constraint that an AI system must enforce.",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "rule": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "enforcement": {
+      "type": "string",
+      "enum": ["hard", "soft"]
+    },
+    "created_by": {
+      "type": "string",
+      "enum": ["user", "operator"]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 64
+      },
+      "maxItems": 10
+    }
+  },
+  "required": ["title", "rule", "scope", "enforcement", "created_by"],
+  "additionalProperties": false
+}

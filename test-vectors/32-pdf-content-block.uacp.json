@@ -1,0 +1,32 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_32_pdf_content_block",
+  "tool": "claude",
+  "title": "User message with PDF content block",
+  "created_at": "2026-05-09T10:10:00.000Z",
+  "updated_at": "2026-05-09T10:10:20.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": [
+        { "type": "text", "text": "Summarize the key findings from this report." },
+        {
+          "type": "pdf",
+          "url": "https://example.com/doc.pdf",
+          "filename": "report.pdf",
+          "mime_type": "application/pdf",
+          "size_bytes": 512000
+        }
+      ],
+      "timestamp": "2026-05-09T10:10:01.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "The report identifies three key findings: (1) user engagement increased 34% year-over-year, (2) mobile traffic now accounts for 67% of total visits, and (3) the conversion rate improved from 2.1% to 3.4% following the UX redesign.",
+      "timestamp": "2026-05-09T10:10:15.000Z"
+    }
+  ]
+}

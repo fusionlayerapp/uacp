@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/v1/kinds/guideline",
+  "title": "UACP Guideline Body",
+  "description": "Body schema for the guideline artifact kind — a soft instruction or style preference.",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "instruction": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 5
+    }
+  },
+  "required": ["title", "instruction"],
+  "additionalProperties": false
+}

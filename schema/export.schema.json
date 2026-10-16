@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/export",
+  "title": "UACP Export Bundle",
+  "description": "A collection of UACP Conversation Objects exported together.",
+  "type": "object",
+  "required": ["uacp_export", "exported_at", "conversations"],
+  "additionalProperties": false,
+  "properties": {
+    "uacp_export": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "exported_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{3})?Z$",
+      "description": "RFC 3339 / ISO 8601, UTC, millisecond precision."
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 256,
+      "description": "Tool identifier that produced the export. SHOULD match the `tool` field of the contained conversations when uniform."
+    },
+    "exporter_version": {
+      "type": "string",
+      "maxLength": 64
+    },
+    "conversations": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "$ref": "https://hn2.github.io/uacp/schema/0.6.0/conversation"
+      }
+    },
+    "metadata": { "type": "object" }
+  }
+}

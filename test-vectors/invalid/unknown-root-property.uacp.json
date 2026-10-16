@@ -1,0 +1,16 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-031",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello"
+    }
+  ],
+  "extra_field": "foo",
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "root object has unknown property 'extra_field'; unevaluatedProperties: false forbids it"
+  }
+}

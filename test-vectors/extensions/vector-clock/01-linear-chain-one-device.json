@@ -1,0 +1,25 @@
+{
+  "fixture_id": "vector-clock/01-linear-chain-one-device",
+  "description": "Six sessions from a single device. Each clock strictly dominates the previous. Expected relationship: linear.",
+  "expected_relationship": "linear",
+  "clocks": [
+    {
+      "20000000-0000-4000-8000-000000000001": 1
+    },
+    {
+      "20000000-0000-4000-8000-000000000001": 2
+    },
+    {
+      "20000000-0000-4000-8000-000000000001": 3
+    },
+    {
+      "20000000-0000-4000-8000-000000000001": 4
+    },
+    {
+      "20000000-0000-4000-8000-000000000001": 5
+    },
+    {
+      "20000000-0000-4000-8000-000000000001": 6
+    }
+  ]
+}

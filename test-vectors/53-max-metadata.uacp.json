@@ -1,0 +1,55 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_53_max_metadata",
+  "tool": "test-harness",
+  "title": "Message-level metadata object with many keys (under limit of 64)",
+  "created_at": "2026-05-09T12:09:00.000Z",
+  "updated_at": "2026-05-09T12:09:05.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "This message has extensive metadata.",
+      "timestamp": "2026-05-09T12:09:01.000Z",
+      "metadata": {
+        "com.example.key01": "value01",
+        "com.example.key02": "value02",
+        "com.example.key03": "value03",
+        "com.example.key04": "value04",
+        "com.example.key05": "value05",
+        "com.example.key06": "value06",
+        "com.example.key07": "value07",
+        "com.example.key08": "value08",
+        "com.example.key09": "value09",
+        "com.example.key10": "value10",
+        "com.example.key11": "value11",
+        "com.example.key12": "value12",
+        "com.example.key13": "value13",
+        "com.example.key14": "value14",
+        "com.example.key15": "value15",
+        "com.example.key16": "value16",
+        "com.example.key17": "value17",
+        "com.example.key18": "value18",
+        "com.example.key19": "value19",
+        "com.example.key20": "value20",
+        "com.example.key21": "value21",
+        "com.example.key22": "value22",
+        "com.example.key23": "value23",
+        "com.example.key24": "value24",
+        "com.example.key25": "value25",
+        "com.example.key26": "value26",
+        "com.example.key27": "value27",
+        "com.example.key28": "value28",
+        "com.example.key29": "value29",
+        "com.example.key30": "value30"
+      }
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "Acknowledged.",
+      "timestamp": "2026-05-09T12:09:03.000Z"
+    }
+  ]
+}

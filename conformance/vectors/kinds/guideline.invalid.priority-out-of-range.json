@@ -1,0 +1,9 @@
+{
+  "_schema": "guideline",
+  "_expect": "invalid",
+  "body": {
+    "title": "Be verbose",
+    "instruction": "Write very long responses.",
+    "priority": 11
+  }
+}

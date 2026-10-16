@@ -1,0 +1,17 @@
+{
+  "uacp": "0.6.0",
+  "id": "many-extensions-test",
+  "tool": "test-tool",
+  "messages": [{ "role": "user", "content": "hello" }],
+  "extensions": [
+    "ext-01","ext-02","ext-03","ext-04","ext-05","ext-06","ext-07","ext-08",
+    "ext-09","ext-10","ext-11","ext-12","ext-13","ext-14","ext-15","ext-16",
+    "ext-17","ext-18","ext-19","ext-20","ext-21","ext-22","ext-23","ext-24",
+    "ext-25","ext-26","ext-27","ext-28","ext-29","ext-30","ext-31","ext-32",
+    "ext-33"
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "extensions array exceeds maxItems 32"
+  }
+}

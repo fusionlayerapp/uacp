@@ -1,0 +1,20 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-045",
+  "tool": "test-harness",
+  "model": {},
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello."
+    },
+    {
+      "role": "assistant",
+      "content": "Hi!"
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "model is object without required 'id' field"
+  }
+}

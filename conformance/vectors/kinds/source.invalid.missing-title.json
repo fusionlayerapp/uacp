@@ -1,0 +1,8 @@
+{
+  "_schema": "source",
+  "_expect": "invalid",
+  "body": {
+    "url": "https://example.com",
+    "type": "webpage"
+  }
+}

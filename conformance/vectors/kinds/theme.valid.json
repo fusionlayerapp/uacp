@@ -1,0 +1,12 @@
+{
+  "_schema": "theme",
+  "_expect": "valid",
+  "body": {
+    "name": "Dark Indigo",
+    "mode": "dark",
+    "accent_color": "#6366f1",
+    "font_family": "'JetBrains Mono', 'Fira Code', monospace",
+    "density": "normal",
+    "custom_css": ":root { --radius: 4px; }"
+  }
+}

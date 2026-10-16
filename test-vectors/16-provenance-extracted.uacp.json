@@ -1,0 +1,19 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_16_provenance_extracted",
+  "tool": "claude",
+  "messages": [
+    {
+      "role": "user",
+      "content": "My name is Ada and I work at a biotech startup.",
+      "provenance": "extracted"
+    },
+    {
+      "role": "assistant",
+      "content": "Nice to meet you, Ada!",
+      "provenance": "inferred",
+      "confidence": 1.0,
+      "provenance_source": "claude-sonnet-4-6"
+    }
+  ]
+}

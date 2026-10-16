@@ -1,0 +1,27 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_08_citations",
+  "tool": "perplexity",
+  "title": "Citations example",
+  "created_at": "2026-04-21T16:00:00Z",
+  "updated_at": "2026-04-21T16:00:15Z",
+  "messages": [
+    { "role": "user", "content": "What is the capital of France?", "timestamp": "2026-04-21T16:00:01Z" },
+    {
+      "role": "assistant",
+      "content": "The capital of France is Paris.",
+      "timestamp": "2026-04-21T16:00:05Z",
+      "citations": [
+        {
+          "span": [23, 28],
+          "source": {
+            "url": "https://en.wikipedia.org/wiki/Paris",
+            "title": "Paris — Wikipedia",
+            "snippet": "Paris is the capital and largest city of France."
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {}
+}

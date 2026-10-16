@@ -1,0 +1,15 @@
+{
+  "uacp": "1.0.0-alpha",
+  "id": "tv-invalid-006",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello"
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "'uacp' value '1.0.0-alpha' has a pre-release suffix; pattern ^\\d+\\.\\d+\\.\\d+$ forbids it"
+  }
+}

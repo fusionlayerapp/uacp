@@ -1,0 +1,15 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-011",
+  "tool": "",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello"
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "'tool' is an empty string; string form requires minLength 1"
+  }
+}

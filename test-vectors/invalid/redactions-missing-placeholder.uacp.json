@@ -1,0 +1,18 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-038",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "My email is [REDACTED].",
+      "redactions": {
+        "count": 1
+      }
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "redactions object has count but is missing required 'placeholder_format' field"
+  }
+}

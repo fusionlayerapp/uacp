@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-device-retirement",
+  "title": "UACP Device Retirement",
+  "description": "Records the retirement of a device key. Events with a timestamp after retired_at from the retired device MUST be rejected.",
+  "type": "object",
+  "required": ["device_id", "retired_at", "retired_by", "signature"],
+  "additionalProperties": false,
+  "properties": {
+    "device_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "RFC 4122 v4 UUID of the device being retired."
+    },
+    "retired_at": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Milliseconds since Unix epoch when this device was retired."
+    },
+    "retired_by": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{43}$",
+      "description": "Identity public key (32 bytes, base64url) of the user who retired this device."
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{86}$",
+      "description": "Ed25519 signature (64 bytes, base64url) by retired_by over canonical CBOR of all fields except signature."
+    }
+  }
+}

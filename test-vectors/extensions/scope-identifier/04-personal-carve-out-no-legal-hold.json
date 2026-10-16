@@ -1,0 +1,21 @@
+{
+  "fixture_id": "scope-identifier-04-personal-carve-out-no-legal-hold",
+  "description": "Scenario 11: solo scope (personal carve-out) with override=none is valid. Personal scopes MUST NOT carry override=legal_hold_only.",
+  "expected": "valid",
+  "scopes": [
+    {
+      "id": "40000000-0000-4000-8000-000000000001",
+      "governance": {
+        "cardinality": "solo",
+        "invite_model": "self_only",
+        "role_structure": "flat",
+        "override": "none",
+        "audit": "none",
+        "default_sync": "realtime",
+        "lifecycle": "permanent"
+      },
+      "created_at": 1700000000000,
+      "created_by": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+  ]
+}

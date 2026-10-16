@@ -1,0 +1,40 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_40_metadata_rich",
+  "tool": "claude",
+  "title": "ML Architecture Discussion",
+  "project": "research-2026-q2",
+  "tags": ["research", "ml"],
+  "created_at": "2026-05-09T10:18:00.000Z",
+  "updated_at": "2026-05-09T10:18:50.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "What transformer architecture changes made GPT-4 more capable than GPT-3?",
+      "timestamp": "2026-05-09T10:18:01.000Z",
+      "metadata": {
+        "com.example.session_id": "sess_abc123",
+        "com.example.client_version": "2.1.0"
+      }
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "OpenAI hasn't published full architectural details, but known improvements include: significantly larger scale (estimated ~1.7T parameters), multimodal inputs, RLHF-based alignment tuning, and improved context length. The Mixture-of-Experts hypothesis is widely discussed but unconfirmed.",
+      "timestamp": "2026-05-09T10:18:20.000Z",
+      "model": "claude-opus-4-7",
+      "tokens": { "input": 220, "output": 415 },
+      "metadata": {
+        "com.example.response_quality": "high",
+        "com.example.topic_tags": ["transformers", "gpt", "scaling"]
+      }
+    }
+  ],
+  "metadata": {
+    "com.example.researcher": "hannan2@gmail.com",
+    "com.example.experiment_id": "exp-0042",
+    "uacp.export_format": "research-archive"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_34_multiple_artifacts",
+  "tool": "claude",
+  "title": "Assistant message with code, HTML, and SVG artifacts",
+  "created_at": "2026-05-09T10:12:00.000Z",
+  "updated_at": "2026-05-09T10:12:30.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "Create a bar chart showing sales data — give me the Python code, an HTML page to display it, and an SVG version.",
+      "timestamp": "2026-05-09T10:12:01.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": [
+        { "type": "text", "text": "Here are all three versions of the bar chart:" },
+        { "type": "artifact_ref", "id": "artifact_py_chart" },
+        { "type": "artifact_ref", "id": "artifact_html_chart" },
+        { "type": "artifact_ref", "id": "artifact_svg_chart" }
+      ],
+      "timestamp": "2026-05-09T10:12:20.000Z",
+      "model": "claude-opus-4-7",
+      "artifacts": [
+        {
+          "id": "artifact_py_chart",
+          "type": "code",
+          "title": "bar_chart.py",
+          "language": "python",
+          "content": "import matplotlib.pyplot as plt\n\nsales = {'Q1': 120, 'Q2': 185, 'Q3': 160, 'Q4': 210}\nplt.bar(sales.keys(), sales.values())\nplt.title('Quarterly Sales')\nplt.ylabel('Units')\nplt.savefig('chart.png')",
+          "created_at": "2026-05-09T10:12:20.000Z",
+          "updated_at": "2026-05-09T10:12:20.000Z"
+        },
+        {
+          "id": "artifact_html_chart",
+          "type": "html",
+          "title": "bar_chart.html",
+          "content": "<!DOCTYPE html><html><body><canvas id=\"c\"></canvas><script>const d=[120,185,160,210];const c=document.getElementById('c').getContext('2d');d.forEach((v,i)=>{c.fillRect(i*60+10,200-v,40,v);});</script></body></html>",
+          "created_at": "2026-05-09T10:12:20.000Z",
+          "updated_at": "2026-05-09T10:12:20.000Z"
+        },
+        {
+          "id": "artifact_svg_chart",
+          "type": "svg",
+          "title": "bar_chart.svg",
+          "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"300\" height=\"220\"><rect x=\"10\" y=\"80\" width=\"40\" height=\"120\" fill=\"steelblue\"/><rect x=\"70\" y=\"35\" width=\"40\" height=\"165\" fill=\"steelblue\"/><rect x=\"130\" y=\"60\" width=\"40\" height=\"140\" fill=\"steelblue\"/><rect x=\"190\" y=\"10\" width=\"40\" height=\"190\" fill=\"steelblue\"/></svg>",
+          "created_at": "2026-05-09T10:12:20.000Z",
+          "updated_at": "2026-05-09T10:12:20.000Z"
+        }
+      ]
+    }
+  ]
+}

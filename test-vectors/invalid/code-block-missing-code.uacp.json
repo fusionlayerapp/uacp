@@ -1,0 +1,20 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-015",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "code",
+          "language": "python"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "content block type 'code' is missing required 'code' field"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+reference-impls/typescript/node_modules/
+reference-impls/typescript/dist/
+reference-impls/python/__pycache__/
+reference-impls/python/**/__pycache__/
+reference-impls/python/**/*.pyc

@@ -1,0 +1,28 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_39_redactions_with_categories",
+  "tool": "claude",
+  "title": "Message with redactions including categories",
+  "created_at": "2026-05-09T10:17:00.000Z",
+  "updated_at": "2026-05-09T10:17:20.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "My name is [REDACTED:pii:0], email [REDACTED:pii:1], and my API key is [REDACTED:credential:2]. Can you help me debug this auth issue?",
+      "timestamp": "2026-05-09T10:17:01.000Z",
+      "redactions": {
+        "count": 3,
+        "categories": ["pii", "credential"],
+        "placeholder_format": "[REDACTED:{category}:{index}]"
+      }
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "Of course. Please share the error message and the code around the authentication call. Make sure not to include actual credentials in your message.",
+      "timestamp": "2026-05-09T10:17:12.000Z"
+    }
+  ]
+}

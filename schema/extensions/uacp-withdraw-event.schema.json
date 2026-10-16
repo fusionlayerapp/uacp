@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-withdraw-event",
+  "title": "UACP Withdraw Event",
+  "description": "Signals that one or more events should be treated as withdrawn. Wrapped in a standard signed Event envelope; the envelope's scope_id MUST equal the scope from which content is withdrawn. Withdrawal does not delete events from existing local logs; relays MUST stop serving target events to new subscribers.",
+  "type": "object",
+  "required": [
+    "type",
+    "target_event_ids",
+    "reason",
+    "withdrawn_at",
+    "withdrawer_identity"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "withdraw"
+    },
+    "target_event_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+      }
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["author_retracted", "dlp_violation", "wrong_scope", "admin_action"]
+    },
+    "withdrawn_at": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "withdrawer_identity": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{43}$"
+    }
+  }
+}

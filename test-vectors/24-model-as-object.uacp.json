@@ -1,0 +1,25 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_24_model_as_object",
+  "tool": "claude",
+  "model": { "id": "claude-opus-4-7", "provider": "anthropic", "snapshot_date": "2025-08-01" },
+  "title": "Model field as object at root and message level",
+  "created_at": "2026-05-09T10:02:00.000Z",
+  "updated_at": "2026-05-09T10:02:30.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "Summarize the theory of relativity in one sentence.",
+      "timestamp": "2026-05-09T10:02:01.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "Einstein's theory of relativity unifies space and time, showing that mass curves spacetime and that the speed of light is constant for all observers.",
+      "timestamp": "2026-05-09T10:02:05.000Z",
+      "model": { "id": "claude-opus-4-7", "provider": "anthropic", "snapshot_date": "2025-08-01" }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "_schema": "memory",
+  "_expect": "invalid",
+  "body": {
+    "content": "I prefer dark mode.",
+    "topics": ["career", "education", "family", "finance", "health", "identity", "location", "preference", "project", "relationship", "accessibility", "acme/one", "acme/two", "acme/three", "acme/four", "acme/five", "acme/six"]
+  }
+}

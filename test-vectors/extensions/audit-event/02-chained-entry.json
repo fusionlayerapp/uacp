@@ -1,0 +1,20 @@
+{
+  "fixture_id": "audit-event-02",
+  "description": "Second entry in chain with correct prev_audit_hash",
+  "expected": "valid",
+  "scenario": "8",
+  "audit_event": {
+    "type": "audit",
+    "scope_id": "20000000-0000-4000-8000-000000000001",
+    "subject_user_id": "10000000-0000-4000-8000-000000000002",
+    "action": "dlp_redaction",
+    "metadata": {
+      "vendor": "anthropic",
+      "token_count": null,
+      "redaction_count": 3
+    },
+    "prev_audit_hash": "cxXpej6Y-vjAlefHeZh0Ix0QLAoDUnGzWG5aDnnmakk",
+    "timestamp": 1715000001000,
+    "observer_id": "30000000-0000-4000-8000-000000000001"
+  }
+}

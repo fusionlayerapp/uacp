@@ -1,0 +1,14 @@
+{
+  "_schema": "trace",
+  "_expect": "valid",
+  "body": {
+    "tool": "fusionlayer-cli",
+    "command": "recall",
+    "model": null,
+    "duration_ms": 143,
+    "tokens_in": null,
+    "tokens_out": null,
+    "privacy_mode": "smart",
+    "session_id": "sess_a1b2c3d4"
+  }
+}

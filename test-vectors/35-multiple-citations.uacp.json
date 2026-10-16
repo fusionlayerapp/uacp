@@ -1,0 +1,57 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_35_multiple_citations",
+  "tool": "perplexity",
+  "title": "Assistant message with 4 citations",
+  "created_at": "2026-05-09T10:13:00.000Z",
+  "updated_at": "2026-05-09T10:13:20.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "What are the largest planets in our solar system?",
+      "timestamp": "2026-05-09T10:13:01.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "The four largest planets in our solar system are Jupiter, Saturn, Uranus, and Neptune.",
+      "timestamp": "2026-05-09T10:13:08.000Z",
+      "citations": [
+        {
+          "span": [43, 50],
+          "source": {
+            "url": "https://en.wikipedia.org/wiki/Jupiter",
+            "title": "Jupiter — Wikipedia",
+            "snippet": "Jupiter is the fifth planet from the Sun and the largest in the Solar System."
+          }
+        },
+        {
+          "span": [52, 58],
+          "source": {
+            "url": "https://en.wikipedia.org/wiki/Saturn",
+            "title": "Saturn — Wikipedia",
+            "snippet": "Saturn is the sixth planet from the Sun and the second-largest in the Solar System."
+          }
+        },
+        {
+          "span": [60, 66],
+          "source": {
+            "url": "https://en.wikipedia.org/wiki/Uranus",
+            "title": "Uranus — Wikipedia",
+            "snippet": "Uranus is the seventh planet from the Sun and the third-largest by diameter."
+          }
+        },
+        {
+          "span": [72, 79],
+          "source": {
+            "url": "https://en.wikipedia.org/wiki/Neptune",
+            "title": "Neptune — Wikipedia",
+            "snippet": "Neptune is the eighth planet from the Sun and the fourth-largest by diameter."
+          }
+        }
+      ]
+    }
+  ]
+}

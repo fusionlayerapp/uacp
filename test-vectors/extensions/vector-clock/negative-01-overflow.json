@@ -1,0 +1,13 @@
+{
+  "fixture_id": "vector-clock/negative-01-overflow",
+  "description": "Documents the CLOCK_OVERFLOW requirement. Any slot value exceeding 2^63 - 1 (9223372036854775807) MUST be rejected with CLOCK_OVERFLOW. The overflow boundary cannot be enforced at the JSON Schema layer due to IEEE-754 precision limits (values above Number.MAX_SAFE_INTEGER = 9007199254740991 lose precision in standard JSON parsers). Enforcement is normative at the implementation layer.",
+  "expected": "CLOCK_OVERFLOW",
+  "max_valid_value": 9007199254740991,
+  "overflow_value_string": "9223372036854775808",
+  "note": "overflow_value_string is the string representation of 2^63 (one beyond the allowed maximum). Implementations MUST reject clocks with any slot >= this value. max_valid_value is Number.MAX_SAFE_INTEGER, used in tests to verify boundary behavior within safe JSON integer range.",
+  "clocks": [
+    {
+      "20000000-0000-4000-8000-000000000001": 9007199254740991
+    }
+  ]
+}

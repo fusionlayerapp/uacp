@@ -1,0 +1,23 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-043",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello."
+    },
+    {
+      "role": "assistant",
+      "content": "Hi there!",
+      "tokens": {
+        "input": -1,
+        "output": 50
+      }
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "tokens.input is -1 — minimum value is 0"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_42_tool_call_with_arguments",
+  "tool": "claude-code",
+  "title": "Assistant tool_calls with complex argument objects",
+  "created_at": "2026-05-09T10:20:00.000Z",
+  "updated_at": "2026-05-09T10:20:30.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "Search for the latest news about large language models and return the top 10 results.",
+      "timestamp": "2026-05-09T10:20:01.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "I'll search for that now.",
+      "timestamp": "2026-05-09T10:20:03.000Z",
+      "tool_calls": [
+        {
+          "call_id": "call_search_1",
+          "name": "web_search",
+          "arguments": {
+            "query": "latest news",
+            "limit": 10,
+            "filters": {
+              "topic": "large language models",
+              "date_range": "last_7_days",
+              "language": "en"
+            },
+            "include_snippets": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_3",
+      "role": "tool",
+      "parent_id": "msg_2",
+      "call_id": "call_search_1",
+      "name": "web_search",
+      "content": "[{\"title\":\"GPT-5 announced\",\"url\":\"https://example.com/news/1\"},{\"title\":\"Gemini Ultra benchmarks\",\"url\":\"https://example.com/news/2\"}]",
+      "timestamp": "2026-05-09T10:20:10.000Z",
+      "provenance": "tool_output"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_43_multilingual_messages",
+  "tool": "claude",
+  "title": "Multilingual conversation — English, Japanese, Arabic, Hebrew",
+  "created_at": "2026-05-09T10:21:00.000Z",
+  "updated_at": "2026-05-09T10:21:40.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "Please say hello in several languages.",
+      "timestamp": "2026-05-09T10:21:01.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "Here are greetings in four languages:\n\nEnglish: Hello\nJapanese: 「こんにちは」\nArabic: مرحبا\nHebrew: שלום",
+      "timestamp": "2026-05-09T10:21:08.000Z",
+      "model": "claude-opus-4-7"
+    },
+    {
+      "id": "msg_3",
+      "role": "user",
+      "parent_id": "msg_2",
+      "content": "「こんにちは」 — how do you write that in romaji?",
+      "timestamp": "2026-05-09T10:21:20.000Z"
+    },
+    {
+      "id": "msg_4",
+      "role": "assistant",
+      "parent_id": "msg_3",
+      "content": "「こんにちは」 in romaji is \"Konnichiwa\". The brackets 「」 are Japanese quotation marks (called 鉤括弧, kagikakko).",
+      "timestamp": "2026-05-09T10:21:30.000Z",
+      "model": "claude-opus-4-7"
+    }
+  ]
+}

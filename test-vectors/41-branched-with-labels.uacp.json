@@ -1,0 +1,38 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_41_branched_with_labels",
+  "tool": "chatgpt",
+  "title": "Branched conversation with explicit parent_id links",
+  "created_at": "2026-05-09T10:19:00.000Z",
+  "updated_at": "2026-05-09T10:19:50.000Z",
+  "branches": ["msg_c"],
+  "messages": [
+    {
+      "id": "msg_a",
+      "role": "user",
+      "content": "What is the best sorting algorithm for nearly-sorted data?",
+      "timestamp": "2026-05-09T10:19:01.000Z"
+    },
+    {
+      "id": "msg_b",
+      "role": "assistant",
+      "parent_id": "msg_a",
+      "content": "Insertion sort is excellent for nearly-sorted data — it runs in O(n) time when the data is almost sorted, and has very low overhead.",
+      "timestamp": "2026-05-09T10:19:05.000Z"
+    },
+    {
+      "id": "msg_c",
+      "role": "assistant",
+      "parent_id": "msg_a",
+      "content": "Timsort is the practical answer — it's Python's and Java's default sort, specifically designed to exploit runs of already-sorted elements, giving O(n) best case.",
+      "timestamp": "2026-05-09T10:19:06.000Z"
+    },
+    {
+      "id": "msg_d",
+      "role": "user",
+      "parent_id": "msg_b",
+      "content": "Does insertion sort work well for large datasets too?",
+      "timestamp": "2026-05-09T10:19:20.000Z"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-029",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "My SSN is [REDACTED].",
+      "redactions": {
+        "placeholder_format": "[REDACTED]"
+      }
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "redactions object is missing required 'count' field"
+  }
+}

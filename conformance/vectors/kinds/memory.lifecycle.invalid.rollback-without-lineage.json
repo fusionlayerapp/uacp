@@ -1,0 +1,14 @@
+{
+  "_schema": "memory",
+  "_expect": "invalid",
+  "_error": "MEMORY_LIFECYCLE_ROLLBACK_REQUIRES_LINEAGE",
+  "body": {
+    "content": "I prefer dark mode.",
+    "lifecycle": {
+      "action": "rollback",
+      "status": "active",
+      "revision": 2,
+      "previous_revision": { "memory_id": "mem-preference-theme", "revision": 1 }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UACP Spec Index</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1a1a1a; background: #fff; line-height: 1.6; }
+    header { border-bottom: 1px solid #e5e5e5; padding: 1.5rem 2rem; }
+    header a { text-decoration: none; color: inherit; }
+    header h1 { font-size: 1.25rem; font-weight: 700; }
+    main { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; }
+    h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .subtitle { color: #555; margin-bottom: 2.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th { text-align: left; padding: 0.6rem 1rem; background: #f5f5f5; border-bottom: 2px solid #e5e5e5; font-weight: 600; }
+    td { padding: 0.6rem 1rem; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
+    td:first-child { font-weight: 600; white-space: nowrap; }
+    .badge { display: inline-block; font-size: 0.7rem; padding: 0.15rem 0.45rem; border-radius: 3px; font-weight: 600; vertical-align: middle; margin-left: 0.3rem; }
+    .stable { background: #d1fae5; color: #065f46; }
+    .draft { background: #fef3c7; color: #92400e; }
+    a { color: #0070c9; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer { border-top: 1px solid #e5e5e5; padding: 1.5rem 2rem; text-align: center; font-size: 0.8rem; color: #888; margin-top: 3rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/"><h1>uacp</h1></a>
+  </header>
+  <main>
+    <h2>Specification Index</h2>
+    <p class="subtitle">All published and draft specifications in the UACP protocol family.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Document</th>
+          <th>Version</th>
+          <th>Status</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://github.com/hn2/uacp/blob/master/spec/v1/UACP-CORE.md">UACP Core</a></td>
+          <td>v0.2</td>
+          <td><span class="badge draft">Draft</span></td>
+          <td>Core envelope format, kind registry, versioning, compliance. Describes context payloads that cross vendor boundaries.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/hn2/uacp/blob/master/spec/uacp-trace/UACP-TRACE.md">UACP-Trace</a></td>
+          <td>v2</td>
+          <td><span class="badge draft">Draft</span></td>
+          <td>OTel gen_ai profile + uacp.* extension layer. Privacy enforcement for smart/private/incognito modes.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/hn2/uacp/blob/master/docs/SIGNING-ED25519-U1-SPEC.md">UACP Signing (U1)</a></td>
+          <td>U1</td>
+          <td><span class="badge draft">Draft</span></td>
+          <td>Ed25519 request signing extension. Canonical payload, per-device keys, cross-vendor verifiability.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/hn2/uacp/blob/master/README.md">UACP v0.6</a></td>
+          <td>v0.6.0</td>
+          <td><span class="badge stable">Stable</span></td>
+          <td>Previous stable version. For reference only; v1 is the active development branch.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 style="margin-top: 2.5rem;">Sibling Protocols</h2>
+    <table style="margin-top: 1rem;">
+      <thead>
+        <tr>
+          <th>Protocol</th>
+          <th>Version</th>
+          <th>Status</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://github.com/hn2/aap/blob/main/spec/v0.1/AAP.md">AAP</a></td>
+          <td>v0.1</td>
+          <td><span class="badge draft">Draft</span></td>
+          <td>Agent Action Protocol — operator/tool/action descriptions crossing vendor boundaries.</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/hn2/capture-manifest/blob/main/spec/v0.1/CAPTURE-MANIFEST.md">Capture-Manifest</a></td>
+          <td>v0.1</td>
+          <td><span class="badge draft">Draft</span></td>
+          <td>Provenance, consent basis, applied redactions for captured AI material. GDPR/CCPA compliant.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 2rem; font-size: 0.875rem; color: #555;">
+      <a href="/schema-registry.json">Schema registry (JSON)</a> &bull;
+      <a href="https://github.com/hn2/uacp">GitHub</a>
+    </p>
+  </main>
+  <footer>UACP is an open specification. Apache 2.0.</footer>
+</body>
+</html>

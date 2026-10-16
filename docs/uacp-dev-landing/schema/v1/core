@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uacp.dev/schema/v1/core",
+  "title": "UACP Core Envelope v1 (Draft)",
+  "description": "UACP Core v1 context artifact envelope. Describes context payloads (memory, policy, persona, etc.) crossing AI vendor boundaries. Status: Draft — see https://uacp.dev/spec/ for the current normative specification.",
+  "type": "object",
+  "required": ["uacp", "kind", "id", "created_at", "subject", "body"],
+  "additionalProperties": false,
+  "properties": {
+    "uacp": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+$",
+      "description": "UACP spec version. MUST start with '1.' for v1."
+    },
+    "kind": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Artifact kind identifier (e.g. 'memory', 'policy', 'persona', 'pack', 'playbook', 'theme', 'guideline'). Custom kinds MUST be prefixed with a vendor slug and colon."
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Globally unique artifact identifier (UUID v4 recommended)."
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$",
+      "description": "ISO 8601 UTC creation timestamp."
+    },
+    "updated_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$",
+      "description": "ISO 8601 UTC last-update timestamp. MUST be >= created_at."
+    },
+    "subject": {
+      "type": "object",
+      "required": ["id"],
+      "description": "The principal this artifact belongs to.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Opaque subject identifier. MUST NOT be PII."
+        },
+        "pubkey": {
+          "type": "string",
+          "description": "Base64-encoded Ed25519 public key of the subject (32 bytes). Used for signature verification."
+        }
+      },
+      "additionalProperties": false
+    },
+    "audience": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "description": "List of vendor slugs or endpoint identifiers permitted to consume this artifact. Absent or empty = no restriction."
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Scope URI restricting where this artifact may be injected."
+    },
+    "ttl_seconds": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Suggested time-to-live in seconds. Receiving systems MAY evict the artifact after created_at + ttl_seconds."
+    },
+    "body": {
+      "type": "object",
+      "description": "Kind-specific payload. Schema is defined by the per-kind sub-specification."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Vendor-defined extension metadata. MUST NOT contain fields defined in the core envelope.",
+      "additionalProperties": true
+    },
+    "signature": {
+      "type": "object",
+      "required": ["alg", "kid", "sig"],
+      "description": "Ed25519 signature over the canonical envelope (body field excluded from signature if absent). See UACP Signing (U1) sub-spec.",
+      "properties": {
+        "alg": {
+          "type": "string",
+          "enum": ["Ed25519"],
+          "description": "Signature algorithm. MUST be 'Ed25519' for U1."
+        },
+        "kid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Key identifier — references a registered Ed25519 public key."
+        },
+        "sig": {
+          "type": "string",
+          "description": "Base64-encoded 64-byte Ed25519 signature over the canonical payload.",
+          "pattern": "^[A-Za-z0-9+/]{86}==$"
+        },
+        "signed_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$",
+          "description": "ISO 8601 UTC timestamp of signature creation."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

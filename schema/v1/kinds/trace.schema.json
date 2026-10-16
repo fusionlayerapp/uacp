@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/v1/kinds/trace",
+  "title": "UACP Trace Body",
+  "description": "Body schema for the trace artifact kind — operational telemetry for a single AI tool invocation.",
+  "type": "object",
+  "properties": {
+    "tool": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "command": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "model": {
+      "type": ["string", "null"],
+      "maxLength": 128
+    },
+    "duration_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "tokens_in": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "tokens_out": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "privacy_mode": {
+      "type": "string",
+      "enum": ["smart", "private", "incognito"]
+    },
+    "session_id": {
+      "type": "string",
+      "maxLength": 128
+    }
+  },
+  "required": ["tool", "duration_ms", "privacy_mode"],
+  "additionalProperties": false
+}

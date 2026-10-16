@@ -1,0 +1,23 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-027",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "Here is your artifact.",
+      "artifacts": [
+        {
+          "id": "art-001",
+          "type": "json",
+          "title": "Config",
+          "content": "{\"key\": \"value\"}"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "artifact 'type' is 'json'; enum only allows code, html, svg, markdown, react, text"
+  }
+}

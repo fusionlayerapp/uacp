@@ -1,0 +1,11 @@
+{
+  "_schema": "policy",
+  "_expect": "invalid",
+  "body": {
+    "title": "Bad policy",
+    "rule": "Do something.",
+    "scope": "all",
+    "enforcement": "maybe",
+    "created_by": "user"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_06_artifacts",
+  "tool": "claude",
+  "title": "Artifact generation",
+  "created_at": "2026-04-21T14:00:00Z",
+  "updated_at": "2026-04-21T14:01:00Z",
+  "messages": [
+    { "id": "msg_1", "role": "user", "content": "Write a Python sort function.", "timestamp": "2026-04-21T14:00:01Z" },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": [
+        { "type": "text", "text": "Here's a bubble sort implementation:" },
+        { "type": "artifact_ref", "id": "artifact_bubble" }
+      ],
+      "timestamp": "2026-04-21T14:00:05Z",
+      "artifacts": [
+        {
+          "id": "artifact_bubble",
+          "type": "code",
+          "title": "bubble_sort.py",
+          "language": "python",
+          "content": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr",
+          "created_at": "2026-04-21T14:00:05Z",
+          "updated_at": "2026-04-21T14:00:05Z"
+        }
+      ]
+    }
+  ],
+  "metadata": {}
+}

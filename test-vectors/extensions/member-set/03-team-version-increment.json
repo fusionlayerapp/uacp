@@ -1,0 +1,152 @@
+{
+  "fixture_id": "member-set/03-team-version-increment",
+  "description": "Scenario 8 — add member: Version 1 (5 members) followed by Version 2 (6 members). Scope key rotated on add.",
+  "expected": "valid",
+  "member_sets": [
+    {
+      "scope_id": "40000000-0000-4000-8000-000000000002",
+      "members": [
+        {
+          "identity_public_key": "GaUTpiAplx7IiJe9veX6knqTR9CO38oIYT7YmWoFTJ8",
+          "role": "admin",
+          "joined_at": 1700000000000,
+          "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+        },
+        {
+          "identity_public_key": "pLtPPaMAwP3OUAM1PJKg_iXQJ2H6ekQzEkU-_6JfATg",
+          "role": "member",
+          "joined_at": 1700000001000,
+          "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+        },
+        {
+          "identity_public_key": "fhPxElr5Lu8TPgprFS6yc2z3j-n7zpbi4jaC_zIe_eU",
+          "role": "member",
+          "joined_at": 1700000002000,
+          "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+        },
+        {
+          "identity_public_key": "nxGZOzr5i3z8gMCUNnWUZjxnEHJF5m2vHUWAF8LK-IM",
+          "role": "member",
+          "joined_at": 1700000003000,
+          "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+        },
+        {
+          "identity_public_key": "UPInbZI-iWd_BqMHl3teXHQQGJAfK3pMh6EsLxDtavI",
+          "role": "member",
+          "joined_at": 1700000004000,
+          "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+        }
+      ],
+      "scope_key": {
+        "algorithm": "X25519-AES256GCM",
+        "encrypted_key_per_member": [
+          {
+            "recipient_identity_key": "VlJhHu6tlrKMkFpC7wwlvxk7HJypWxdzCblaC_QH6Hw",
+            "ciphertext": "XLMvTXry-jwQbskK9b5etBIKyyPzOWB6PAAcpnXK02o1HSfTpYtLB0SWhkabEsfDPKFT9pfDliRQKE8rDaXyeA7LQRQM4DmKgJIN8wjovPU",
+            "nonce": "PsuXtcODx6U9Xpmt"
+          },
+          {
+            "recipient_identity_key": "mrmQ1GjkDbVn9869YMNeMUlR23et9TQS_4H-Y1ySI04",
+            "ciphertext": "JTPlmW2vcxHkTYRkQdSTrGTLyhLQOApAVkESCWGvlEHRvGwZaC-rRjKEJ29VNpsedWN86ieK4-ZP74Nxtsdnf7UzT4mVDxMmhuwuAEqg1pc",
+            "nonce": "DOvM8gBKCb2GqRqg"
+          },
+          {
+            "recipient_identity_key": "Vb8aqwAWpL_jZ-9gHN6ZlH00by2QRPVcXjGlvfHIXxA",
+            "ciphertext": "iGgBlx209CeMg2YYPS9EVmxbxh018mgdfowprvO4ml-WFX9NY9Ch_b4eHBRFdXFkdfv_zOAAEpI_SG5weX-mWz0KbHfWin5n2srLziXqSaM",
+            "nonce": "d5Mn7LwSuCoRdUDy"
+          },
+          {
+            "recipient_identity_key": "1asjWgDWrrwzyRjk34ihxgrx7hU2W5-1S0wKW_1jMEo",
+            "ciphertext": "0bUfuI28Gr1mJJYc-GbrWhhuusaMyNEpiNgr0D78EX4GI0NiWwDyRvFK4_BjrtRdvvtiEW-P4BA40BDTgP5QWNFWlk3O5LUCZMEl-PEOp9A",
+            "nonce": "Tq2xoJO7Dkc_W_Iy"
+          },
+          {
+            "recipient_identity_key": "ZkC0xCsiujBYxJMem6VkbDAhVw3_9acBs2U1Wt66W0w",
+            "ciphertext": "74vancnh-7p-DPAvTVDUDKq854DtrmyaIO-sx0CESDAPpgcLNxmmI_JjlKUbUV-5Rpa6f3NqvpnNhlZyDEOiRgYhoM0sgHNxsxUXUWkxgh8",
+            "nonce": "oOdczvvHc_G9omaK"
+          }
+        ]
+      },
+      "version": 1,
+      "signature": "iSJ3wNmtdL-q6kPsR1T-P4oMZU3eRqSQbCQQZpIlgJDp-jLvkZurO2UoQR9ujV0QDtYDje7RvElYaHt3jqhNDg"
+    },
+    {
+      "scope_id": "40000000-0000-4000-8000-000000000002",
+      "members": [
+        {
+          "identity_public_key": "GaUTpiAplx7IiJe9veX6knqTR9CO38oIYT7YmWoFTJ8",
+          "role": "admin",
+          "joined_at": 1700000000000,
+          "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+        },
+        {
+          "identity_public_key": "pLtPPaMAwP3OUAM1PJKg_iXQJ2H6ekQzEkU-_6JfATg",
+          "role": "member",
+          "joined_at": 1700000001000,
+          "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+        },
+        {
+          "identity_public_key": "fhPxElr5Lu8TPgprFS6yc2z3j-n7zpbi4jaC_zIe_eU",
+          "role": "member",
+          "joined_at": 1700000002000,
+          "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+        },
+        {
+          "identity_public_key": "nxGZOzr5i3z8gMCUNnWUZjxnEHJF5m2vHUWAF8LK-IM",
+          "role": "member",
+          "joined_at": 1700000003000,
+          "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+        },
+        {
+          "identity_public_key": "UPInbZI-iWd_BqMHl3teXHQQGJAfK3pMh6EsLxDtavI",
+          "role": "member",
+          "joined_at": 1700000004000,
+          "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+        },
+        {
+          "identity_public_key": "oHRewr0srA8l57KSOhkQkb4OfVo3ABWvZCZrGhP4kn8",
+          "role": "member",
+          "joined_at": 1700000005000,
+          "joined_via_event_id": "50000000-0000-4000-8000-000000000002"
+        }
+      ],
+      "scope_key": {
+        "algorithm": "X25519-AES256GCM",
+        "encrypted_key_per_member": [
+          {
+            "recipient_identity_key": "VlJhHu6tlrKMkFpC7wwlvxk7HJypWxdzCblaC_QH6Hw",
+            "ciphertext": "0toj6ELbeyxhxs5u0iRppOZeNhC6kkyNJhhVVlGuDS_Mtz_Sa5OGdGJFPmr6UGehUKXF7QVw8UIEmqdQpVk8G6mrsTSkKutgsQCYgwEE49Q",
+            "nonce": "Zui5Nu9mmuWiXPcP"
+          },
+          {
+            "recipient_identity_key": "mrmQ1GjkDbVn9869YMNeMUlR23et9TQS_4H-Y1ySI04",
+            "ciphertext": "ne-mulKKG816iC25n1pK6P14s8ipQTUW1PsN1PSi0nOhn6W0nO2gXPqmgq7RgjO0GlO744lIdMhStcyo27NkjnrvzwSCjpntBgjjKvt4CfM",
+            "nonce": "KD-mcvY9_ZCL2oKX"
+          },
+          {
+            "recipient_identity_key": "Vb8aqwAWpL_jZ-9gHN6ZlH00by2QRPVcXjGlvfHIXxA",
+            "ciphertext": "GkYtsD8Dmo_j-uX-4wwTWzDQ2OyKSiIYTRUdfvBlglpAb6U43xSLg57Kt4aS2WqU6XKM8BScCTFZmZoAFe4btH9tXE7EzE931-ak6y4cuRc",
+            "nonce": "QkPKBX-ke2QmAYzF"
+          },
+          {
+            "recipient_identity_key": "1asjWgDWrrwzyRjk34ihxgrx7hU2W5-1S0wKW_1jMEo",
+            "ciphertext": "r1vmryOYmKiD4-6uCqLuq_GpFk_DqVOzpDILeSFpxUAhfL-cu5mDUhJAc4RwfA0gNVVePiMaOeVqz8DJjmu2qkhs7Nyuo7KfGGoA0NigHXs",
+            "nonce": "8q69qtUkNZo-I4Fw"
+          },
+          {
+            "recipient_identity_key": "ZkC0xCsiujBYxJMem6VkbDAhVw3_9acBs2U1Wt66W0w",
+            "ciphertext": "HDEFEVcYtl7wjDhUfyDnePTkSeVsBzMBm3BPRIwbmkzuhbHI0giX-1GTuqKSGP6WMldEDVPuuGkVlpZBMktkWyymzNfSp6me6ggWALubC8U",
+            "nonce": "VGPKdhUjjTiQBk2H"
+          },
+          {
+            "recipient_identity_key": "WBM5sKOodB4LBb1Hxy-L2o9jLHwOKy6i6iC82yrteUg",
+            "ciphertext": "bcYg2IfTgjLmvecxh-bx_pIjNuhpmEqwkB2d6SIUrwYmSRilwC3h8433p-vHx8RlVxPA0srIQFXXPV5hVLFWGWvL2oA08gKBYG9_Xm2Jays",
+            "nonce": "Hml8KsQ6uFxcscR9"
+          }
+        ]
+      },
+      "version": 2,
+      "signature": "9CEGghkLNeNPmW8N1RGGeHi-lkzBzZYVTnRrdMdRYoe9kQrs0iHDz7OSKljRC8b6Ddk1ULHv81lbJ47YO2c2DA"
+    }
+  ]
+}

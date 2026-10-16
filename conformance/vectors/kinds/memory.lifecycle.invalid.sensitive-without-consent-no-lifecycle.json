@@ -1,0 +1,9 @@
+{
+  "_schema": "memory",
+  "_expect": "invalid",
+  "_error": "MEMORY_LIFECYCLE_SENSITIVE_MEMORY_REQUIRES_EXPLICIT_CONSENT",
+  "body": {
+    "content": "I have a dietary preference.",
+    "category": "health"
+  }
+}

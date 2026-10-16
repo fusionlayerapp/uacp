@@ -1,0 +1,40 @@
+{
+  "uacp": "0.6.0",
+  "id": "conv-artifact-edit-001",
+  "tool": "claude",
+  "extensions": ["uacp-artifacts"],
+  "messages": [
+    { "role": "user", "content": "Write an SVG circle." },
+    {
+      "role": "assistant",
+      "content": [
+        { "type": "artifact_ref", "id": "art-svg-1", "title": "circle.svg" }
+      ],
+      "artifacts": [
+        {
+          "id": "art-svg-1",
+          "type": "svg",
+          "title": "circle.svg",
+          "content": "<svg xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"50\" cy=\"50\" r=\"40\" fill=\"blue\"/></svg>",
+          "version": 1
+        }
+      ]
+    },
+    { "role": "user", "content": "Make it red." },
+    {
+      "role": "assistant",
+      "content": [
+        { "type": "artifact_ref", "id": "art-svg-1", "title": "circle.svg" }
+      ],
+      "artifacts": [
+        {
+          "id": "art-svg-1",
+          "type": "svg",
+          "title": "circle.svg",
+          "content": "<svg xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"50\" cy=\"50\" r=\"40\" fill=\"red\"/></svg>",
+          "version": 2
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-022",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "Probably Paris.",
+      "provenance": "inferred",
+      "confidence": 1.5
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "'confidence' is 1.5; maximum allowed value is 1"
+  }
+}

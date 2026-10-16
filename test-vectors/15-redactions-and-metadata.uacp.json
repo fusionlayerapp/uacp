@@ -1,0 +1,36 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_15_redactions_metadata",
+  "tool": "chatgpt",
+  "created_at": "2026-04-24T11:00:00.000Z",
+  "updated_at": "2026-04-24T11:00:05.000Z",
+  "metadata": {
+    "com.acme.priority": "high",
+    "com.acme.ticket_id": "ACME-4821",
+    "uacp.conformance": "L3",
+    "uacp.test.expect": "valid",
+    "uacp.test.comment": "Exercises redactions + vendor-namespaced metadata round-trip. Strict validators accept metadata.com.acme.* but reject siblings-of-defined-fields. Writers MUST preserve unknown metadata keys on re-emit."
+  },
+  "messages": [
+    {
+      "id": "m_1",
+      "role": "user",
+      "content": "My API key is [REDACTED:credential:0] and my card ending [REDACTED:financial:0].",
+      "timestamp": "2026-04-24T11:00:00.000Z",
+      "redactions": {
+        "count": 2,
+        "categories": ["credential", "financial"],
+        "placeholder_format": "[REDACTED:{category}:{index}]"
+      },
+      "metadata": {
+        "com.acme.redaction_engine": "fl-dlp-v2"
+      }
+    },
+    {
+      "id": "m_2",
+      "role": "assistant",
+      "content": "I can't see those values — they've been redacted by your policy. Please share placeholders or non-sensitive context.",
+      "timestamp": "2026-04-24T11:00:03.000Z"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-identity-key",
+  "title": "UACP Identity Key",
+  "description": "Ed25519 identity public key for a UACP user. One per user. Private key is never serialized.",
+  "type": "object",
+  "required": ["public", "user_id"],
+  "additionalProperties": false,
+  "properties": {
+    "public": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{43}$",
+      "description": "Ed25519 raw public key (32 bytes), base64url-encoded without padding."
+    },
+    "user_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "RFC 4122 v4 UUID. Stable identifier tying this key to billing and membership."
+    }
+  }
+}

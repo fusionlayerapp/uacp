@@ -1,0 +1,14 @@
+{
+  "_schema": "memory",
+  "_expect": "valid",
+  "body": {
+    "content": "I am available to mentor TypeScript developers.",
+    "category": "professional",
+    "topics": ["career", "acme/mentorship"],
+    "metadata": [
+      { "key": "importance", "type": "number", "value": 3 },
+      { "key": "acme/department", "type": "string", "value": "engineering" },
+      { "key": "effective_from", "type": "date", "value": "2026-08-27T00:00:00Z" }
+    ]
+  }
+}

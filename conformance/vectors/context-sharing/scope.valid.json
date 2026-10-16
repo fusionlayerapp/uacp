@@ -1,0 +1,10 @@
+{
+  "_schema": "scope",
+  "_expect": "valid",
+  "body": {
+    "scope_id": "4a0a0f7f-0c5f-4ab8-9b0c-88d0b4f00b3a",
+    "scope_type": "team",
+    "governance_preset": "team",
+    "owner_did": "did:key:z6MkhaXgBZDvotDkL5257faiztiGiC2QtKLGpbnnEGta2doK"
+  }
+}

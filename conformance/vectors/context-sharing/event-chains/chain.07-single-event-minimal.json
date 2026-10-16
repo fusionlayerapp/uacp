@@ -1,0 +1,17 @@
+{
+  "id": "test_single_event_chain_accepted",
+  "description": "Minimal single-event chain with no causality constraints",
+  "events": [
+    {
+      "event_id": "evt-001",
+      "event_type": "conversation_created",
+      "vector_clock": { "device-A": 1 },
+      "signature": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "expected_causality": {},
+  "expected_signatures": {
+    "evt-001": "valid"
+  },
+  "expected_outcome": "accepted"
+}

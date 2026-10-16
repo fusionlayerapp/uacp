@@ -1,0 +1,63 @@
+name: Spec change
+description: Propose a normative schema or specification edit.
+title: "[Spec] "
+labels: ["spec", "spec-change"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to propose a normative change to the UACP specification, schemas, or conformance requirements. For non-normative bugs, use the spec bug template instead.
+  - type: input
+    id: affected-version
+    attributes:
+      label: Affected version
+      description: The UACP version this change targets.
+      value: "v0.6.0"
+    validations:
+      required: true
+  - type: textarea
+    id: schema-diff
+    attributes:
+      label: Schema diff
+      description: Concrete diff or pseudo-diff of the schema/spec change. Include before/after snippets where useful.
+      render: markdown
+    validations:
+      required: true
+  - type: dropdown
+    id: backward-compatibility
+    attributes:
+      label: Backward compatibility
+      description: How does this change affect documents written against the previous spec?
+      options:
+        - breaking
+        - additive
+        - deprecation
+    validations:
+      required: true
+  - type: textarea
+    id: test-vector-impact
+    attributes:
+      label: Test vector impact
+      description: Which existing test vectors must change, and which new vectors must be added?
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: reference-impl-impact
+    attributes:
+      label: Reference implementation impact
+      description: Required changes in the TypeScript, Python, and Go reference implementations.
+      render: markdown
+    validations:
+      required: true
+  - type: dropdown
+    id: conformance-level
+    attributes:
+      label: Conformance level
+      description: Which conformance level does this change apply to?
+      options:
+        - L1
+        - L2
+        - L3
+    validations:
+      required: true

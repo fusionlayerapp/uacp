@@ -1,0 +1,13 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_64_memory_envelope",
+  "kind": "memory",
+  "body": {
+    "content": "User prefers dark mode across all applications.",
+    "category": "preference",
+    "confidence": 1.0
+  },
+  "metadata": {
+    "uacp.test.comment": "Regression vector for issue #102: a full-envelope kind=memory document (no `messages` array) must validate through the memory kind body schema, not fail against the unrelated chat-message conversation schema."
+  }
+}

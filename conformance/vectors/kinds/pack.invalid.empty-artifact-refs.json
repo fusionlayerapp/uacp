@@ -1,0 +1,9 @@
+{
+  "_schema": "pack",
+  "_expect": "invalid",
+  "body": {
+    "title": "Empty Pack",
+    "description": "A pack with no artifact refs.",
+    "artifact_refs": []
+  }
+}

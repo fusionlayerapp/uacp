@@ -1,0 +1,10 @@
+{
+  "_schema": "redaction-pattern",
+  "_expect": "invalid",
+  "body": {
+    "name": "Incomplete Pattern",
+    "pattern": "\\btest\\b",
+    "pattern_type": "regex",
+    "scope": "both"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "_schema": "memory",
+  "_expect": "valid",
+  "body": {
+    "content": "I prefer dark mode.",
+    "category": "preference",
+    "lifecycle": {
+      "action": "supersede",
+      "status": "active",
+      "revision": 2,
+      "previous_revision": { "memory_id": "mem-preference-theme", "revision": 1 }
+    },
+    "supersedes": [
+      { "memory_id": "mem-preference-theme", "revision": 1 }
+    ],
+    "provenance": [
+      { "source_type": "session", "identifier": "session-2026-08-27" },
+      { "source_type": "tool", "identifier": "settings-import", "content_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+name: Spec bug
+description: Report a contradiction, ambiguity, or error in the specification.
+title: "[Spec bug] "
+labels: ["spec", "bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for spec bugs — contradictions, ambiguities, broken examples, or out-of-date prose. For proposed changes that add or modify normative behavior, use the spec change template instead.
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: File path and line number(s). Example - spec/extensions/uacp-encryption.md:99
+      placeholder: "spec/extensions/uacp-encryption.md:99"
+    validations:
+      required: true
+  - type: textarea
+    id: contradiction
+    attributes:
+      label: Contradiction
+      description: Describe the contradiction, ambiguity, or error in detail. Quote the offending text and explain why it is incorrect.
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested fix
+      description: Optional. Proposed wording or code change.
+      render: markdown
+    validations:
+      required: false

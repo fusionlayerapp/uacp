@@ -1,0 +1,25 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_30_in_progress_message",
+  "tool": "claude",
+  "title": "Message with in_progress status — streaming interrupted",
+  "created_at": "2026-05-09T10:08:00.000Z",
+  "updated_at": "2026-05-09T10:08:10.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "Write a detailed history of the Roman Empire.",
+      "timestamp": "2026-05-09T10:08:00.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "The Roman Empire, one of history's greatest civilizations, began with Augustus Caesar in 27 BCE after the fall of the Roman Republic. At its peak under Trajan in 117 CE, it stretched from Britain in the northwest to Mesopotamia in the east, encompassing much of Europe, North Africa, and the Near East. The empire was renowned for its engineering feats—",
+      "status": "in_progress",
+      "timestamp": "2026-05-09T10:08:08.000Z",
+      "model": "claude-opus-4-7"
+    }
+  ]
+}

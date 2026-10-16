@@ -1,0 +1,12 @@
+{
+  "fixture_id": "withdraw-event/negative-01-unknown-reason",
+  "description": "reason='user_request' is not in the enum. Schema MUST reject this.",
+  "expected": "schema_error",
+  "withdraw": {
+    "type": "withdraw",
+    "target_event_ids": ["50000000-0000-4000-8000-000000000001"],
+    "reason": "user_request",
+    "withdrawn_at": 1700001003,
+    "withdrawer_identity": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/v1/kinds/persona",
+  "title": "UACP Persona Body",
+  "description": "Body schema for the persona artifact kind — an AI identity, voice, and behavioral configuration.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "system_prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 8000
+    },
+    "voice_style": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "avatar_url": {
+      "type": "string",
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 64
+      },
+      "maxItems": 20
+    },
+    "restrictions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 64
+      },
+      "maxItems": 20
+    }
+  },
+  "required": ["name", "description", "system_prompt"],
+  "additionalProperties": false
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "uacp-conformance-registry/v1",
+  "updated_at": "2026-05-17",
+  "implementations": [
+    {
+      "language": "typescript",
+      "package": "@fusionlayer/uacp",
+      "version": "0.6.0",
+      "uacp_version": "1.0.0",
+      "levels": ["L1", "L2"],
+      "test_command": "npm test",
+      "last_verified": "2026-05-17",
+      "report_url": "conformance/reports/typescript-v1.md"
+    },
+    {
+      "language": "go",
+      "package": "github.com/hn2/uacp/reference-impls/go",
+      "version": "1.0.0",
+      "uacp_version": "1.0.0",
+      "levels": ["L1"],
+      "test_command": "go test ./...",
+      "last_verified": "2026-05-17",
+      "report_url": "conformance/reports/go-v1.md"
+    },
+    {
+      "language": "python",
+      "package": "uacp",
+      "version": "1.0.0",
+      "uacp_version": "1.0.0",
+      "levels": ["L1"],
+      "test_command": "python -m pytest tests/",
+      "last_verified": "2026-05-17",
+      "report_url": "conformance/reports/python-v1.md"
+    }
+  ]
+}

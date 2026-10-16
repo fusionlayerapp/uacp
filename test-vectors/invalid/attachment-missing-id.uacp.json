@@ -1,0 +1,21 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-039",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "See attached.",
+      "attachments": [
+        {
+          "mime_type": "application/pdf",
+          "filename": "document.pdf"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "attachment object is missing required 'id' field"
+  }
+}

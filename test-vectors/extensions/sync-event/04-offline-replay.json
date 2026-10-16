@@ -1,0 +1,80 @@
+{
+  "fixture_id": "04-offline-replay",
+  "description": "Events produced offline replay successfully on reconnect — no loss, vector clocks merge (Scenario 14)",
+  "expected": "valid",
+  "log": [
+    {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "e349fd79-9837-4ae6-8960-74ec844f04a4",
+      "parent_event_id": null,
+      "vector_clock": {
+        "20000000-0000-4000-8000-000000000002": 1
+      },
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000002",
+      "timestamp": 1747180800000,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "payload": "ZmFrZS1jaXBoZXJ0ZXh0LWE",
+      "signature": "MvdqEZStBKTX6EIcgqWDmg90gqEwphzXLZ4EuxIQA7DxNJhbaq4EioRG-HA9vrM1Hy2NAQUzFlRUL2ff9934Dg"
+    },
+    {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "94de6656-6b04-4012-bef7-16c797cb4c45",
+      "parent_event_id": "e349fd79-9837-4ae6-8960-74ec844f04a4",
+      "vector_clock": {
+        "20000000-0000-4000-8000-000000000002": 2
+      },
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000002",
+      "timestamp": 1747180801000,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "payload": "ZmFrZS1jaXBoZXJ0ZXh0LWE",
+      "signature": "ut0rmXiJq3vW3vnSyIJC1j8ynfOjPo9nFtdkuoxOiYLYJWVOhuEIOju_dGPjovL4stAAFGh_6ipgdcoGaBtdAg"
+    }
+  ],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "3495b6bd-0a47-4896-85fa-5931b5a3520d",
+    "parent_event_id": "94de6656-6b04-4012-bef7-16c797cb4c45",
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000002": 3
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000002",
+    "timestamp": 1747180900000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "ZmFrZS1jaXBoZXJ0ZXh0LWE",
+    "signature": "UgHAK8jLw_lO53QNNivFjI5NMKFfo3rFHhfItlFfABunjlMJwT3Katy1uidGBslJ1HoT6CnV02fLMNmyCYFEAg"
+  },
+  "offline_tail": [
+    {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "b3b259fc-fa66-4e78-ba0a-30bef5af3bf4",
+      "parent_event_id": "3495b6bd-0a47-4896-85fa-5931b5a3520d",
+      "vector_clock": {
+        "20000000-0000-4000-8000-000000000002": 4
+      },
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000002",
+      "timestamp": 1747180900500,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "payload": "ZmFrZS1jaXBoZXJ0ZXh0LWE",
+      "signature": "NEyMg0dHaJp_G0vacxlNWGWfVwFTUPBrkP0O9yD33vCkRGxHcKY8dPfv-t2Ga9dP8ZYPokI4bw71b9nN0_z0Dw"
+    },
+    {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "bf052c91-8d39-401e-88b4-b98e9528f3db",
+      "parent_event_id": "b3b259fc-fa66-4e78-ba0a-30bef5af3bf4",
+      "vector_clock": {
+        "20000000-0000-4000-8000-000000000002": 5
+      },
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000002",
+      "timestamp": 1747180901000,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "payload": "ZmFrZS1jaXBoZXJ0ZXh0LWE",
+      "signature": "wwGxluKBrqYJzELs4CSU1qx7aUErStzHO-h0OclQYG6MasdpywWMzfFO24KJTxxLuYItjLCNwA9VtZm8KBmQDg"
+    }
+  ],
+  "note": "offline_tail are validated in order after event. All must pass."
+}

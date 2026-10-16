@@ -1,0 +1,9 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-004",
+  "tool": "test-harness",
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "root 'messages' field is absent; it is required"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "_schema": "guideline",
+  "_expect": "valid",
+  "body": {
+    "title": "Concise responses",
+    "instruction": "Keep all responses as short as possible without omitting critical information. Use bullet points and headers for lists.",
+    "priority": 7
+  }
+}

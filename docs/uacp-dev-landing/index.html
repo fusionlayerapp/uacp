@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UACP — Universal AI Context Protocol</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1a1a1a; background: #fff; line-height: 1.6; }
+    header { border-bottom: 1px solid #e5e5e5; padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    header h1 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+    header .version { font-size: 0.75rem; background: #f0f0f0; padding: 0.2rem 0.5rem; border-radius: 4px; color: #555; }
+    main { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; }
+    .hero h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 1rem; }
+    .hero p { font-size: 1.125rem; color: #444; max-width: 600px; margin-bottom: 2rem; }
+    .cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 0.6rem 1.25rem; border-radius: 6px; font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+    .btn-primary { background: #1a1a1a; color: #fff; }
+    .btn-primary:hover { background: #333; }
+    .btn-secondary { border: 1px solid #ccc; color: #1a1a1a; }
+    .btn-secondary:hover { background: #f5f5f5; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
+    .card { border: 1px solid #e5e5e5; border-radius: 8px; padding: 1.5rem; }
+    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.9rem; color: #555; }
+    .card a { color: #1a1a1a; font-size: 0.85rem; font-weight: 600; text-decoration: none; display: inline-block; margin-top: 0.75rem; }
+    .card a:hover { text-decoration: underline; }
+    .badge { font-size: 0.7rem; background: #e8f4fd; color: #0070c9; padding: 0.15rem 0.45rem; border-radius: 3px; vertical-align: middle; margin-left: 0.3rem; }
+    .section-title { font-size: 1.125rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1rem; color: #333; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; }
+    footer { border-top: 1px solid #e5e5e5; padding: 1.5rem 2rem; text-align: center; font-size: 0.8rem; color: #888; margin-top: 4rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>uacp</h1>
+    <span class="version">v1 (draft)</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Universal AI Context Protocol</h2>
+      <p>
+        UACP is an open, vendor-neutral format for AI conversation context —
+        designed to move cleanly across models, tools, and systems without
+        lock-in or data loss.
+      </p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://github.com/hn2/uacp/blob/master/spec/v1/UACP-CORE.md">Read the spec</a>
+        <a class="btn btn-secondary" href="schema-registry.json">Schema registry</a>
+        <a class="btn btn-secondary" href="https://github.com/hn2/uacp">GitHub</a>
+      </div>
+    </section>
+
+    <p class="section-title">UACP</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Core spec</h3>
+        <p>Normative specification for UACP envelopes: context-only narrowing, subject/audience/scope permissions model, signing.</p>
+        <a href="https://github.com/hn2/uacp/blob/master/spec/v1/UACP-CORE.md">UACP-CORE.md &rarr;</a>
+      </div>
+      <div class="card">
+        <h3>UACP-Trace v2</h3>
+        <p>OTel gen_ai semantic conventions profile + uacp.* extension layer. Privacy enforcement for smart/private/incognito modes.</p>
+        <a href="https://github.com/hn2/uacp/blob/master/spec/uacp-trace/UACP-TRACE.md">UACP-TRACE.md &rarr;</a>
+      </div>
+      <div class="card">
+        <h3>Validator</h3>
+        <p>CLI + programmatic validator for UACP envelopes. Checks required fields, signature, audience array, scope.</p>
+        <a href="https://github.com/hn2/uacp/tree/master/tools/uacp-validate">tools/uacp-validate &rarr;</a>
+      </div>
+      <div class="card">
+        <h3>Schema registry</h3>
+        <p>Machine-readable index of all published UACP and sibling protocol schemas. Includes AAP and Capture-Manifest.</p>
+        <a href="schema-registry.json">schema-registry.json &rarr;</a>
+      </div>
+    </div>
+
+    <p class="section-title">Sibling protocols</p>
+    <div class="grid">
+      <div class="card">
+        <h3>AAP <span class="badge">draft</span></h3>
+        <p>Agent Action Protocol — operator/tool/action descriptions that cross AI vendor boundaries. Converges with MCP, OpenAI tools, and Anthropic tool-use.</p>
+        <a href="https://github.com/hn2/aap/blob/main/spec/v0.1/AAP.md">AAP.md &rarr;</a>
+      </div>
+      <div class="card">
+        <h3>Capture-Manifest <span class="badge">draft</span></h3>
+        <p>Provenance, consent basis, and applied redactions for captured material. GDPR Article 13/14 + CCPA compliance mapping.</p>
+        <a href="https://github.com/hn2/capture-manifest/blob/main/spec/v0.1/CAPTURE-MANIFEST.md">CAPTURE-MANIFEST.md &rarr;</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    UACP is an open specification. Apache 2.0.
+    &nbsp;&bull;&nbsp;
+    <a href="https://github.com/hn2/uacp">github.com/hn2/uacp</a>
+  </footer>
+</body>
+</html>

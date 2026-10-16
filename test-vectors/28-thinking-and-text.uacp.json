@@ -1,0 +1,33 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_28_thinking_and_text",
+  "tool": "claude",
+  "title": "Assistant message with thinking block followed by text block",
+  "created_at": "2026-05-09T10:06:00.000Z",
+  "updated_at": "2026-05-09T10:06:20.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "If a train travels 120 km in 1.5 hours, what is its average speed?",
+      "timestamp": "2026-05-09T10:06:01.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": [
+        {
+          "type": "thinking",
+          "text": "Speed = distance / time. Distance = 120 km, time = 1.5 hours. So speed = 120 / 1.5 = 80 km/h."
+        },
+        {
+          "type": "text",
+          "text": "The average speed of the train is 80 km/h. (Speed = 120 km ÷ 1.5 h = 80 km/h)"
+        }
+      ],
+      "timestamp": "2026-05-09T10:06:05.000Z",
+      "model": "claude-opus-4-7"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "_schema": "identity-key-chain",
+  "_expect": "invalid",
+  "body": {
+    "device_id": "device-A",
+    "public_key": "TLWr9q15+/WrvMr8wmnYXNJlHtS4hbWGnyQa7fCluik=",
+    "created_at": "2026-05-16T00:00:00Z"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-020",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "The capital of France is Paris.",
+      "provenance": "inferred"
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "message has 'provenance: inferred' but 'confidence' field is absent; it is required when provenance is inferred"
+  }
+}

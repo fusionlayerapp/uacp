@@ -1,0 +1,19 @@
+{
+  "_schema": "scope-key-envelope",
+  "_expect": "valid",
+  "body": {
+    "scope_id": "4a0a0f7f-0c5f-4ab8-9b0c-88d0b4f00b3a",
+    "scope_key_id": "d8b3f9a1-0b0a-4a2e-a5b1-4aa7c0e5d3b6",
+    "members": [
+      {
+        "device_id": "device-A",
+        "encrypted_scope_key": "YWVzMjU2a2V5ZW5jcnlwdGVk"
+      },
+      {
+        "device_id": "device-B",
+        "encrypted_scope_key": "YWVzMjU2a2V5ZW5jcnlwdGVkQg=="
+      }
+    ],
+    "created_at": "2026-05-16T00:00:00Z"
+  }
+}

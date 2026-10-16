@@ -1,0 +1,20 @@
+uacp_version: 1
+kind: policy
+id: b3f8a21c-4e72-4d9b-9c03-e1a2f5d8b6c9
+schema_version: 1
+version: 1.0.0
+subject: "did:key:z6MkuMHNeSdAZmEuBr1dkH7GqV5VQvKCyXb4o5nMHvDgXoHF"
+author: "@alice"
+created_at: "2026-05-14T09:00:00Z"
+description: Restrict topics in user-facing conversations
+scope: individual
+tags:
+  - content-policy
+  - restrictions
+signature: "sha256:489589a6f913177ee5e10027f2f4e6a4821abbbc20f3d81674602dcc22eb9e3d"
+body:
+  effect: deny
+  match: topics
+  values:
+    - politics
+    - religion

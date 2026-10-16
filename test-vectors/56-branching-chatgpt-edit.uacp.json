@@ -1,0 +1,14 @@
+{
+  "uacp": "0.6.0",
+  "id": "conv-branch-chatgpt-001",
+  "tool": "chatgpt",
+  "extensions": ["uacp-branching"],
+  "messages": [
+    { "id": "m1", "role": "user",      "content": "What is 2+2?" },
+    { "id": "m2", "role": "assistant", "content": "4" },
+    { "id": "m3", "role": "user",      "content": "What is 2+3?",
+      "branch_parent_id": "m1", "branch_label": "edited-question" },
+    { "id": "m4", "role": "assistant", "content": "5",
+      "branch_parent_id": "m2", "branch_label": "edited-question" }
+  ]
+}

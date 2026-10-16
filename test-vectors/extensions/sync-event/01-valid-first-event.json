@@ -1,0 +1,20 @@
+{
+  "fixture_id": "01-valid-first-event",
+  "description": "Single event with null parent — must validate and decode successfully (Scenario 1)",
+  "expected": "valid",
+  "log": [],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "1c7b6cee-9512-4dff-91bc-f72b9fd227df",
+    "parent_event_id": null,
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000001": 1
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1747180800000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "ZmFrZS1jaXBoZXJ0ZXh0LWE",
+    "signature": "jW-PQIOuv6c3Hp58zCIJPuv2bMsb1bunmad5ksggK0duk54A-7_WHeOiYPcC-PCDYwmyHkZrCT6swGPaw7l7Bw"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "test_three_device_complex_clock_causality",
+  "description": "Four events across three devices with complex vector-clock progression — all accepted",
+  "events": [
+    {
+      "event_id": "e-a1",
+      "event_type": "conversation_created",
+      "vector_clock": { "device-A": 1, "device-B": 0, "device-C": 0 },
+      "signature": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "event_id": "e-b1",
+      "event_type": "context_shared",
+      "vector_clock": { "device-A": 1, "device-B": 1, "device-C": 0 },
+      "signature": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    {
+      "event_id": "e-c1",
+      "event_type": "context_shared",
+      "vector_clock": { "device-A": 1, "device-B": 1, "device-C": 1 },
+      "signature": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    {
+      "event_id": "e-a2",
+      "event_type": "context_received",
+      "vector_clock": { "device-A": 2, "device-B": 1, "device-C": 1 },
+      "signature": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    }
+  ],
+  "expected_causality": {
+    "e-b1": "e-a1",
+    "e-c1": "e-b1",
+    "e-a2": "e-c1"
+  },
+  "expected_signatures": {
+    "e-a1": "valid",
+    "e-b1": "valid",
+    "e-c1": "valid",
+    "e-a2": "valid"
+  },
+  "expected_outcome": "accepted"
+}

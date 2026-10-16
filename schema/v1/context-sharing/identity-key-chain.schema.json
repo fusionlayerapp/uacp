@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/v1/context-sharing/identity-key-chain",
+  "title": "UACP Identity Key Chain Record",
+  "description": "Identity and device key chain record for context sharing.",
+  "type": "object",
+  "properties": {
+    "user_did": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable DID. Recommended: did:key or did:web."
+    },
+    "device_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "public_key": {
+      "type": "string",
+      "minLength": 1,
+      "description": "ed25519 public key, base64 recommended."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{3})?Z$"
+    },
+    "revoked_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{3})?Z$"
+    }
+  },
+  "required": ["user_did", "device_id", "public_key", "created_at"],
+  "additionalProperties": false
+}

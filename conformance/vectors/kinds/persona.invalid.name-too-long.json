@@ -1,0 +1,9 @@
+{
+  "_schema": "persona",
+  "_expect": "invalid",
+  "body": {
+    "name": "ThisPersonaNameIsWayTooLongAndExceedsTheSixtyFourCharacterLimitDefinedInTheSpec",
+    "description": "A test persona.",
+    "system_prompt": "You are a test assistant."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "uacp": "0.6.0",
+  "id": "conv-cite-multi-001",
+  "tool": "perplexity",
+  "extensions": ["uacp-citations"],
+  "messages": [
+    { "role": "user", "content": "Tell me about Python." },
+    {
+      "role": "assistant",
+      "content": "Python was created by Guido van Rossum and first released in 1991. It emphasises code readability.",
+      "citations": [
+        {
+          "span": [0, 56],
+          "source": {
+            "url": "https://docs.python.org/3/faq/general.html",
+            "title": "Python FAQ",
+            "snippet": "Python was created by Guido van Rossum."
+          }
+        },
+        {
+          "span": [58, 95],
+          "source": {
+            "url": "https://www.python.org/doc/essays/blurb/",
+            "title": "What is Python?",
+            "snippet": "Python emphasises code readability."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "fixture_id": "member-set/01-two-member-scope",
+  "description": "Scenario 7: Two members in a scope. Both have encrypted key entries. Both can decrypt.",
+  "expected": "valid",
+  "member_set": {
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "members": [
+      {
+        "identity_public_key": "pSpa6Kxqvl8ZAztVUxVoKpuFeV3gIxl9tbxu7ccMdmQ",
+        "role": "owner",
+        "joined_at": 1700000000000,
+        "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+      },
+      {
+        "identity_public_key": "8pkr2dZXeozMvUGmHP6DM6N5vfFX7eNUcxePfDEchyU",
+        "role": "member",
+        "joined_at": 1700000001000,
+        "joined_via_event_id": "50000000-0000-4000-8000-000000000002"
+      }
+    ],
+    "scope_key": {
+      "algorithm": "X25519-AES256GCM",
+      "encrypted_key_per_member": [
+        {
+          "recipient_identity_key": "0r97bXj1n07p3vXK0nomVBp9R8_QWxGfjZEBlX_ihlk",
+          "ciphertext": "unmac0Kv03mIBfNF1wHULT3mFPysg5zxbJs3Re3WQyau4dQxaMNvwwNlxzoxr5ai8d1DXgxSIaCJdV-RinUHDCDLTlS0bxWLhqVeKWqU6aY",
+          "nonce": "QdBqEOyFVpp7olSs"
+        },
+        {
+          "recipient_identity_key": "5IRLOMiNTJUwxEFgDjN4sc4dhcUaOTohrFfFzPu1oic",
+          "ciphertext": "ZmvVgqlzgGmn1RbDrQ9Oza31zu9MH-Rt7FHIR8M0-1jqmTWqh_VRiGXTYEIdEHCnvEiA-Iz1tLEqMtZYpbi3rhHdi3A9ld5U-RhaO575TZ0",
+          "nonce": "THzAsnvdmNEAGk3J"
+        }
+      ]
+    },
+    "version": 0,
+    "signature": "3yKvxPmWjxrTe7ka86FjENOCv-gIGCX1hlyODNjvBRqFlzMS1cw9kawA7pXVmnQVX8coAc0qEhTCJfmlQf1DBA"
+  }
+}

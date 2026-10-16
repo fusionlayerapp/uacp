@@ -1,0 +1,31 @@
+{
+  "fixture_id": "01-valid-round-trip",
+  "description": "Scenario 1: encrypt/decrypt round-trip with a random scope key.",
+  "expected": "valid",
+  "scope_key_hex": "7e58ebb788375c46c6f77174385bb8bcf95fff039c4cfa695f751c582121e317",
+  "plaintext_hex": "68656c6c6f2066726f6d207363656e6172696f2031",
+  "event_meta": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "e0000000-0000-4000-8000-000000000001",
+    "parent_event_id": null,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1700000000000
+  },
+  "payload": {
+    "algorithm": "AES-256-GCM",
+    "nonce": "RiMrK00fG4DfKBNB",
+    "ciphertext": "n1jbU6owidHEIL1WiCx9O5sy-oG2",
+    "tag": "gJdeol9Av-U0YqFzICsGSg",
+    "aad": {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "e0000000-0000-4000-8000-000000000001",
+      "parent_event_id": null,
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1700000000000
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "uacp",
+  "version": "0.6.0",
+  "description": "Unified AI Context Protocol — Normative Specification, Schemas, and Conformance Vectors",
+  "type": "commonjs",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://github.com/fusionlayerapp/uacp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fusionlayerapp/uacp.git"
+  },
+  "keywords": [
+    "uacp",
+    "ai",
+    "context",
+    "protocol",
+    "standard",
+    "conversation",
+    "llm",
+    "portability",
+    "interchange"
+  ],
+  "scripts": {
+    "validate": "node validate.js",
+    "test": "node test/version-consistency.js && node --test test/resource-limits.test.js && node --test test/sync-event.test.js && node --test test/identity-chain.test.js && node --test test/event-payload.test.js && node --test test/vector-clock.test.js && node --test test/scope-identifier.test.js && node --test test/member-set.test.js && node --test test/promotion-event.test.js && node --test test/withdraw-event.test.js && node --test test/audit-event.test.js && node --test tools/uacp-validate/__tests__/*.test.js && node validate.js && node conformance/harness/run.js",
+    "test:context-sharing": "node conformance/harness/run.js context-sharing --vectors conformance/vectors/context-sharing/event-chains/"
+  },
+  "devDependencies": {
+    "@noble/ed25519": "^3.1.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "canonicalize": "^3.0.0",
+    "js-yaml": "^4.1.0"
+  }
+}

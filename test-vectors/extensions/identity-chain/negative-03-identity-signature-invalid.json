@@ -1,0 +1,36 @@
+{
+  "fixture_id": "negative-03-identity-signature-invalid",
+  "description": "DeviceRegistration signature is tampered — must return IDENTITY_SIGNATURE_INVALID",
+  "expected": "IDENTITY_SIGNATURE_INVALID",
+  "identity_keys": [
+    {
+      "user_id": "10000000-0000-4000-8000-000000000001",
+      "public": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8"
+    }
+  ],
+  "registrations": [
+    {
+      "device_id": "20000000-0000-4000-8000-000000000001",
+      "device_public_key": "SaksU5PNUdBb7V50ptkZvq3ko5z-rJz10mk9XNA3K4Q",
+      "registered_at": 1747180000000,
+      "device_label": "Desktop",
+      "registered_by": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8",
+      "signature": "aeBHXXQeXvw83DFHwgktTx1hm2ecwZ2U9Ar7PlGOIg03sEjahxXBNlhfyqBQ7qSXSJ5C4Oue6noXCPZXopOSCg"
+    }
+  ],
+  "retirements": [],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "501f141a-f957-4294-8ab9-5eac570033dc",
+    "parent_event_id": null,
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000001": 1
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1747180800000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "dGVzdC1wYXlsb2Fk",
+    "signature": "aHLyHxuUPE1fjm3rIemT2-l_KwHpbJ-f1iuB2ORAxOGUYJ_225i6EoOseOPIafn1sYpelprtlLuQqH8UhK8hCw"
+  }
+}

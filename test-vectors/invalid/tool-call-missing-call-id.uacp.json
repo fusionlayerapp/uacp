@@ -1,0 +1,23 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-030",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "Let me search for that.",
+      "tool_calls": [
+        {
+          "name": "web_search",
+          "arguments": {
+            "query": "Paris weather"
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "tool_call object is missing required 'call_id' field"
+  }
+}

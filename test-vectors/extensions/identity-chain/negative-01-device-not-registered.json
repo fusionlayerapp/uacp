@@ -1,0 +1,27 @@
+{
+  "fixture_id": "negative-01-device-not-registered",
+  "description": "Event references device_id with no DeviceRegistration — must return DEVICE_NOT_REGISTERED",
+  "expected": "DEVICE_NOT_REGISTERED",
+  "identity_keys": [
+    {
+      "user_id": "10000000-0000-4000-8000-000000000001",
+      "public": "Hco9AkubEY2YWFxwlX8ZHrrgR8Wcv7V-TsWFxlLMpJ8"
+    }
+  ],
+  "registrations": [],
+  "retirements": [],
+  "event": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "0c646b0e-1318-4d00-833d-c2bc6a0d5ffb",
+    "parent_event_id": null,
+    "vector_clock": {
+      "20000000-0000-4000-8000-000000000001": 1
+    },
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1747180800000,
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "payload": "dGVzdC1wYXlsb2Fk",
+    "signature": "HifGAJTdBPhzJ2scBYubCLkgGtm6-mOmLxJFuM2C30DQqFbLKgWAHNhsspoEv10ldoa9V7lX6-Dzt7K8cu3hBw"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-046",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Please check this file.",
+      "attachments": [
+        {
+          "id": "att_001",
+          "mime_type": "application/pdf",
+          "sha256": "not-valid-hex"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "attachment sha256 does not match required pattern ^[a-f0-9]{64}$"
+  }
+}

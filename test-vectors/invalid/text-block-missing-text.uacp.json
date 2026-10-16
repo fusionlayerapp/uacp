@@ -1,0 +1,19 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-014",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "content block type 'text' is missing required 'text' field"
+  }
+}

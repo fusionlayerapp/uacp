@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-event-payload",
+  "title": "UACP Event Payload Encryption Envelope",
+  "description": "AES-256-GCM encryption envelope for UACP sync-event payloads. Carries ciphertext, nonce, GCM auth tag, and canonical AAD.",
+  "type": "object",
+  "required": ["algorithm", "nonce", "ciphertext", "tag", "aad"],
+  "additionalProperties": false,
+  "properties": {
+    "algorithm": {
+      "type": "string",
+      "const": "AES-256-GCM"
+    },
+    "nonce": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{16}$",
+      "description": "96-bit (12-byte) random nonce, base64url without padding. MUST be unique per (scope_key, message)."
+    },
+    "ciphertext": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "minLength": 1,
+      "description": "AES-256-GCM ciphertext, base64url without padding."
+    },
+    "tag": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{22}$",
+      "description": "128-bit (16-byte) GCM authentication tag, base64url without padding."
+    },
+    "aad": {
+      "type": "object",
+      "required": ["conversation_id", "event_id", "parent_event_id", "scope_id", "author_user_id", "author_device_id", "timestamp"],
+      "additionalProperties": false,
+      "properties": {
+        "conversation_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "parent_event_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            { "type": "null" }
+          ]
+        },
+        "scope_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "author_user_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "author_device_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "timestamp": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Unix timestamp in milliseconds (uint64)."
+        }
+      }
+    },
+    "kdf": {
+      "type": "object",
+      "required": ["algorithm", "salt", "m", "t", "p"],
+      "additionalProperties": false,
+      "description": "Argon2id KDF parameters. Present only when the scope key is derived from a user passphrase (personal scopes / device backup). Absent for shared scopes where key is distributed via X25519-AES256GCM.",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "const": "argon2id"
+        },
+        "salt": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{22}$",
+          "description": "16-byte Argon2id salt, base64url without padding."
+        },
+        "m": {
+          "type": "integer",
+          "const": 262144,
+          "description": "Memory cost in KiB (256 MiB)."
+        },
+        "t": {
+          "type": "integer",
+          "const": 3,
+          "description": "Number of iterations."
+        },
+        "p": {
+          "type": "integer",
+          "const": 4,
+          "description": "Parallelism factor."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_11_empty_messages",
+  "tool": "chatgpt",
+  "messages": [],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.comment": "Negative test vector. MUST fail schema validation because messages has minItems=1."
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-vault-envelope",
+  "title": "UACP Vault Envelope",
+  "description": "Encrypted, integrity-protected container carrying one or more UACP bundles plus optional opaque companion payloads, wrapped for one or more recipients. This is the uacp-vault-envelope OPTIONAL extension (v1.0.0). Crypto-agnostic at the schema level: algorithm identifiers are implementation-declared strings, not fixed enums.",
+  "type": "object",
+  "required": ["uacp_vault_envelope", "envelope_id", "created_at", "key_wrap", "content_cipher", "bundles"],
+  "additionalProperties": false,
+  "properties": {
+    "uacp_vault_envelope": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Extension version (semver) this envelope conforms to."
+    },
+    "envelope_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Opaque identifier for this envelope instance. MUST be randomly generated and MUST NOT be derived from, or otherwise reveal, any plaintext bundle content."
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{3})?Z$",
+      "description": "RFC 3339 / ISO 8601, UTC, millisecond precision. Envelope creation time; immutable once set."
+    },
+    "key_wrap": {
+      "type": "object",
+      "required": ["algorithm", "recipients"],
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "Implementation-declared identifier for the per-recipient key-wrapping scheme (e.g. \"x25519-sealedbox\"). Not a closed enum — see spec §Algorithm identifiers."
+        },
+        "recipients": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["recipient_id", "wrapped_key"],
+            "additionalProperties": false,
+            "properties": {
+              "recipient_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256,
+                "description": "Opaque per-recipient routing token (e.g. a public-key fingerprint). MUST NOT be derived from bundle content."
+              },
+              "wrapped_key": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]{2,}$",
+                "description": "base64url-encoded (RFC 4648 §5, no padding) ciphertext of the shared content key, wrapped for this recipient under key_wrap.algorithm."
+              }
+            }
+          }
+        }
+      }
+    },
+    "content_cipher": {
+      "type": "object",
+      "required": ["algorithm"],
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "Implementation-declared identifier for the AEAD (or authenticated streaming AEAD) construct used to produce every entry's ciphertext under the shared content key (e.g. \"xchacha20-poly1305-secretstream\")."
+        }
+      }
+    },
+    "bundles": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/encrypted_entry" },
+      "description": "One or more encrypted UACP bundle entries. Each ciphertext MUST decrypt to a single UACP Conversation Object valid against schema/conversation.schema.json."
+    },
+    "companion_payloads": {
+      "type": "array",
+      "minItems": 0,
+      "items": { "$ref": "#/$defs/companion_entry" },
+      "description": "Optional opaque encrypted companion payloads sharing this envelope's key wrap (e.g. a retrieval index, or application-defined side-channel state). Generic UACP consumers MUST treat these as opaque."
+    }
+  },
+  "$defs": {
+    "encrypted_entry": {
+      "type": "object",
+      "required": ["id", "ciphertext"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "description": "Opaque per-entry identifier. MUST be randomly generated, independent of any identifier inside the encrypted plaintext (e.g. MUST NOT copy the inner bundle's own `id` field)."
+        },
+        "ciphertext": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{2,}$",
+          "description": "base64url-encoded (RFC 4648 §5, no padding) ciphertext, produced under content_cipher.algorithm and the recipient-wrapped content key."
+        }
+      }
+    },
+    "companion_entry": {
+      "type": "object",
+      "required": ["id", "ciphertext"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "description": "Opaque per-entry identifier, same requirements as encrypted_entry.id."
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "Optional implementation-defined category hint (e.g. \"retrieval-index\"). MUST be drawn from a small, implementation-documented set of category names, not per-instance data — it MUST NOT leak content."
+        },
+        "ciphertext": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{2,}$",
+          "description": "base64url-encoded (RFC 4648 §5, no padding) ciphertext, produced under content_cipher.algorithm and the recipient-wrapped content key."
+        }
+      }
+    }
+  }
+}

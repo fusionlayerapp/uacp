@@ -1,0 +1,10 @@
+{
+  "_schema": "pack",
+  "_expect": "invalid",
+  "body": {
+    "description": "A pack without a title.",
+    "artifact_refs": [
+      { "kind": "persona", "slug": "persona-engineer" }
+    ]
+  }
+}

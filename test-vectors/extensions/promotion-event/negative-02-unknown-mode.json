@@ -1,0 +1,16 @@
+{
+  "fixture_id": "promotion-event/negative-02-unknown-mode",
+  "description": "mode='move' is not in the enum. Schema MUST reject this.",
+  "expected": "schema_error",
+  "promotion": {
+    "type": "promotion",
+    "source_scope_id": "40000000-0000-4000-8000-000000000001",
+    "source_event_ids": ["50000000-0000-4000-8000-000000000001"],
+    "destination_scope_id": "40000000-0000-4000-8000-000000000002",
+    "mode": "move",
+    "summary_payload": null,
+    "context_note": null,
+    "promoted_at": 1700000004,
+    "promoter_identity": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  }
+}

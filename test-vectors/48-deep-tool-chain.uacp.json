@@ -1,0 +1,52 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv_48_deep_tool_chain",
+  "tool": "test-harness",
+  "title": "Two distinct tool calls with correlated tool responses and follow-up",
+  "created_at": "2026-05-09T12:04:00.000Z",
+  "updated_at": "2026-05-09T12:05:00.000Z",
+  "messages": [
+    {
+      "id": "msg_1",
+      "role": "user",
+      "content": "What is the weather in London and Paris right now?",
+      "timestamp": "2026-05-09T12:04:01.000Z"
+    },
+    {
+      "id": "msg_2",
+      "role": "assistant",
+      "parent_id": "msg_1",
+      "content": "I'll check the weather for both cities.",
+      "timestamp": "2026-05-09T12:04:05.000Z",
+      "tool_calls": [
+        { "call_id": "call_london", "name": "get_weather", "arguments": { "city": "London" } },
+        { "call_id": "call_paris", "name": "get_weather", "arguments": { "city": "Paris" } }
+      ]
+    },
+    {
+      "id": "msg_3",
+      "role": "tool",
+      "parent_id": "msg_2",
+      "content": "{\"temperature\": 14, \"condition\": \"cloudy\", \"humidity\": 72}",
+      "call_id": "call_london",
+      "name": "get_weather",
+      "timestamp": "2026-05-09T12:04:08.000Z"
+    },
+    {
+      "id": "msg_4",
+      "role": "tool",
+      "parent_id": "msg_2",
+      "content": "{\"temperature\": 19, \"condition\": \"partly sunny\", \"humidity\": 55}",
+      "call_id": "call_paris",
+      "name": "get_weather",
+      "timestamp": "2026-05-09T12:04:08.000Z"
+    },
+    {
+      "id": "msg_5",
+      "role": "assistant",
+      "parent_id": "msg_4",
+      "content": "London is currently 14°C and cloudy with 72% humidity. Paris is warmer at 19°C and partly sunny with 55% humidity.",
+      "timestamp": "2026-05-09T12:04:15.000Z"
+    }
+  ]
+}

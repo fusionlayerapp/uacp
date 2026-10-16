@@ -1,0 +1,39 @@
+{
+  "fixture_id": "member-set/04-family-parent-child",
+  "description": "Scenario 10: Family scope with parent and child roles.",
+  "expected": "valid",
+  "member_set": {
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "members": [
+      {
+        "identity_public_key": "qUsI5NiX6Hjlt1xmAMz8iS7EVLHrmQvpp_jpmh-NyQA",
+        "role": "parent",
+        "joined_at": 1700000000000,
+        "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+      },
+      {
+        "identity_public_key": "IKes7eIXMnIHDEeUZzMOFAne-dO2I96GhDVEuj9BHoU",
+        "role": "child",
+        "joined_at": 1700000001000,
+        "joined_via_event_id": "50000000-0000-4000-8000-000000000001"
+      }
+    ],
+    "scope_key": {
+      "algorithm": "X25519-AES256GCM",
+      "encrypted_key_per_member": [
+        {
+          "recipient_identity_key": "VwAWSHGy2z5_yueclLwqF2Wsody_bJJkUrmUP2r8GXc",
+          "ciphertext": "D3H3z7xK-iw-mUxoz3YF7H6Yk7BVHZFlF7wVC199EVO-aHNY8zpEu52B-5YsJMJ5EqW7Lfa23GNwLLZXC5oi7LU4kBujq7mtbHuswitcU5s",
+          "nonce": "LU8f1J2uahAGbL2J"
+        },
+        {
+          "recipient_identity_key": "9NBPlRDximnU6ZcyW0h9ybD4Emu1KLo6bYq_QQUZrn0",
+          "ciphertext": "wklSYggAjOfgpCnTszOt01ump50arBtzgLLk7sxmLCekwmpF73KGALOkkXlrFtKu68P9_bEGXqib1wiKFJv7rU3IlCVj_TrRxsgu5et_gMU",
+          "nonce": "7-U_H-14p1Sv7b3M"
+        }
+      ]
+    },
+    "version": 0,
+    "signature": "RYtCZP0HVPezMVBXGYsXbLVWakzYhTdzebH-Jcn8ZUB3t8UDpconxgLC9j1fHq-LIcAXGrobFoOk6aCY9yOEAA"
+  }
+}

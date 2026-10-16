@@ -1,0 +1,45 @@
+{
+  "version": "1.2.0",
+  "updated_at": "2026-05-22",
+  "schemas": [
+    {
+      "id": "uacp-core-v1",
+      "url": "https://uacp.dev/schema/v1/core",
+      "description": "UACP Core v1 envelope — context-only, subject/audience/scope permissions model",
+      "status": "draft",
+      "spec": "https://uacp.dev/spec/"
+    },
+    {
+      "id": "uacp-signing-v1",
+      "url": "https://uacp.dev/schema/v1/signing",
+      "description": "UACP Signing U1 — Ed25519 request signing, key registration, revocation",
+      "status": "draft",
+      "spec": "https://uacp.dev/spec/"
+    },
+    {
+      "id": "uacp-trace-v2",
+      "url": "https://github.com/hn2/uacp/blob/master/spec/uacp-trace/UACP-TRACE.md",
+      "description": "UACP-Trace v2 — OTel gen_ai profile + uacp.* extension layer",
+      "status": "draft",
+      "spec": "https://github.com/hn2/uacp/blob/master/spec/uacp-trace/UACP-TRACE.md"
+    }
+  ],
+  "sibling_protocols": [
+    {
+      "id": "aap-action-descriptor-v0.1",
+      "url": "https://raw.githubusercontent.com/hn2/aap/main/schema/action-descriptor.schema.json",
+      "description": "AAP Action Descriptor v0.1 — operator/tool/action descriptions crossing vendor boundaries",
+      "status": "draft",
+      "spec": "https://github.com/hn2/aap/blob/main/spec/v0.1/AAP.md",
+      "repo": "https://github.com/hn2/aap"
+    },
+    {
+      "id": "capture-manifest-v0.1",
+      "url": "https://raw.githubusercontent.com/hn2/capture-manifest/main/schema/capture-manifest.schema.json",
+      "description": "Capture-Manifest v0.1 — provenance, consent basis, applied redactions for captured material",
+      "status": "draft",
+      "spec": "https://github.com/hn2/capture-manifest/blob/main/spec/v0.1/CAPTURE-MANIFEST.md",
+      "repo": "https://github.com/hn2/capture-manifest"
+    }
+  ]
+}

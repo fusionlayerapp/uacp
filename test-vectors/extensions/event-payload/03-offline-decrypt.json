@@ -1,0 +1,33 @@
+{
+  "fixture_id": "03-offline-decrypt",
+  "description": "Scenario 14: ciphertext created at timestamp T, decrypted at T+3600000ms. Decryption is timestamp-independent; aad.timestamp is the original creation time.",
+  "expected": "valid",
+  "scope_key_hex": "63e110ae339c21c75ea02b398f5088dcd15c1c3290ecf0adaf0d8110b338cb5f",
+  "plaintext_hex": "717565756564206f66666c696e65206d657373616765",
+  "created_at_ms": 1700000000000,
+  "decrypted_at_ms": 1700003600000,
+  "event_meta": {
+    "conversation_id": "30000000-0000-4000-8000-000000000001",
+    "event_id": "e0000000-0000-4000-8000-000000000003",
+    "parent_event_id": "e0000000-0000-4000-8000-000000000002",
+    "scope_id": "40000000-0000-4000-8000-000000000001",
+    "author_user_id": "10000000-0000-4000-8000-000000000001",
+    "author_device_id": "20000000-0000-4000-8000-000000000001",
+    "timestamp": 1700000000000
+  },
+  "payload": {
+    "algorithm": "AES-256-GCM",
+    "nonce": "a0l1K1AyPgB-w69g",
+    "ciphertext": "fAXhNiTjoCLkmhbal3Bte--1UUAOfA",
+    "tag": "caYy3lW_ymiclmbgJi1poQ",
+    "aad": {
+      "conversation_id": "30000000-0000-4000-8000-000000000001",
+      "event_id": "e0000000-0000-4000-8000-000000000003",
+      "parent_event_id": "e0000000-0000-4000-8000-000000000002",
+      "scope_id": "40000000-0000-4000-8000-000000000001",
+      "author_user_id": "10000000-0000-4000-8000-000000000001",
+      "author_device_id": "20000000-0000-4000-8000-000000000001",
+      "timestamp": 1700000000000
+    }
+  }
+}

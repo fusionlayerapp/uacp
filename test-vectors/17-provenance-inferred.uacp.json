@@ -1,0 +1,19 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_17_provenance_inferred",
+  "tool": "cursor",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Fix the authentication bug.",
+      "provenance": "extracted"
+    },
+    {
+      "role": "assistant",
+      "content": "The bug appears to be a race condition in the token refresh path.",
+      "provenance": "inferred",
+      "confidence": 0.82,
+      "provenance_source": "claude-opus-4-7"
+    }
+  ]
+}

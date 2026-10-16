@@ -1,0 +1,13 @@
+{
+  "_schema": "memory",
+  "_expect": "invalid",
+  "_error": "MEMORY_LIFECYCLE_PREVIOUS_REVISION_REQUIRED",
+  "body": {
+    "content": "I prefer dark mode.",
+    "lifecycle": {
+      "action": "update",
+      "status": "active",
+      "revision": 2
+    }
+  }
+}

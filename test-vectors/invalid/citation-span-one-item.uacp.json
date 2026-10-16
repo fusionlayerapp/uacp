@@ -1,0 +1,23 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-040",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "Paris is the capital of France.",
+      "citations": [
+        {
+          "span": [0],
+          "source": {
+            "url": "https://en.wikipedia.org/wiki/Paris"
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "citation span has only 1 item — minItems is 2"
+  }
+}

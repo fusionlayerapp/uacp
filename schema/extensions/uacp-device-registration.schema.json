@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hn2.github.io/uacp/schema/0.6.0/extensions/uacp-device-registration",
+  "title": "UACP Device Registration",
+  "description": "Binds a device public key to a user identity key via an Ed25519 signature over the canonical CBOR of the registration fields.",
+  "type": "object",
+  "required": ["device_id", "device_public_key", "registered_at", "device_label", "registered_by", "signature"],
+  "additionalProperties": false,
+  "properties": {
+    "device_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "RFC 4122 v4 UUID identifying this device."
+    },
+    "device_public_key": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{43}$",
+      "description": "Ed25519 raw public key (32 bytes), base64url-encoded without padding."
+    },
+    "registered_at": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Milliseconds since Unix epoch when this device was registered."
+    },
+    "device_label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "User-chosen human-readable label for this device, e.g. \"Desktop\"."
+    },
+    "registered_by": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{43}$",
+      "description": "Identity public key (32 bytes, base64url) of the user who registered this device."
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{86}$",
+      "description": "Ed25519 signature (64 bytes, base64url) by registered_by over canonical CBOR of all fields except signature."
+    }
+  }
+}

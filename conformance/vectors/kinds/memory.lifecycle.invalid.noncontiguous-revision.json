@@ -1,0 +1,14 @@
+{
+  "_schema": "memory",
+  "_expect": "invalid",
+  "_error": "MEMORY_LIFECYCLE_NON_CONTIGUOUS_REVISION",
+  "body": {
+    "content": "I prefer dark mode.",
+    "lifecycle": {
+      "action": "update",
+      "status": "active",
+      "revision": 5,
+      "previous_revision": { "memory_id": "mem-theme", "revision": 2 }
+    }
+  }
+}

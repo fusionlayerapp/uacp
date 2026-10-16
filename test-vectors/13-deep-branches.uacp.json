@@ -1,0 +1,20 @@
+{
+  "uacp": "0.5.0",
+  "id": "tv_13_deep_branches",
+  "tool": "claude-ai",
+  "created_at": "2026-04-24T09:00:00.000Z",
+  "updated_at": "2026-04-24T09:00:30.000Z",
+  "branches": ["m_a2_redo", "m_a2", "m_a2b1"],
+  "messages": [
+    { "id": "m_root", "role": "user", "content": "Write a sonnet.", "timestamp": "2026-04-24T09:00:00.000Z" },
+    { "id": "m_a1", "parent_id": "m_root", "role": "assistant", "content": "First attempt: Shall I compare thee ...", "timestamp": "2026-04-24T09:00:05.000Z" },
+    { "id": "m_a2", "parent_id": "m_root", "role": "assistant", "content": "Second attempt: From fairest creatures ...", "timestamp": "2026-04-24T09:00:10.000Z" },
+    { "id": "m_a2_redo", "parent_id": "m_root", "role": "assistant", "content": "Third attempt: When I consider every thing ...", "timestamp": "2026-04-24T09:00:15.000Z" },
+    { "id": "m_b1", "parent_id": "m_a2", "role": "user", "content": "Make it more modern.", "timestamp": "2026-04-24T09:00:20.000Z" },
+    { "id": "m_a2b1", "parent_id": "m_b1", "role": "assistant", "content": "Tweet-length sonnet, modernized ...", "timestamp": "2026-04-24T09:00:25.000Z" }
+  ],
+  "metadata": {
+    "uacp.test.expect": "valid",
+    "uacp.test.comment": "Branch-of-branch. Messages form a tree via parent_id. branches[] lists non-canonical leaf message IDs. Canonical path selection is implementation-defined and MUST NOT depend on branches[] ordering. Implementations MUST NOT renumber or reorder messages on reserialize."
+  }
+}

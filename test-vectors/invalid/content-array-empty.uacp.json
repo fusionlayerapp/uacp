@@ -1,0 +1,15 @@
+{
+  "uacp": "0.6.0",
+  "id": "tv-invalid-034",
+  "tool": "test-harness",
+  "messages": [
+    {
+      "role": "user",
+      "content": []
+    }
+  ],
+  "metadata": {
+    "uacp.test.expect": "invalid",
+    "uacp.test.reason": "message content array is empty — minItems is 1 for content arrays"
+  }
+}
