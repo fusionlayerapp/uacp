@@ -161,9 +161,8 @@ See `INTEROP.md` for the full interoperability matrix and instructions for regis
 | Implementation | Language | Level | Extensions | Verified | Notes |
 |---|---|---|---|---|---|
 | UACP reference harness | JavaScript (Node.js) | L3 | all (see INTEROP.md) | 2026-05-14 | Ships with this repo at `conformance/harness/`. |
-| `@fusionlayer/uacp` | TypeScript | L1, L2 | — | 2026-05-17 | `reference-impls/typescript/`. Report: `conformance/reports/typescript-v1.md`. |
-| `github.com/hn2/uacp/reference-impls/go` | Go | L1 | — | 2026-05-17 | `reference-impls/go/`. Report: `conformance/reports/go-v1.md`. |
-| `uacp` (PyPI) | Python | L1 | — | 2026-05-17 | `reference-impls/python/`. Report: `conformance/reports/python-v1.md`. |
+
+The earlier TypeScript, Go and Python reference implementations are no longer part of this repository; their 2026-05-17 reports are kept under `conformance/reports/archive/` for history only. The production runtime lives in the private engine repository.
 
 Implementations submit entries via PR against `INTEROP.md`. The PR MUST include
 a harness log showing all tests passing, the harness commit SHA, and the
